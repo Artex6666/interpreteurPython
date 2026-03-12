@@ -1,0 +1,8 @@
+digraph {
+	node [shape=circle]
+	"8d673852-1550-4952-89e2-e3a42b0835cc" [label="+"]
+	"bac233aa-efda-4b4e-898c-eebcf89f9a4f" [label=1]
+	"8d673852-1550-4952-89e2-e3a42b0835cc" -> "bac233aa-efda-4b4e-898c-eebcf89f9a4f" [arrowsize=0]
+	"b3f47857-b7a8-4775-b459-74c2393953ca" [label=2]
+	"8d673852-1550-4952-89e2-e3a42b0835cc" -> "b3f47857-b7a8-4775-b459-74c2393953ca" [arrowsize=0]
+}
