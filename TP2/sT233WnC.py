@@ -7,11 +7,12 @@ reserved={
         'for': 'FOR',
         'while':'WHILE',
         'def': 'DEF',
+        'return': 'RETURN'
         }
 
 tokens = [ 'NUMBER','MINUS', 'PLUS','TIMES','DIVIDE', 'LPAREN',
           'RPAREN', 'OR', 'AND', 'SEMI', 'EGAL', 'NAME', 'INF', 'SUP',
-          'EGALEGAL','INFEG','LACC','RACC']+ list(reserved.values())
+          'EGALEGAL','INFEG','LACC','RACC','COMMA']+ list(reserved.values())
 
 t_PLUS = r'\+' 
 t_MINUS = r'-' 
@@ -30,6 +31,7 @@ t_INFEG = r'\<\='
 t_EGALEGAL = r'\=\='
 t_LACC = r'\{'
 t_RACC = r'\}'
+t_COMMA = r'\,'
 
 def t_NAME(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
@@ -63,8 +65,17 @@ precedence = (
         ('left','PLUS', 'MINUS' ), 
         ('left','TIMES', 'DIVIDE'), 
         )
-
+stack = []
 functions = {}
+function_template = {
+    "name": None,
+    "param": None,
+    "body": None
+}
+
+class ReturnSignal(Exception):
+    def __init__(self, value):
+        self.value = value
 
 def evalInst(t) -> None:
     print('evalInst de ',t)
@@ -92,13 +103,19 @@ def evalInst(t) -> None:
         names[t[1]] = evalExpr(t[2])
         return
     if t[0] == 'def':
-        name = t[1]
-        params = flatten_params(t[2])
-        body = t[3]
-        functions[name] = ('fun', params, body)
+        f = function_template.copy()
+        f["name"] = t[1]
+        f["param"] = flatten_params(t[2])
+        f["body"] = t[3]
+
+        functions[f["name"]] = f
         return
     if t[0] == 'return':
         value = evalExpr(t[1])
+        raise ReturnSignal(value)
+
+    if t[0] == 'call':
+        return evalCall(t)
 
 
     
@@ -108,6 +125,26 @@ def flatten_params(t):
     else:
         return [t[1]] + flatten_params(t[2])
 
+def evalCall(t):
+    name = t[1]
+    args = t[2]
+
+    fun = fun = functions[name]
+    params = fun["param"]
+    body = fun["body"]
+
+    frame = {}
+    for p, a in zip(params, args):
+        frame[p] = evalExpr(a)
+
+    stack.append(frame)
+    try:
+        evalInst(body)
+        return None
+    except ReturnSignal as r:
+        return r.value
+    finally:
+        stack.pop()
 
 
 def evalExpr(t) -> int:
@@ -176,7 +213,7 @@ def p_statement_assign(p):
     #print(p[1], 'a été modifié')
 
 def p_statement_function(p):
-    'statement: DEF NAME LPAREN params RPAREN LACC block RACC'
+    'statement : DEF NAME LPAREN params RPAREN LACC bloc RACC'
     p[0] = ('def',p[2],p[4],p[7])
 
 def p_statement_return(p):
@@ -235,7 +272,11 @@ def p_expression_binop_divide(p):
 #      | expression DIVIDE expression''' 
 #     if p[2] == '-': p[0] = p[1] - p[3] 
 #     else : p[0] = p[1] / p[3] 
-    
+
+def p_expression_call(p):
+    'expression : NAME LPAREN params RPAREN'
+    p[0] = ('call', p[1], p[3])
+
 def p_expression_group(p): 
     'expression : LPAREN expression RPAREN' 
     p[0] = p[2] 
@@ -253,5 +294,5 @@ def p_error(p):    print("Syntax error in input!")
     
 import ply.yacc as yacc
 yacc.yacc()
-s = 'def add(x, y) {return x + y;}'
+s = 'def add(x, y) { return x + y; }; add(5,6);'
 yacc.parse(s)
