@@ -1,3 +1,4 @@
+import os
 import ply.lex as lex
 import ply.yacc as yacc
 
@@ -59,6 +60,10 @@ t_ignore = " \t"
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += t.value.count("\n")
+
+    #syntaxe style js avec le \n qui sépare les instructions
+    t.type = 'SEMI'
+    return t
 
 
 def t_error(t):
@@ -257,7 +262,8 @@ def p_error(p):
         print("Syntax error at EOF")
 
 
-parser = yacc.yacc()
+os.makedirs("output", exist_ok=True)
+parser = yacc.yacc(debugfile=os.path.join("output", "parser.out"))
 
 
 def parse(text):

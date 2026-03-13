@@ -1,0 +1,7 @@
+fonctionVoid toto(a, b){print(a+b) ;}
+toto(3, 5) 
+
+fonctionValue add(a, b){c=a+b ;return c ;}
+x=add(2, 3) 
+print(x) 
+

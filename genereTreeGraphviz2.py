@@ -3,14 +3,17 @@
 Author : Vincent Genin ESGI-3AL 2018
 '''
 
+import os
 import uuid
 import graphviz as gv
 
+
 def printTreeGraph(t):
-    graph = gv.Digraph(format='pdf')
+    os.makedirs("output", exist_ok=True)
+    graph = gv.Digraph(format='pdf', filename='Digraph', directory='output')
     graph.attr('node', shape='circle')
     addNode(graph, t)
-    #graph.render(filename='img/graph') #Pour Sauvegarder
+    #graph.render() #Pour Sauvegarder
     graph.view() #Pour afficher
 
 def addNode(graph, t):

@@ -68,7 +68,7 @@ def exec_stmt(node, env, functions):
 
     elif tag == 'print':
         value = eval_expr(node[1], env, functions)
-        emit(f"calc > {value}")
+        emit(f"output -> {value}")
 
     elif tag == 'if':
         cond = eval_expr(node[1], env, functions)
