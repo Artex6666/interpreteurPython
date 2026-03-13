@@ -114,8 +114,7 @@ def evalInst(t) -> None:
         value = evalExpr(t[1])
         raise ReturnSignal(value)
 
-    if t[0] == 'call':
-        return evalCall(t)
+    
 
 
     
@@ -125,11 +124,18 @@ def flatten_params(t):
     else:
         return [t[1]] + flatten_params(t[2])
 
+def flatten_args(t):
+    if len(t) == 1:
+        return []
+    if len(t) == 2:
+        return [t[1]]
+    return [t[1]] + flatten_args(t[2])
+
 def evalCall(t):
     name = t[1]
-    args = t[2]
+    args = flatten_args(t[2])
 
-    fun = fun = functions[name]
+    fun = functions[name]
     params = fun["param"]
     body = fun["body"]
 
@@ -149,9 +155,11 @@ def evalCall(t):
 
 def evalExpr(t) -> int:
     print('evalExpr de ',t)
+   
     if type(t) == int: return t
     if type(t) == str: return names[t]
     if type(t) == tuple :
+        if t[0] == 'call': return evalCall(t)
         if t[0] == '+': return evalExpr(t[1]) + evalExpr(t[2])
         if t[0] == '-': return evalExpr(t[1]) - evalExpr(t[2])
         if t[0] == '*': return evalExpr(t[1]) * evalExpr(t[2])
@@ -187,8 +195,6 @@ def p_params_list(p):
     'params : NAME COMMA params'
     p[0] = ('params',p[1], p[3])
 
-
-
 def p_statement_if(p):
     'statement : IF LPAREN expression RPAREN LACC bloc RACC'
     p[0] = ('if',p[3],p[6])
@@ -219,6 +225,10 @@ def p_statement_function(p):
 def p_statement_return(p):
     'statement : RETURN expression'
     p[0] = ('return', p[2])
+
+def p_statement_expr_call(p):
+    'statement : expression'
+    p[0] = p[1]
 
 def p_expression_binop_inf(p): 
     'expression : expression INF expression' 
@@ -274,8 +284,21 @@ def p_expression_binop_divide(p):
 #     else : p[0] = p[1] / p[3] 
 
 def p_expression_call(p):
-    'expression : NAME LPAREN params RPAREN'
+    'expression : NAME LPAREN args RPAREN'
     p[0] = ('call', p[1], p[3])
+
+def p_args_empty(p):
+    'args : '
+    p[0] = ('args',)
+
+def p_args_single(p):
+    'args : expression'
+    p[0] = ('args', p[1])
+
+def p_args_list(p):
+    'args : expression COMMA args'
+    p[0] = ('args', p[1], p[3])
+
 
 def p_expression_group(p): 
     'expression : LPAREN expression RPAREN' 
@@ -290,8 +313,11 @@ def p_expression_name(p):
     #p[0] = names[p[1]]
     p[0] = p[1]
     
+
+
 def p_error(p):    print("Syntax error in input!")
-    
+
+
 import ply.yacc as yacc
 yacc.yacc()
 s = 'def add(x, y) { return x + y; }; add(5,6);'
