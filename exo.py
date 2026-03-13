@@ -1,3 +1,4 @@
+import os
 import sys
 
 from genereTreeGraphviz2 import printTreeGraph
@@ -28,6 +29,16 @@ def lire_source_depuis_fichier(path):
         return ""
 
 
+def chemin_fichier_sortie():
+    os.makedirs("output", exist_ok=True)
+    if len(sys.argv) >= 2:
+        base = os.path.splitext(os.path.basename(sys.argv[1]))[0]
+        nom = f"{base}_output.txt"
+    else:
+        nom = "stdin_output.txt"
+    return os.path.join("output", nom)
+
+
 def main():
     # Si un chemin est passé en argument, on lit depuis ce fichier,
     # sinon on passe en mode interactif (STDIN).
@@ -45,7 +56,14 @@ def main():
     printTreeGraph(ast)
 
     print("\n--- Exécution ---")
-    eval_program(ast)
+    output = eval_program(ast)
+
+    # Écriture de tous les messages d'exécution dans un fichier dans output/
+    path_out = chemin_fichier_sortie()
+    with open(path_out, "w", encoding="utf-8") as f:
+        for line in output.lines:
+            f.write(line + "\n")
+    print(f"Sortie d'exécution écrite dans : {path_out}")
 
 
 if __name__ == "__main__":

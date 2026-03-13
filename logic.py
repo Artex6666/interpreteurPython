@@ -4,6 +4,23 @@ class ReturnException(Exception):
         self.value = value
 
 
+class ExecutionOutput:
+    def __init__(self):
+        self.lines = []
+
+    def write(self, text):
+        self.lines.append(text)
+
+
+CURRENT_OUTPUT = None
+
+
+def emit(text):
+    if CURRENT_OUTPUT is not None:
+        CURRENT_OUTPUT.write(text)
+    print(text)
+
+
 class Environment:
     def __init__(self, parent=None):
         self.vars = {}
@@ -14,18 +31,24 @@ class Environment:
             return self.vars[name]
         if self.parent is not None:
             return self.parent.get(name)
-        print(f"Undefined variable '{name}'")
+        emit(f"Undefined variable '{name}'")
         return 0
 
     def set(self, name, value):
         self.vars[name] = value
 
 
-def eval_program(ast):
+def eval_program(ast, output=None):
     """Évalue un programme complet (AST racine)."""
+    global CURRENT_OUTPUT
+    if output is None:
+        output = ExecutionOutput()
+    CURRENT_OUTPUT = output
+
     env = Environment()
     functions = {}
     exec_stmt(ast, env, functions)
+    return output
 
 
 def exec_stmt(node, env, functions):
@@ -45,7 +68,7 @@ def exec_stmt(node, env, functions):
 
     elif tag == 'print':
         value = eval_expr(node[1], env, functions)
-        print(f"calc > {value}")
+        emit(f"calc > {value}")
 
     elif tag == 'if':
         cond = eval_expr(node[1], env, functions)
@@ -128,12 +151,12 @@ def eval_expr(node, env, functions):
 
 def call_function(name, arg_nodes, env, functions):
     if name not in functions:
-        print(f"Undefined function '{name}'")
+        emit(f"Undefined function '{name}'")
         return 0
 
     func_type, params, body = functions[name]
     if len(params) != len(arg_nodes):
-        print(f"Bad arity in call to '{name}'")
+        emit(f"Bad arity in call to '{name}'")
         return 0
 
     # Environnement local avec liaison des paramètres
