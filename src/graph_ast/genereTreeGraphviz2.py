@@ -3,19 +3,19 @@
 import uuid
 import graphviz as gv
 
-def printTreeGraph(t):
+def print_tree_graph(t):
     graph = gv.Digraph(format='pdf')
     graph.attr('node', shape='circle')
-    addNode(graph, t)
+    add_node(graph, t)
     graph.render(filename='../../img/graph.gv') #Pour Sauvegarder
     graph.view() #Pour afficher
 
-def addNode(graph, t):
-    myId = uuid.uuid4()
+def add_node(graph, t):
+    my_id = uuid.uuid4()
 
     if not hasattr(t, "children"):
-        graph.node(str(myId), label=str(t))
-        return myId
+        graph.node(str(my_id), label=str(t))
+        return my_id
 
     label = t.name
 
@@ -32,9 +32,9 @@ def addNode(graph, t):
     if hasattr(t,"number"):
         label += f"({t.number})"
 
-    graph.node(str(myId), label=label)
+    graph.node(str(my_id), label=label)
 
     for child in t.children:
-        graph.edge(str(myId), str(addNode(graph, child)), arrowsize='0')
+        graph.edge(str(my_id), str(add_node(graph, child)), arrowsize='0')
 
-    return myId 
+    return my_id
