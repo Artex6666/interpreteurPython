@@ -1,0 +1,12 @@
+from ast.ast_node import AstNode
+
+
+class CallNode(AstNode):
+    def __init__(self,func_name,args):
+        super().__init__("CallNode",[args])
+        self.func_name = func_name
+        self.args = args
+    
+    def __repr__(self):
+        class_name = type(self).__name__
+        return f"{class_name}(name={self.func_name}, args={self.args})"
