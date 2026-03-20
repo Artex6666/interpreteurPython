@@ -319,6 +319,6 @@ def p_error(p):    print("Syntax error in input!")
 
 import ply.yacc as yacc
 yacc.yacc()
-s = 'def add(x, y) { return x + y; }; add(5,6);'
+s = 'def add(x, y) { return x + y; }; add(5,6); def sub(x,y) {return x - y;}; sub(6,5);'
 yacc.parse(s)
  
