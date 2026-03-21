@@ -1,6 +1,6 @@
-all = ["ast","grammar","graphviz","node"]
+all = ["ast_lang","grammar","graphviz","node"]
 
 from . import node
-from . import ast
+from . import ast_lang
 from . import grammar
 from . import graph_ast
