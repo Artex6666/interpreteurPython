@@ -7,7 +7,7 @@ def print_tree_graph(t):
     graph = gv.Digraph(format='pdf')
     graph.attr('node', shape='circle')
     add_node(graph, t)
-    graph.render(filename='../../img/graph.gv') #Pour Sauvegarder
+    graph.render(filename='../img/graph.gv') #Pour Sauvegarder
     graph.view() #Pour afficher
 
 def add_node(graph, t):

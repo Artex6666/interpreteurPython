@@ -118,52 +118,53 @@ def eval_inst(node) -> None:
         names[node.name] = eval_expr(node.expr)
         return
     if isinstance(node,FuncNode):
-        f = function_template.copy()
-        f["name"] = node.name
-        f["param"] = flatten_params(node.params)
-        f["body"] = node.bloc
+        # f = function_template.copy()
+        # f["name"] = node.func_name
+        # f["param"] = node.params.children
+        # f["body"] = node.bloc
+        functions[node.name] = node
 
-        functions[f["name"]] = f
+        #functions[f["name"]] = f
         return
     if isinstance(node,ReturnNode):
         value = eval_expr(node.expr)
         raise ReturnSignal(value)
 
     
-def flatten_params(params):
-    if params.len == 2:
-        return [params]
-    else:
-        return [params] + [flatten_params(params)]
-
-def flatten_args(args):
-    if args.len == 1:
-        return []
-    if args.len == 2:
-        return [args]
-    return [args] + flatten_args(args)
+# def flatten_params(node):
+#     if node is None:
+#         return []
+#     return [node.param_name] + flatten_params(node.next)
+#
+# def flatten_args(args):
+#     if args.len == 1:
+#         return []
+#     if args.len == 2:
+#         return [args]
+#     return [args] + flatten_args(args)
 
 def eval_call(call_func):
     name = call_func.func_name
-    args = flatten_args(call_func.args)
-
     fun = functions[name]
-    params = fun["param"]
-    body = fun["body"]
+
+    params = fun.params.args
+    args = [eval_expr(a) for a in call_func.args.args]
+
+    # Vérification optionnelle
+    if len(params) != len(args):
+        raise Exception(f"Function {name} expects {len(params)} args, got {len(args)}")
 
     frame = {}
     for p, a in zip(params, args):
-        frame[p] = eval_expr(a)
+        frame[p] = a
 
     stack.append(frame)
     try:
-        eval_inst(body)
-        return None
+        eval_inst(fun.body)
     except ReturnSignal as r:
         return r.value
     finally:
         stack.pop()
-
 
 def eval_expr(node) -> int:
     print('evalExpr de ',node)
@@ -205,7 +206,7 @@ def p_bloc(p):
 
 def p_params_empty(p):
     'params : '
-    p[0] = ParamsNode([])
+    p[0] = ParamsNode(EmptyNode())
 
 def p_params_single(p):
     'params : NAME'
@@ -213,7 +214,7 @@ def p_params_single(p):
 
 def p_params_list(p):
     'params : NAME COMMA params'
-    p[0] = ParamsNode([NameNode(p[1])] + p[3].children)
+    p[0] = ParamsNode([NameNode(p[1])] + p[3].args)
 
 def p_statement_if(p):
     'statement : IF LPAREN expression RPAREN LACC bloc RACC'
@@ -237,7 +238,7 @@ def p_statement_assign(p):
 
 def p_statement_function(p):
     'statement : DEF NAME LPAREN params RPAREN LACC bloc RACC'
-    p[0] = FuncNode(p[2],p[4],p[7])
+    p[0] = FuncNode(p[2], p[4], p[7])
 
 def p_statement_return(p):
     'statement : RETURN expression'
@@ -321,6 +322,6 @@ def p_error(p):    print("Syntax error in input!")
 
 import ply.yacc as yacc
 yacc.yacc()
-s = 'def add(x,y){return x+y;}; x = add(5,6); print(x);'
+s = 'def add(){return 5+5;}; x = add(); print(x);'
 yacc.parse(s)
  
