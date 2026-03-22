@@ -328,6 +328,6 @@ def p_error(p):    print("Syntax error in input!")
 
 import ply.yacc as yacc
 yacc.yacc()
-s = 'x="bonjour"; print(x);'
+s = 'def carre(){print(2);}; for(i=0;i<10;i=i+1){carre();};'
 yacc.parse(s)
  
