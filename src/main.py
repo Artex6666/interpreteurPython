@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from ast_lang.node.StringNode import StringNode
 from ast_lang.node.args_node import ArgsNode
 from ast_lang.node.binary_node import BinaryNode
 from ast_lang.node.call_node import CallNode
@@ -31,7 +32,7 @@ reserved={
 
 tokens = [ 'NUMBER','MINUS', 'PLUS','TIMES','DIVIDE', 'LPAREN',
           'RPAREN', 'OR', 'AND', 'SEMI', 'EGAL', 'NAME', 'INF', 'SUP',
-          'EGALEGAL','INFEG','LACC','RACC','COMMA']+ list(reserved.values())
+          'EGALEGAL','INFEG','LACC','RACC','COMMA','STRING']+ list(reserved.values())
 
 t_PLUS = r'\+' 
 t_MINUS = r'-' 
@@ -60,6 +61,11 @@ def t_NAME(t):
 def t_NUMBER(t): 
     r'\d+' 
     t.value = int(t.value) 
+    return t
+
+def t_STRING(t):
+    r'\"[a-zA-Z_][a-zA-Z_0-9]*\"'
+    t.value = str(t.value)
     return t
 
 t_ignore = " \t"
@@ -159,7 +165,10 @@ def eval_expr(node) -> int:
 
     if isinstance(node, NameNode):
         return stack.top().get_local_var(node.value)
-    if type(node) == str: return names[node]
+
+    if isinstance(node,StringNode):
+        return node.string
+
     if isinstance(node,BinaryNode):
         left = eval_expr(node.left)
         right = eval_expr(node.right)
@@ -304,7 +313,11 @@ def p_expression_group(p):
     
 def p_expression_number(p): 
     'expression : NUMBER' 
-    p[0] = NumberNode(p[1]) 
+    p[0] = NumberNode(p[1])
+
+def p_expression_string(p):
+    'expression : STRING'
+    p[0] = StringNode(p[1])
     
 def p_expression_name(p): 
     'expression : NAME' 
@@ -315,6 +328,6 @@ def p_error(p):    print("Syntax error in input!")
 
 import ply.yacc as yacc
 yacc.yacc()
-s = 'def add(x,y){return x+y;}; def mul(x,y){return x*y;}; x = add(5,6); y = mul(5,5); print(x); print(y);'
+s = 'x="bonjour"; print(x);'
 yacc.parse(s)
  

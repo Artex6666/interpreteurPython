@@ -32,6 +32,9 @@ def add_node(graph, node):
     if hasattr(node, "number"):
         label += f"({node.number})"
 
+    if hasattr(node,"string"):
+        label += f"({node.string})"
+
     graph.node(str(my_id), label=label)
 
     for child in node.children:
