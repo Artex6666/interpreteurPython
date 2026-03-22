@@ -3,7 +3,7 @@ from ast_lang.ast_node import AstNode
 
 class CallNode(AstNode):
     def __init__(self,func_name,args):
-        super().__init__("CallNode",[args])
+        super().__init__("CallNode",[func_name,args])
         self.func_name = func_name
         self.args = args
     

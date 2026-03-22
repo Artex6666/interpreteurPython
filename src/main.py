@@ -17,6 +17,8 @@ from ast_lang.statement.print_node import PrintNode
 from ast_lang.statement.return_node import ReturnNode
 from ast_lang.statement.while_node import WhileNode
 from graph_ast.genereTreeGraphviz2 import print_tree_graph
+from runtime.frame import Frame
+from runtime.stack import Stack
 
 reserved={
         'print':'PRINT',
@@ -81,13 +83,11 @@ precedence = (
         ('left','PLUS', 'MINUS' ), 
         ('left','TIMES', 'DIVIDE'), 
         )
-stack = []
+stack = Stack()
+global_frame = Frame("__global__", None, [])
+stack.push(global_frame)
 functions = {}
-function_template = {
-    "name": None,
-    "param": None,
-    "body": None
-}
+
 
 class ReturnSignal(Exception):
     def __init__(self, value):
@@ -95,15 +95,20 @@ class ReturnSignal(Exception):
 
 def eval_inst(node) -> None:
     print('evalInst de ',node)
+
     if node == 'empty': return
+
     if isinstance(node,BlocKNode):
         eval_inst(node.first)
         eval_inst(node.second)
+
     if isinstance(node,PrintNode): print('CALC>', eval_expr(node.content))
+
     if isinstance(node,IfNode):
         eval_expr(node.condition)
         if eval_expr(node.condition):
             eval_inst(node.block)
+
     if isinstance(node,ForNode):
         eval_inst(node.init)
         while eval_expr(node.cond):
@@ -113,62 +118,47 @@ def eval_inst(node) -> None:
     if isinstance(node,WhileNode):
         while eval_expr(node.condition):
             eval_inst(node.block)
-            
-    if isinstance(node,AssignNode):
-        names[node.name] = eval_expr(node.expr)
-        return
-    if isinstance(node,FuncNode):
-        f = function_template.copy()
-        f["name"] = node.name
-        f["param"] = flatten_params(node.params)
-        f["body"] = node.bloc
 
-        functions[f["name"]] = f
+    if isinstance(node, AssignNode):
+        value = eval_expr(node.expr)
+        stack.top().add_local_var(node.name, value)
         return
+
+    if isinstance(node,FuncNode):
+        functions[node.func_name] = node
+        return
+
     if isinstance(node,ReturnNode):
         value = eval_expr(node.expr)
         raise ReturnSignal(value)
 
-    
-def flatten_params(params):
-    if params.len == 2:
-        return [params]
-    else:
-        return [params] + [flatten_params(params)]
-
-def flatten_args(args):
-    if args.len == 1:
-        return []
-    if args.len == 2:
-        return [args]
-    return [args] + flatten_args(args)
-
 def eval_call(call_func):
     name = call_func.func_name
-    args = flatten_args(call_func.args)
+    fun = functions.get(name)
 
-    fun = functions[name]
-    params = fun["param"]
-    body = fun["body"]
+    params = fun.params.args
+    args = [eval_expr(a) for a in call_func.args.args]
 
-    frame = {}
-    for p, a in zip(params, args):
-        frame[p] = eval_expr(a)
+    if len(params) != len(args):
+        raise Exception(f"Function {name} expects {len(params)} args, got {len(args)}")
 
-    stack.append(frame)
+    frame = Frame(name,fun,args)
+    for param_name, arg_value in zip(fun.params.args, args):
+        frame.add_local_var(param_name.value, arg_value)
+
+    stack.push(frame)
     try:
-        eval_inst(body)
-        return None
+        eval_inst(fun.body)
     except ReturnSignal as r:
         return r.value
     finally:
         stack.pop()
 
-
 def eval_expr(node) -> int:
     print('evalExpr de ',node)
-   
-    if type(node) == int: return node
+
+    if isinstance(node, NameNode):
+        return stack.top().get_local_var(node.value)
     if type(node) == str: return names[node]
     if isinstance(node,BinaryNode):
         left = eval_expr(node.left)
@@ -185,6 +175,10 @@ def eval_expr(node) -> int:
         if op == '>': return  left >  right 
         if op == '||': return left or right  
         if op == '&&': return left and right
+
+    if isinstance(node, NumberNode):
+        return node.number
+
     if isinstance(node,CallNode):
         return eval_call(node)
 
@@ -205,7 +199,7 @@ def p_bloc(p):
 
 def p_params_empty(p):
     'params : '
-    p[0] = ParamsNode([])
+    p[0] = ParamsNode(EmptyNode())
 
 def p_params_single(p):
     'params : NAME'
@@ -237,7 +231,7 @@ def p_statement_assign(p):
 
 def p_statement_function(p):
     'statement : DEF NAME LPAREN params RPAREN LACC bloc RACC'
-    p[0] = FuncNode(p[2],p[4],p[7])
+    p[0] = FuncNode(p[2], p[4], p[7])
 
 def p_statement_return(p):
     'statement : RETURN expression'
@@ -321,6 +315,6 @@ def p_error(p):    print("Syntax error in input!")
 
 import ply.yacc as yacc
 yacc.yacc()
-s = 'def add(x,y){return x+y;}; x = add(5,6); print(x);'
+s = 'def add(x,y){return x+y;}; def mul(x,y){return x*y;}; x = add(5,6); y = mul(5,5); print(x); print(y);'
 yacc.parse(s)
  
