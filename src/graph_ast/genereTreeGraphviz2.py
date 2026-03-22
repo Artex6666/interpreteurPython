@@ -10,31 +10,31 @@ def print_tree_graph(t):
     graph.render(filename='../img/graph.gv') #Pour Sauvegarder
     graph.view() #Pour afficher
 
-def add_node(graph, t):
+def add_node(graph, node):
     my_id = uuid.uuid4()
 
-    if not hasattr(t, "children"):
-        graph.node(str(my_id), label=str(t))
+    if not hasattr(node, "children"):
+        graph.node(str(my_id), label=str(node))
         return my_id
 
-    label = t.name
+    label = node.name
 
-    if hasattr(t, "value"):
-        label += f"({t.value})"
+    if hasattr(node, "value"):
+        label += f"({node.value})"
 
-    if hasattr(t, "operator"):
-        label += f"({t.operator})"
+    if hasattr(node, "operator"):
+        label += f"({node.operator})"
 
-    if hasattr(t, "func_name"):
-        label += f"({t.func_name})"
+    if hasattr(node, "func_name"):
+        label += f"({node.func_name})"
 
 
-    if hasattr(t,"number"):
-        label += f"({t.number})"
+    if hasattr(node, "number"):
+        label += f"({node.number})"
 
     graph.node(str(my_id), label=label)
 
-    for child in t.children:
+    for child in node.children:
         graph.edge(str(my_id), str(add_node(graph, child)), arrowsize='0')
 
     return my_id
