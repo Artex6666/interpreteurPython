@@ -11,7 +11,7 @@ reserved = {
 
 tokens = ['NUMBER', 'MINUS', 'PLUS', 'TIMES', 'DIVIDE', 'LPAREN',
           'RPAREN', 'OR', 'AND', 'SEMI', 'EGAL', 'NAME', 'INF', 'SUP',
-          'EGALEGAL', 'INFEG', 'SUPEG', 'LACC', 'RACC', 'COMMA', 'STRING'] + list(reserved.values())
+          'EGALEGAL', 'INFEG', 'SUPEG','NOTEG', 'LACC', 'RACC', 'COMMA', 'STRING'] + list(reserved.values())
 
 t_PLUS = r'\+'
 t_MINUS = r'-'
@@ -28,6 +28,7 @@ t_SUP = r'\>'
 t_SUPEG = r'\>\='
 t_INFEG = r'\<\='
 t_EGALEGAL = r'\=\='
+t_NOTEG = r'\!\='
 t_LACC = r'\{'
 t_RACC = r'\}'
 t_COMMA = r'\,'

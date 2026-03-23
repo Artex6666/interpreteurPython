@@ -6,6 +6,7 @@ from ast_lang.node.group_node import GroupNode
 from ast_lang.node.name_node import NameNode
 from ast_lang.node.number_node import NumberNode
 from ast_lang.node.params_node import ParamsNode
+from ast_lang.node.unary_node import UnaryNode
 from ast_lang.statement.assign_node import AssignNode
 from ast_lang.statement.block_node import BlocKNode
 from ast_lang.statement.elif_node import ElifNode
@@ -231,6 +232,12 @@ def p_expression_binop_divide(p):
                       right=p[3]
                       )
 
+def p_expression_binop_not_equal(p):
+    'expression : expression NOTEG expression'
+    p[0] = BinaryNode(op='!=',
+                      left=p[1],
+                      right=p[3]
+                      )
 
 def p_expression_call(p):
     'expression : NAME LPAREN args RPAREN'

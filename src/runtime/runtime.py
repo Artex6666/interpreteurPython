@@ -5,6 +5,7 @@ from ast_lang.node.call_node import CallNode
 from ast_lang.node.number_node import NumberNode
 from ast_lang.node.string_node import StringNode
 from ast_lang.node.name_node import NameNode
+from ast_lang.node.unary_node import UnaryNode
 from ast_lang.statement.assign_node import AssignNode
 from ast_lang.statement.block_node import BlocKNode
 from ast_lang.statement.expression_node import ExpressionNode
@@ -132,6 +133,7 @@ def eval_expr(node) -> None | int | bool | Any:
         if op == '>=': return left >= right
         if op == '||': return left or right
         if op == '&&': return left and right
+        if op == '!=': return left != right
 
     if isinstance(node, NumberNode):
         return node.number
