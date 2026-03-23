@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftORleftANDnonassocINFINFEGEGALEGALSUPleftPLUSMINUSleftTIMESDIVIDEAND COMMA DEF DIVIDE EGAL EGALEGAL FOR IF INF INFEG LACC LPAREN MINUS NAME NUMBER OR PLUS PRINT RACC RETURN RPAREN SEMI STRING SUP TIMES WHILEstart : blocbloc : bloc statement SEMI\n| statement SEMIparams : params : NAMEparams : NAME COMMA paramsstatement : IF LPAREN expression RPAREN LACC bloc RACCstatement : WHILE LPAREN expression RPAREN LACC bloc RACCstatement : FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACCstatement : PRINT LPAREN expression RPARENstatement : NAME EGAL expressionstatement : DEF NAME LPAREN params RPAREN LACC bloc RACCstatement : RETURN expressionstatement : expressionexpression : expression INF expressionexpression : expression INFEG expressionexpression : expression SUP expressionexpression : expression EGALEGAL expressionexpression : expression AND expressionexpression : expression OR expressionexpression : expression PLUS expressionexpression : expression TIMES expressionexpression : expression MINUS expressionexpression : expression DIVIDE expressionexpression : NAME LPAREN args RPARENargs : args : expressionargs : expression COMMA argsexpression : LPAREN expression RPARENexpression : NUMBERexpression : STRINGexpression : NAME'
+_lr_signature = 'leftORleftANDnonassocINFINFEGEGALEGALSUPleftPLUSMINUSleftTIMESDIVIDEAND COMMA DEF DIVIDE EGAL EGALEGAL ELSE FOR IF INF INFEG LACC LPAREN MINUS NAME NUMBER OR PLUS PRINT RACC RETURN RPAREN SEMI STRING SUP TIMES WHILEstart : blocbloc : bloc statement SEMI\n| statement SEMIparams : params : NAMEparams : NAME COMMA paramsstatement : IF LPAREN expression RPAREN LACC bloc RACCstatement : ELSE LACC bloc RACCstatement : WHILE LPAREN expression RPAREN LACC bloc RACCstatement : FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACCstatement : PRINT LPAREN expression RPARENstatement : NAME EGAL expressionstatement : DEF NAME LPAREN params RPAREN LACC bloc RACCstatement : RETURN expressionstatement : expressionexpression : expression INF expressionexpression : expression INFEG expressionexpression : expression SUP expressionexpression : expression EGALEGAL expressionexpression : expression AND expressionexpression : expression OR expressionexpression : expression PLUS expressionexpression : expression TIMES expressionexpression : expression MINUS expressionexpression : expression DIVIDE expressionexpression : NAME LPAREN args RPARENargs : args : expressionargs : expression COMMA argsexpression : LPAREN expression RPARENexpression : NUMBERexpression : STRINGexpression : NAME'
     
-_lr_action_items = {'IF':([0,2,16,31,37,65,66,71,72,73,75,79,82,83,],[4,4,-3,4,-2,4,4,4,4,4,4,4,4,4,]),'WHILE':([0,2,16,31,37,65,66,71,72,73,75,79,82,83,],[7,7,-3,7,-2,7,7,7,7,7,7,7,7,7,]),'FOR':([0,2,16,31,37,65,66,71,72,73,75,79,82,83,],[8,8,-3,8,-2,8,8,8,8,8,8,8,8,8,]),'PRINT':([0,2,16,31,37,65,66,71,72,73,75,79,82,83,],[9,9,-3,9,-2,9,9,9,9,9,9,9,9,9,]),'NAME':([0,2,5,11,12,16,17,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,37,56,59,62,65,66,69,71,72,73,75,79,82,83,],[10,10,19,35,19,-3,19,19,19,19,19,19,19,19,19,19,19,19,10,19,19,19,-2,63,19,19,10,10,63,10,10,10,10,10,10,10,]),'DEF':([0,2,16,31,37,65,66,71,72,73,75,79,82,83,],[11,11,-3,11,-2,11,11,11,11,11,11,11,11,11,]),'RETURN':([0,2,16,31,37,65,66,71,72,73,75,79,82,83,],[12,12,-3,12,-2,12,12,12,12,12,12,12,12,12,]),'LPAREN':([0,2,4,5,7,8,9,10,12,16,17,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,37,59,62,65,66,71,72,73,75,79,82,83,],[5,5,17,5,30,31,32,34,5,-3,5,34,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,56,-2,5,5,5,5,5,5,5,5,5,5,5,]),'NUMBER':([0,2,5,12,16,17,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,37,59,62,65,66,71,72,73,75,79,82,83,],[13,13,13,13,-3,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,-2,13,13,13,13,13,13,13,13,13,13,13,]),'STRING':([0,2,5,12,16,17,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,37,59,62,65,66,71,72,73,75,79,82,83,],[14,14,14,14,-3,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-2,14,14,14,14,14,14,14,14,14,14,14,]),'$end':([1,2,16,37,],[0,-1,-3,-2,]),'SEMI':([3,6,10,13,14,15,19,36,39,40,41,42,43,44,45,46,47,48,49,51,53,60,61,67,76,77,81,84,],[16,-14,-32,-30,-31,37,-32,-13,-29,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,59,-11,-10,-25,73,-7,-8,-12,-9,]),'RPAREN':([6,10,13,14,18,19,34,36,38,39,40,41,42,43,44,45,46,47,48,49,50,52,53,54,55,56,60,61,62,63,64,68,69,74,76,77,78,81,84,],[-14,-32,-30,-31,39,-32,-26,-13,57,-29,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,58,60,-11,61,-27,-4,-10,-25,-26,-5,70,-28,-4,-6,-7,-8,80,-12,-9,]),'INF':([6,10,13,14,18,19,36,38,39,40,41,42,43,44,45,46,47,48,49,50,52,53,55,61,67,],[20,-32,-30,-31,20,-32,20,20,-29,None,None,None,None,20,20,-21,-22,-23,-24,20,20,20,20,-25,20,]),'INFEG':([6,10,13,14,18,19,36,38,39,40,41,42,43,44,45,46,47,48,49,50,52,53,55,61,67,],[21,-32,-30,-31,21,-32,21,21,-29,None,None,None,None,21,21,-21,-22,-23,-24,21,21,21,21,-25,21,]),'SUP':([6,10,13,14,18,19,36,38,39,40,41,42,43,44,45,46,47,48,49,50,52,53,55,61,67,],[22,-32,-30,-31,22,-32,22,22,-29,None,None,None,None,22,22,-21,-22,-23,-24,22,22,22,22,-25,22,]),'EGALEGAL':([6,10,13,14,18,19,36,38,39,40,41,42,43,44,45,46,47,48,49,50,52,53,55,61,67,],[23,-32,-30,-31,23,-32,23,23,-29,None,None,None,None,23,23,-21,-22,-23,-24,23,23,23,23,-25,23,]),'AND':([6,10,13,14,18,19,36,38,39,40,41,42,43,44,45,46,47,48,49,50,52,53,55,61,67,],[24,-32,-30,-31,24,-32,24,24,-29,-15,-16,-17,-18,-19,24,-21,-22,-23,-24,24,24,24,24,-25,24,]),'OR':([6,10,13,14,18,19,36,38,39,40,41,42,43,44,45,46,47,48,49,50,52,53,55,61,67,],[25,-32,-30,-31,25,-32,25,25,-29,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,25,25,25,25,-25,25,]),'PLUS':([6,10,13,14,18,19,36,38,39,40,41,42,43,44,45,46,47,48,49,50,52,53,55,61,67,],[26,-32,-30,-31,26,-32,26,26,-29,26,26,26,26,26,26,-21,-22,-23,-24,26,26,26,26,-25,26,]),'TIMES':([6,10,13,14,18,19,36,38,39,40,41,42,43,44,45,46,47,48,49,50,52,53,55,61,67,],[27,-32,-30,-31,27,-32,27,27,-29,27,27,27,27,27,27,27,-22,27,-24,27,27,27,27,-25,27,]),'MINUS':([6,10,13,14,18,19,36,38,39,40,41,42,43,44,45,46,47,48,49,50,52,53,55,61,67,],[28,-32,-30,-31,28,-32,28,28,-29,28,28,28,28,28,28,-21,-22,-23,-24,28,28,28,28,-25,28,]),'DIVIDE':([6,10,13,14,18,19,36,38,39,40,41,42,43,44,45,46,47,48,49,50,52,53,55,61,67,],[29,-32,-30,-31,29,-32,29,29,-29,29,29,29,29,29,29,29,-22,29,-24,29,29,29,29,-25,29,]),'EGAL':([10,],[33,]),'COMMA':([13,14,19,39,40,41,42,43,44,45,46,47,48,49,55,61,63,],[-30,-31,-32,-29,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,62,-25,69,]),'RACC':([16,37,71,72,79,83,],[-3,-2,76,77,81,84,]),'LACC':([57,58,70,80,],[65,66,75,82,]),}
+_lr_action_items = {'IF':([0,2,17,31,33,39,52,69,70,75,76,77,79,83,86,87,],[4,4,-3,4,4,-2,4,4,4,4,4,4,4,4,4,4,]),'ELSE':([0,2,17,31,33,39,52,69,70,75,76,77,79,83,86,87,],[7,7,-3,7,7,-2,7,7,7,7,7,7,7,7,7,7,]),'WHILE':([0,2,17,31,33,39,52,69,70,75,76,77,79,83,86,87,],[8,8,-3,8,8,-2,8,8,8,8,8,8,8,8,8,8,]),'FOR':([0,2,17,31,33,39,52,69,70,75,76,77,79,83,86,87,],[9,9,-3,9,9,-2,9,9,9,9,9,9,9,9,9,9,]),'PRINT':([0,2,17,31,33,39,52,69,70,75,76,77,79,83,86,87,],[10,10,-3,10,10,-2,10,10,10,10,10,10,10,10,10,10,]),'NAME':([0,2,5,12,13,17,18,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,39,52,59,63,66,69,70,73,75,76,77,79,83,86,87,],[11,11,20,37,20,-3,20,20,20,20,20,20,20,20,20,20,20,11,20,11,20,20,20,-2,11,67,20,20,11,11,67,11,11,11,11,11,11,11,]),'DEF':([0,2,17,31,33,39,52,69,70,75,76,77,79,83,86,87,],[12,12,-3,12,12,-2,12,12,12,12,12,12,12,12,12,12,]),'RETURN':([0,2,17,31,33,39,52,69,70,75,76,77,79,83,86,87,],[13,13,-3,13,13,-2,13,13,13,13,13,13,13,13,13,13,]),'LPAREN':([0,2,4,5,8,9,10,11,13,17,18,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,39,52,63,66,69,70,75,76,77,79,83,86,87,],[5,5,18,5,32,33,34,36,5,-3,5,36,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,59,-2,5,5,5,5,5,5,5,5,5,5,5,5,]),'NUMBER':([0,2,5,13,17,18,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,39,52,63,66,69,70,75,76,77,79,83,86,87,],[14,14,14,14,-3,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-2,14,14,14,14,14,14,14,14,14,14,14,14,]),'STRING':([0,2,5,13,17,18,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,39,52,63,66,69,70,75,76,77,79,83,86,87,],[15,15,15,15,-3,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,-2,15,15,15,15,15,15,15,15,15,15,15,15,]),'$end':([1,2,17,39,],[0,-1,-3,-2,]),'SEMI':([3,6,11,14,15,16,20,38,41,42,43,44,45,46,47,48,49,50,51,54,56,61,64,65,71,80,81,85,88,],[17,-15,-33,-31,-32,39,-33,-14,-30,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,63,-12,-8,-11,-26,77,-7,-9,-13,-10,]),'RPAREN':([6,11,14,15,19,20,36,38,40,41,42,43,44,45,46,47,48,49,50,51,53,55,56,57,58,59,61,64,65,66,67,68,72,73,78,80,81,82,85,88,],[-15,-33,-31,-32,41,-33,-27,-14,60,-30,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,62,64,-12,65,-28,-4,-8,-11,-26,-27,-5,74,-29,-4,-6,-7,-9,84,-13,-10,]),'INF':([6,11,14,15,19,20,38,40,41,42,43,44,45,46,47,48,49,50,51,53,55,56,58,65,71,],[21,-33,-31,-32,21,-33,21,21,-30,None,None,None,None,21,21,-22,-23,-24,-25,21,21,21,21,-26,21,]),'INFEG':([6,11,14,15,19,20,38,40,41,42,43,44,45,46,47,48,49,50,51,53,55,56,58,65,71,],[22,-33,-31,-32,22,-33,22,22,-30,None,None,None,None,22,22,-22,-23,-24,-25,22,22,22,22,-26,22,]),'SUP':([6,11,14,15,19,20,38,40,41,42,43,44,45,46,47,48,49,50,51,53,55,56,58,65,71,],[23,-33,-31,-32,23,-33,23,23,-30,None,None,None,None,23,23,-22,-23,-24,-25,23,23,23,23,-26,23,]),'EGALEGAL':([6,11,14,15,19,20,38,40,41,42,43,44,45,46,47,48,49,50,51,53,55,56,58,65,71,],[24,-33,-31,-32,24,-33,24,24,-30,None,None,None,None,24,24,-22,-23,-24,-25,24,24,24,24,-26,24,]),'AND':([6,11,14,15,19,20,38,40,41,42,43,44,45,46,47,48,49,50,51,53,55,56,58,65,71,],[25,-33,-31,-32,25,-33,25,25,-30,-16,-17,-18,-19,-20,25,-22,-23,-24,-25,25,25,25,25,-26,25,]),'OR':([6,11,14,15,19,20,38,40,41,42,43,44,45,46,47,48,49,50,51,53,55,56,58,65,71,],[26,-33,-31,-32,26,-33,26,26,-30,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,26,26,26,26,-26,26,]),'PLUS':([6,11,14,15,19,20,38,40,41,42,43,44,45,46,47,48,49,50,51,53,55,56,58,65,71,],[27,-33,-31,-32,27,-33,27,27,-30,27,27,27,27,27,27,-22,-23,-24,-25,27,27,27,27,-26,27,]),'TIMES':([6,11,14,15,19,20,38,40,41,42,43,44,45,46,47,48,49,50,51,53,55,56,58,65,71,],[28,-33,-31,-32,28,-33,28,28,-30,28,28,28,28,28,28,28,-23,28,-25,28,28,28,28,-26,28,]),'MINUS':([6,11,14,15,19,20,38,40,41,42,43,44,45,46,47,48,49,50,51,53,55,56,58,65,71,],[29,-33,-31,-32,29,-33,29,29,-30,29,29,29,29,29,29,-22,-23,-24,-25,29,29,29,29,-26,29,]),'DIVIDE':([6,11,14,15,19,20,38,40,41,42,43,44,45,46,47,48,49,50,51,53,55,56,58,65,71,],[30,-33,-31,-32,30,-33,30,30,-30,30,30,30,30,30,30,30,-23,30,-25,30,30,30,30,-26,30,]),'LACC':([7,60,62,74,84,],[31,69,70,79,86,]),'EGAL':([11,],[35,]),'COMMA':([14,15,20,41,42,43,44,45,46,47,48,49,50,51,58,65,67,],[-31,-32,-33,-30,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,66,-26,73,]),'RACC':([17,39,52,75,76,83,87,],[-3,-2,61,80,81,85,88,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'start':([0,],[1,]),'bloc':([0,65,66,75,82,],[2,71,72,79,83,]),'statement':([0,2,31,65,66,71,72,73,75,79,82,83,],[3,15,51,3,3,15,15,78,3,15,3,15,]),'expression':([0,2,5,12,17,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,59,62,65,66,71,72,73,75,79,82,83,],[6,6,18,36,38,40,41,42,43,44,45,46,47,48,49,50,6,52,53,55,67,55,6,6,6,6,6,6,6,6,6,]),'args':([34,62,],[54,68,]),'params':([56,69,],[64,74,]),}
+_lr_goto_items = {'start':([0,],[1,]),'bloc':([0,31,69,70,79,86,],[2,52,75,76,83,87,]),'statement':([0,2,31,33,52,69,70,75,76,77,79,83,86,87,],[3,16,3,54,16,3,3,16,16,82,3,16,3,16,]),'expression':([0,2,5,13,18,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,52,63,66,69,70,75,76,77,79,83,86,87,],[6,6,19,38,40,42,43,44,45,46,47,48,49,50,51,6,53,6,55,56,58,6,71,58,6,6,6,6,6,6,6,6,6,]),'args':([36,66,],[57,72,]),'params':([59,73,],[68,78,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,36 +27,37 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> start","S'",1,None,None,None),
-  ('start -> bloc','start',1,'p_start','main.py',196),
-  ('bloc -> bloc statement SEMI','bloc',3,'p_bloc','main.py',202),
-  ('bloc -> statement SEMI','bloc',2,'p_bloc','main.py',203),
-  ('params -> <empty>','params',0,'p_params_empty','main.py',210),
-  ('params -> NAME','params',1,'p_params_single','main.py',214),
-  ('params -> NAME COMMA params','params',3,'p_params_list','main.py',218),
-  ('statement -> IF LPAREN expression RPAREN LACC bloc RACC','statement',7,'p_statement_if','main.py',222),
-  ('statement -> WHILE LPAREN expression RPAREN LACC bloc RACC','statement',7,'p_statement_while','main.py',226),
-  ('statement -> FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC','statement',11,'p_statement_for','main.py',230),
-  ('statement -> PRINT LPAREN expression RPAREN','statement',4,'p_statement_expr','main.py',234),
-  ('statement -> NAME EGAL expression','statement',3,'p_statement_assign','main.py',238),
-  ('statement -> DEF NAME LPAREN params RPAREN LACC bloc RACC','statement',8,'p_statement_function','main.py',242),
-  ('statement -> RETURN expression','statement',2,'p_statement_return','main.py',246),
-  ('statement -> expression','statement',1,'p_statement_expr_call','main.py',250),
-  ('expression -> expression INF expression','expression',3,'p_expression_binop_inf','main.py',254),
-  ('expression -> expression INFEG expression','expression',3,'p_expression_binop_infEGAL','main.py',258),
-  ('expression -> expression SUP expression','expression',3,'p_expression_binop_sup','main.py',262),
-  ('expression -> expression EGALEGAL expression','expression',3,'p_expression_binop_egal','main.py',266),
-  ('expression -> expression AND expression','expression',3,'p_expression_binop_and','main.py',270),
-  ('expression -> expression OR expression','expression',3,'p_expression_binop_or','main.py',274),
-  ('expression -> expression PLUS expression','expression',3,'p_expression_binop_plus','main.py',278),
-  ('expression -> expression TIMES expression','expression',3,'p_expression_binop_times','main.py',282),
-  ('expression -> expression MINUS expression','expression',3,'p_expression_binop_minus','main.py',286),
-  ('expression -> expression DIVIDE expression','expression',3,'p_expression_binop_divide','main.py',290),
-  ('expression -> NAME LPAREN args RPAREN','expression',4,'p_expression_call','main.py',294),
-  ('args -> <empty>','args',0,'p_args_empty','main.py',298),
-  ('args -> expression','args',1,'p_args_single','main.py',302),
-  ('args -> expression COMMA args','args',3,'p_args_list','main.py',306),
-  ('expression -> LPAREN expression RPAREN','expression',3,'p_expression_group','main.py',311),
-  ('expression -> NUMBER','expression',1,'p_expression_number','main.py',315),
-  ('expression -> STRING','expression',1,'p_expression_string','main.py',319),
-  ('expression -> NAME','expression',1,'p_expression_name','main.py',323),
+  ('start -> bloc','start',1,'p_start','main.py',201),
+  ('bloc -> bloc statement SEMI','bloc',3,'p_bloc','main.py',207),
+  ('bloc -> statement SEMI','bloc',2,'p_bloc','main.py',208),
+  ('params -> <empty>','params',0,'p_params_empty','main.py',215),
+  ('params -> NAME','params',1,'p_params_single','main.py',219),
+  ('params -> NAME COMMA params','params',3,'p_params_list','main.py',223),
+  ('statement -> IF LPAREN expression RPAREN LACC bloc RACC','statement',7,'p_statement_if','main.py',227),
+  ('statement -> ELSE LACC bloc RACC','statement',4,'p_statement_else','main.py',231),
+  ('statement -> WHILE LPAREN expression RPAREN LACC bloc RACC','statement',7,'p_statement_while','main.py',235),
+  ('statement -> FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC','statement',11,'p_statement_for','main.py',239),
+  ('statement -> PRINT LPAREN expression RPAREN','statement',4,'p_statement_expr','main.py',243),
+  ('statement -> NAME EGAL expression','statement',3,'p_statement_assign','main.py',247),
+  ('statement -> DEF NAME LPAREN params RPAREN LACC bloc RACC','statement',8,'p_statement_function','main.py',251),
+  ('statement -> RETURN expression','statement',2,'p_statement_return','main.py',255),
+  ('statement -> expression','statement',1,'p_statement_expr_call','main.py',259),
+  ('expression -> expression INF expression','expression',3,'p_expression_binop_inf','main.py',263),
+  ('expression -> expression INFEG expression','expression',3,'p_expression_binop_infEGAL','main.py',267),
+  ('expression -> expression SUP expression','expression',3,'p_expression_binop_sup','main.py',271),
+  ('expression -> expression EGALEGAL expression','expression',3,'p_expression_binop_egal','main.py',275),
+  ('expression -> expression AND expression','expression',3,'p_expression_binop_and','main.py',279),
+  ('expression -> expression OR expression','expression',3,'p_expression_binop_or','main.py',283),
+  ('expression -> expression PLUS expression','expression',3,'p_expression_binop_plus','main.py',287),
+  ('expression -> expression TIMES expression','expression',3,'p_expression_binop_times','main.py',291),
+  ('expression -> expression MINUS expression','expression',3,'p_expression_binop_minus','main.py',295),
+  ('expression -> expression DIVIDE expression','expression',3,'p_expression_binop_divide','main.py',299),
+  ('expression -> NAME LPAREN args RPAREN','expression',4,'p_expression_call','main.py',303),
+  ('args -> <empty>','args',0,'p_args_empty','main.py',307),
+  ('args -> expression','args',1,'p_args_single','main.py',311),
+  ('args -> expression COMMA args','args',3,'p_args_list','main.py',315),
+  ('expression -> LPAREN expression RPAREN','expression',3,'p_expression_group','main.py',320),
+  ('expression -> NUMBER','expression',1,'p_expression_number','main.py',324),
+  ('expression -> STRING','expression',1,'p_expression_string','main.py',328),
+  ('expression -> NAME','expression',1,'p_expression_name','main.py',332),
 ]

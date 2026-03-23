@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from typing import Any
+
 from ast_lang.node.StringNode import StringNode
 from ast_lang.node.args_node import ArgsNode
 from ast_lang.node.binary_node import BinaryNode
@@ -9,6 +11,7 @@ from ast_lang.node.number_node import NumberNode
 from ast_lang.node.params_node import ParamsNode
 from ast_lang.statement.assign_node import AssignNode
 from ast_lang.statement.block_node import BlocKNode
+from ast_lang.statement.else_node import ElseNode
 from ast_lang.statement.empty_node import EmptyNode
 from ast_lang.statement.expression_node import ExpressionNode
 from ast_lang.statement.for_node import ForNode
@@ -24,6 +27,7 @@ from runtime.stack import Stack
 reserved={
         'print':'PRINT',
         'if': 'IF',
+        'else': 'ELSE',
         'for': 'FOR',
         'while':'WHILE',
         'def': 'DEF',
@@ -160,7 +164,7 @@ def eval_call(call_func):
     finally:
         stack.pop()
 
-def eval_expr(node) -> int:
+def eval_expr(node) -> None | int | bool | Any:
     print('evalExpr de ',node)
 
     if isinstance(node, NameNode):
@@ -190,6 +194,7 @@ def eval_expr(node) -> int:
 
     if isinstance(node,CallNode):
         return eval_call(node)
+    return None
 
 
 def p_start(p):
@@ -221,6 +226,10 @@ def p_params_list(p):
 def p_statement_if(p):
     'statement : IF LPAREN expression RPAREN LACC bloc RACC'
     p[0] = IfNode(p[3],p[6])
+
+def p_statement_else(p):
+    'statement : ELSE LACC bloc RACC'
+    p[0] = ElseNode(p[3])
 
 def p_statement_while(p):
     'statement : WHILE LPAREN expression RPAREN LACC bloc RACC'
@@ -328,6 +337,6 @@ def p_error(p):    print("Syntax error in input!")
 
 import ply.yacc as yacc
 yacc.yacc()
-s = 'def carre(){print(2);}; for(i=0;i<10;i=i+1){carre();};'
+s = ' def carre(x){ return "bonjour"+x;}; print(carre("test"));'
 yacc.parse(s)
- 
+print(functions)
