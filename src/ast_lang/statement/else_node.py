@@ -3,7 +3,7 @@ from ast_lang.ast_node import AstNode
 
 class ElseNode(AstNode):
     def __init__(self,block):
-        super().__init__("ElseNode")
+        super().__init__("ElseNode",[block])
         self.block = block
 
     def __repr__(self):
