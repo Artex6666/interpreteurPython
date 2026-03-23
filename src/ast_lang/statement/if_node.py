@@ -7,7 +7,7 @@ class IfNode(AstNode):
         self.condition = condition
         self.block = block
         self.elif_list = elif_list or []
-        self.else_block = else_block
+        self.else_block = else_block or []
 
     def __repr__(self):
         class_name = type(self).__name__

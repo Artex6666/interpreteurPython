@@ -10,4 +10,4 @@ class BinaryNode(AstNode):
 
     def __repr__(self):
         class_name = type(self).__name__
-        return f"{class_name}(operator={self.op}, left_operand={self.left}, right_operand={self.right})"
+        return f"{class_name}(operator=\'{self.op}\', left_operand={self.left}, right_operand={self.right})"

@@ -107,7 +107,7 @@ class ReturnSignal(Exception):
         self.value = value
 
 def eval_inst(node) -> None:
-    print('evalInst de ',node)
+    #print('evalInst de ',node)
 
     if node == 'empty': return
 
@@ -116,6 +116,10 @@ def eval_inst(node) -> None:
         eval_inst(node.second)
 
     if isinstance(node,PrintNode): print('CALC>', eval_expr(node.content))
+
+    if isinstance(node, ExpressionNode):
+        eval_expr(node.expr)
+        return
 
     if isinstance(node,IfNode):
         if eval_expr(node.condition):
@@ -176,7 +180,7 @@ def eval_call(call_func):
         stack.pop()
 
 def eval_expr(node) -> None | int | bool | Any:
-    print('evalExpr de ',node)
+    #print('evalExpr de ',node)
 
     if isinstance(node, NameNode):
         return stack.top().get_local_var(node.value)
@@ -217,7 +221,7 @@ def p_start(p):
 
 def p_empty(p):
     'empty :'
-    p[0] = None
+    pass
 
 def p_bloc(p):
     '''bloc : bloc statement SEMI
@@ -257,7 +261,7 @@ def p_else_opt(p):
          | ELSE LACC bloc RACC
     '''
 
-    if len(p) == 1:
+    if len(p) == 2:
         p[0] = None
     else:
         p[0] = ElseNode(p[3])
@@ -436,6 +440,5 @@ def p_error(p):    print("Syntax error in input!")
 
 import ply.yacc as yacc
 yacc.yacc()
-s = 'x = 2; if (x == 1) {print(1);} elif (x == 2) {print(2);} else {print(3);};'
+s = 'def factoriel(x){ if(x == 0 || x == 1){ return 1;}; return x * factoriel(x-1);}; print(factoriel(5)); '
 yacc.parse(s)
-print(functions)

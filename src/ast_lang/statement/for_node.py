@@ -3,7 +3,7 @@ from ast_lang.ast_node import AstNode
 
 class ForNode(AstNode):
     def __init__(self, init, cond, incr, body):
-        super().__init__("ForNode",[init,incr,body])
+        super().__init__("ForNode",[body])
         self.init = init
         self.cond = cond
         self.incr = incr
