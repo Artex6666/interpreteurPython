@@ -1,7 +1,5 @@
-n = 1;
-
-if( n != 1 ) {
-    print("vrai");
-}else{
-    print("faux");
+def fiboRec(n){
+ if (n ==0 || n==1) { return n;};
+ return fiboRec(n-1)+fiboRec(n-2);
 };
+print(fiboRec(9));
