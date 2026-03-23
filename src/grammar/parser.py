@@ -25,7 +25,7 @@ from grammar.lexer import *
 
 def p_start(p):
     'start : bloc'
-    print(p[1])
+    #print(p[1])
     print_tree_graph(p[1])
     eval_inst(p[1])
 

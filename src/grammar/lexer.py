@@ -47,8 +47,8 @@ def t_NUMBER(t):
 
 
 def t_STRING(t):
-    r'\"[a-zA-Z_][a-zA-Z_0-9]*\"'
-    t.value = str(t.value)
+    r'"([^"\\]|\\.)*"'
+    t.value = str(t.value[1:-1])
     return t
 
 

@@ -34,7 +34,7 @@ stack.push(global_frame)
 functions = {}
 
 def eval_inst(node) -> None:
-    # print('evalInst de ',node)
+    #print('evalInst de ',node)
 
     if node == 'empty': return
 
@@ -109,7 +109,7 @@ def eval_call(call_func):
 
 
 def eval_expr(node) -> None | int | bool | Any:
-    # print('evalExpr de ',node)
+    #print('evalExpr de ',node)
 
     if isinstance(node, NameNode):
         return stack.top().get_local_var(node.value)
