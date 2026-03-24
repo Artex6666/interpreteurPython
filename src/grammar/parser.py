@@ -6,7 +6,6 @@ from ast_lang.node.group_node import GroupNode
 from ast_lang.node.name_node import NameNode
 from ast_lang.node.number_node import NumberNode
 from ast_lang.node.params_node import ParamsNode
-from ast_lang.node.unary_node import UnaryNode
 from ast_lang.statement.assign_node import AssignNode
 from ast_lang.statement.block_node import BlocKNode
 from ast_lang.statement.elif_node import ElifNode
@@ -17,11 +16,12 @@ from ast_lang.statement.for_node import ForNode
 from ast_lang.statement.func_node import FuncNode
 from ast_lang.statement.if_node import IfNode
 from ast_lang.statement.print_node import PrintNode
+from ast_lang.node.ref_node import RefNode
 from ast_lang.statement.return_node import ReturnNode
 from ast_lang.statement.while_node import WhileNode
 from graph_ast.genereTreeGraphviz2 import print_tree_graph
 from runtime.runtime import eval_inst
-from grammar.lexer import *
+from grammar.lexer import * # noqa: F401
 
 def p_start(p):
     'start : bloc'
@@ -144,6 +144,10 @@ def p_statement_expr_call(p):
     'statement : expression'
     p[0] = ExpressionNode(p[1])
 
+
+def p_expression_ref(p):
+    'expression : REF expression'
+    p[0] = RefNode(p[2])
 
 def p_expression_binop_inf(p):
     'expression : expression INF expression'

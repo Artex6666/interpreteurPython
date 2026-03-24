@@ -10,3 +10,7 @@ class Stack:
 
     def top(self):
         return self.frames[-1]
+
+    def __repr__(self):
+        class_name = type(self).__name__
+        return f"{class_name}(frames={self.frames})"

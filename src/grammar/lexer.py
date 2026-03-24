@@ -6,13 +6,14 @@ reserved = {
     'for': 'FOR',
     'while': 'WHILE',
     'def': 'DEF',
-    'return': 'RETURN'
+    'return': 'RETURN',
 }
 
 tokens = ['NUMBER', 'MINUS', 'PLUS', 'TIMES', 'DIVIDE', 'LPAREN',
           'RPAREN', 'OR', 'AND', 'SEMI', 'EGAL', 'NAME', 'INF', 'SUP',
-          'EGALEGAL', 'INFEG', 'SUPEG','NOTEG', 'LACC', 'RACC', 'COMMA', 'STRING'] + list(reserved.values())
+          'EGALEGAL', 'INFEG', 'SUPEG','NOTEG', 'LACC', 'RACC', 'COMMA', 'STRING','REF'] + list(reserved.values())
 
+t_REF = r'\&'
 t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'

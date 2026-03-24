@@ -5,7 +5,6 @@ from ast_lang.node.call_node import CallNode
 from ast_lang.node.number_node import NumberNode
 from ast_lang.node.string_node import StringNode
 from ast_lang.node.name_node import NameNode
-from ast_lang.node.unary_node import UnaryNode
 from ast_lang.statement.assign_node import AssignNode
 from ast_lang.statement.block_node import BlocKNode
 from ast_lang.statement.expression_node import ExpressionNode
@@ -13,6 +12,7 @@ from ast_lang.statement.for_node import ForNode
 from ast_lang.statement.func_node import FuncNode
 from ast_lang.statement.if_node import IfNode
 from ast_lang.statement.print_node import PrintNode
+from ast_lang.node.ref_node import RefNode
 from ast_lang.statement.return_node import ReturnNode
 from ast_lang.statement.while_node import WhileNode
 from runtime.frame import Frame
@@ -112,7 +112,11 @@ def eval_expr(node) -> None | int | bool | Any:
     #print('evalExpr de ',node)
 
     if isinstance(node, NameNode):
-        return stack.top().get_local_var(node.value)
+        return stack.top().get_local_var_cell(node.value)
+
+    if isinstance(node,RefNode):
+        var_name = node.value.value
+        return stack.top().get_local_var_cell(var_name)
 
     if isinstance(node, StringNode):
         return node.string

@@ -1,3 +1,5 @@
+from runtime.ref_cell import RefCell
+
 
 class Frame:
     def __init__(self,func_name,func_def,args):
@@ -11,10 +13,14 @@ class Frame:
         return f"{class_name}(__func_name__={self.__func_name__}, __func_def__={self.__func_def__}, args={self.args}, locals={self.locals})"
 
     def add_local_var(self,name,value):
-        self.locals[name] = value
+        self.locals[name] = RefCell(value)
 
-    def get_local_var(self,name):
+    def get_local_var_cell(self,name):
         if not name in self.locals:
             raise NameError(f"Variable {name} not found in frame {self.__func_name__}")
         return self.locals[name]
 
+    def get_local_var_value(self, name):
+        if not name in self.locals:
+            raise NameError(f"Variable {name} not found in frame {self.__func_name__}")
+        return self.locals.get(name)
