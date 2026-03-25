@@ -3,6 +3,7 @@ from ast_lang.ast_node import AstNode
 
 class UnaryNode(AstNode):
     def __init__(self,op,right):
+        super().__init__("UnaryNode",[right])
         self.op = op
         self.right = right
 

@@ -1,3 +1,5 @@
+from ast_lang.node.pointer_node import PointerNode
+from ast_lang.node.pointer_param_node import PointerParamNode
 from ast_lang.node.string_node import StringNode
 from ast_lang.node.args_node import ArgsNode
 from ast_lang.node.binary_node import BinaryNode
@@ -6,7 +8,6 @@ from ast_lang.node.group_node import GroupNode
 from ast_lang.node.name_node import NameNode
 from ast_lang.node.number_node import NumberNode
 from ast_lang.node.params_node import ParamsNode
-from ast_lang.node.unary_node import UnaryNode
 from ast_lang.statement.assign_node import AssignNode
 from ast_lang.statement.block_node import BlocKNode
 from ast_lang.statement.elif_node import ElifNode
@@ -16,12 +17,14 @@ from ast_lang.statement.expression_node import ExpressionNode
 from ast_lang.statement.for_node import ForNode
 from ast_lang.statement.func_node import FuncNode
 from ast_lang.statement.if_node import IfNode
+from ast_lang.statement.pointer_assign_node import PointerAssignNode
 from ast_lang.statement.print_node import PrintNode
+from ast_lang.node.ref_node import RefNode
 from ast_lang.statement.return_node import ReturnNode
 from ast_lang.statement.while_node import WhileNode
 from graph_ast.genereTreeGraphviz2 import print_tree_graph
 from runtime.runtime import eval_inst
-from grammar.lexer import *
+from grammar.lexer import * # noqa: F401
 
 def p_start(p):
     'start : bloc'
@@ -44,19 +47,29 @@ def p_bloc(p):
         p[0] = BlocKNode(EmptyNode(), p[1])
 
 
+def p_param_name(p):
+    'param : NAME'
+    p[0] = NameNode(p[1])
+
+
+def p_param_pointer(p):
+    'param : TIMES NAME'
+    p[0] = PointerParamNode(p[2])
+
+
 def p_params_empty(p):
     'params : '
-    p[0] = ParamsNode(EmptyNode())
+    p[0] = ParamsNode([])
 
 
 def p_params_single(p):
-    'params : NAME'
-    p[0] = ParamsNode([NameNode(p[1])])
+    'params : param'
+    p[0] = ParamsNode([p[1]])
 
 
 def p_params_list(p):
-    'params : NAME COMMA params'
-    p[0] = ParamsNode([NameNode(p[1])] + p[3].children)
+    'params : param COMMA params'
+    p[0] = ParamsNode([p[1]] + p[3].children)
 
 
 def p_elif_list(p):
@@ -125,6 +138,12 @@ def p_statement_assign(p):
         expr=p[3]
     )
 
+def p_statement_pointer_assign(p):
+    'statement : TIMES NAME EGAL expression'
+    p[0] = PointerAssignNode(
+        name=p[2],
+        value=p[4]
+    )
 
 def p_statement_function(p):
     'statement : DEF NAME LPAREN params RPAREN LACC bloc RACC'
@@ -144,6 +163,10 @@ def p_statement_expr_call(p):
     'statement : expression'
     p[0] = ExpressionNode(p[1])
 
+
+def p_expression_ref(p):
+    'expression : REF NAME'
+    p[0] = RefNode(p[2])
 
 def p_expression_binop_inf(p):
     'expression : expression INF expression'
@@ -280,6 +303,10 @@ def p_expression_string(p):
 def p_expression_name(p):
     'expression : NAME'
     p[0] = NameNode(p[1])
+
+def p_expression_pointer(p):
+    'expression : TIMES NAME'
+    p[0] = PointerNode(p[2])
 
 
 def p_error(p):    print("Syntax error in input!")
