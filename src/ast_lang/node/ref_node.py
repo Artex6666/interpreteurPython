@@ -7,4 +7,4 @@ class RefNode(AstNode):
 
     def __repr__(self):
         class_name = type(self).__name__
-        return f"{class_name}(value={self.name})"
+        return f"{class_name}(name={self.name})"
