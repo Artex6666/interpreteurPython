@@ -1,3 +1,12 @@
-x = 15;
-j = &x;
+def swap(*x, *y) {
+    temp = *x;
+    *x = *y;
+    *y = temp;
+};
+
+x = 10;
+z = 12;
+swap(&x, &z);
+
 print(x);
+print(z);

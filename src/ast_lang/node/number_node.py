@@ -4,7 +4,7 @@ from ast_lang.ast_node import AstNode
 
 class NumberNode(AstNode):
     def __init__(self,number):
-        super().__init__("NumberNode")
+        super().__init__("NumberNode",[])
         self.number = number
     
     def __repr__(self):

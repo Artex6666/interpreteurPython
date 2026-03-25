@@ -3,19 +3,24 @@ from typing import Any
 from ast_lang.node.binary_node import BinaryNode
 from ast_lang.node.call_node import CallNode
 from ast_lang.node.number_node import NumberNode
+from ast_lang.node.pointer_node import PointerNode
+from ast_lang.node.pointer_param_node import PointerParamNode
 from ast_lang.node.string_node import StringNode
 from ast_lang.node.name_node import NameNode
 from ast_lang.statement.assign_node import AssignNode
 from ast_lang.statement.block_node import BlocKNode
+from ast_lang.statement.empty_node import EmptyNode
 from ast_lang.statement.expression_node import ExpressionNode
 from ast_lang.statement.for_node import ForNode
 from ast_lang.statement.func_node import FuncNode
 from ast_lang.statement.if_node import IfNode
+from ast_lang.statement.pointer_assign_node import PointerAssignNode
 from ast_lang.statement.print_node import PrintNode
 from ast_lang.node.ref_node import RefNode
 from ast_lang.statement.return_node import ReturnNode
 from ast_lang.statement.while_node import WhileNode
 from runtime.frame import Frame
+from runtime.reference import Reference
 from runtime.return_signal import ReturnSignal
 from runtime.stack import Stack
 
@@ -42,7 +47,13 @@ def eval_inst(node) -> None:
         eval_inst(node.first)
         eval_inst(node.second)
 
-    if isinstance(node, PrintNode): print('CALC>', eval_expr(node.content))
+    if isinstance(node, PrintNode):
+        value = eval_expr(node.content)
+
+        if isinstance(value, Reference):
+            print("CALC>", value)
+        else:
+            print("CALC>", value)
 
     if isinstance(node, ExpressionNode):
         eval_expr(node.expr)
@@ -72,8 +83,20 @@ def eval_inst(node) -> None:
             eval_inst(node.block)
 
     if isinstance(node, AssignNode):
+        frame = stack.top()
+        name = node.name
         value = eval_expr(node.expr)
-        stack.top().add_local_var(node.name, value)
+
+        if name in frame.locals:
+            frame.set_local_var_value(name, value)
+        else:
+            frame.add_local_var(name, value)
+        return
+
+    if isinstance(node, PointerAssignNode):
+        ref = stack.top().get_local_var_value(node.name)
+        value = eval_expr(node.value)
+        stack.set_var_value_in_parents(ref.value, value)
         return
 
     if isinstance(node, FuncNode):
@@ -96,8 +119,14 @@ def eval_call(call_func):
         raise Exception(f"Function {name} expects {len(params)} args, got {len(args)}")
 
     frame = Frame(name, fun, args)
-    for param_name, arg_value in zip(fun.params.args, args):
-        frame.add_local_var(param_name.value, arg_value)
+
+    for param, arg in zip(fun.params.args, args):
+        if isinstance(param, PointerParamNode):
+            frame.add_local_var(param.name, arg)
+        elif isinstance(param, NameNode):
+            frame.add_local_var(param.value, arg)
+        else:
+            raise Exception("Unknown parameter type")
 
     stack.push(frame)
     try:
@@ -112,11 +141,10 @@ def eval_expr(node) -> None | int | bool | Any:
     #print('evalExpr de ',node)
 
     if isinstance(node, NameNode):
-        return stack.top().get_local_var_cell(node.value)
+        return stack.get_var_value(node.value)
 
-    if isinstance(node,RefNode):
-        var_name = node.value.value
-        return stack.top().get_local_var_cell(var_name)
+    if isinstance(node, RefNode):
+        return Reference(node.name)
 
     if isinstance(node, StringNode):
         return node.string
@@ -141,6 +169,10 @@ def eval_expr(node) -> None | int | bool | Any:
 
     if isinstance(node, NumberNode):
         return node.number
+
+    if isinstance(node, PointerNode):
+        ref = stack.top().get_local_var_value(node.name)
+        return stack.get_var_value_in_parents(ref.value)
 
     if isinstance(node, CallNode):
         return eval_call(node)

@@ -1,4 +1,4 @@
-class RefCell:
+class Reference:
     def __init__(self, value):
         self.value = value
 
