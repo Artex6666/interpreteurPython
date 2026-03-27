@@ -20,6 +20,7 @@ from ast_lang.statement.print_node import PrintNode
 from ast_lang.node.ref_node import RefNode
 from ast_lang.statement.return_node import ReturnNode
 from ast_lang.statement.while_node import WhileNode
+from runtime.exception.division_by_zero_exception import DivisionByZeroException
 from runtime.frame import Frame
 from runtime.reference import Reference
 from runtime.return_signal import ReturnSignal
@@ -163,7 +164,10 @@ def eval_expr(node) -> None | int | bool | Any:
             return left + right
         if op == '-': return left - right
         if op == '*': return left * right
-        if op == '/': return left // right
+        if op == '/':
+            if right == 0:
+                raise DivisionByZeroException("division by zero")
+            return left // right
         if op == '>': return left > right
         if op == '<': return left < right
         if op == '==': return left == right
