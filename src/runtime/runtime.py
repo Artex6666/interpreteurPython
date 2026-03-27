@@ -1,6 +1,7 @@
 from typing import Any
 
 from ast_lang.node.binary_node import BinaryNode
+from ast_lang.node.bool_node import BoolNode
 from ast_lang.node.call_node import CallNode
 from ast_lang.node.number_node import NumberNode
 from ast_lang.node.pointer_node import PointerNode
@@ -149,11 +150,17 @@ def eval_expr(node) -> None | int | bool | Any:
     if isinstance(node, StringNode):
         return node.string
 
+    if isinstance(node,BoolNode):
+        return node.value
+
     if isinstance(node, BinaryNode):
         left = eval_expr(node.left)
         right = eval_expr(node.right)
         op = node.op
-        if op == '+': return left + right
+        if op == '+':
+            if isinstance(left, str) or isinstance(right, str):
+                return str(left) + str(right)
+            return left + right
         if op == '-': return left - right
         if op == '*': return left * right
         if op == '/': return left // right
@@ -166,13 +173,19 @@ def eval_expr(node) -> None | int | bool | Any:
         if op == '||': return left or right
         if op == '&&': return left and right
         if op == '!=': return left != right
+        if op == '%': return left % right
 
     if isinstance(node, NumberNode):
         return node.number
 
     if isinstance(node, PointerNode):
         ref = stack.top().get_local_var_value(node.name)
-        return stack.get_var_value_in_parents(ref.value)
+        name = ref.value
+        try:
+            return stack.get_var_value_in_parents(name)
+        except NameError:
+            pass
+        return stack.frames[0].locals[name]
 
     if isinstance(node, CallNode):
         return eval_call(node)

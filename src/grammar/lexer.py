@@ -1,3 +1,4 @@
+
 reserved = {
     'print': 'PRINT',
     'if': 'IF',
@@ -7,13 +8,16 @@ reserved = {
     'while': 'WHILE',
     'def': 'DEF',
     'return': 'RETURN',
+    'true' : 'TRUE',
+    'false': 'FALSE'
 }
 
 tokens = ['NUMBER', 'MINUS', 'PLUS', 'TIMES', 'DIVIDE', 'LPAREN',
           'RPAREN', 'OR', 'AND', 'SEMI', 'EGAL', 'NAME', 'INF', 'SUP',
-          'EGALEGAL', 'INFEG', 'SUPEG','NOTEG', 'LACC', 'RACC', 'COMMA', 'STRING','REF'] + list(reserved.values())
+          'EGALEGAL', 'INFEG', 'SUPEG','NOTEG', 'LACC', 'RACC', 'COMMA', 'STRING','REF','MODULO'] + list(reserved.values())
 
 t_REF = r'\&'
+t_MODULO = r'\%'
 t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
@@ -40,11 +44,6 @@ def t_NAME(t):
     t.type = reserved.get(t.value, 'NAME')  # Check for reserved words
     return t
 
-# def t_POINTER(t):
-#     r'\*[a-zA-Z_][a-zA-Z_0-9]*'
-#     t.type = reserved.get(t.value, 'POINTER')  # Check for reserved words
-#     return t
-
 def t_NUMBER(t):
     r'\d+'
     t.value = int(t.value)
@@ -55,7 +54,6 @@ def t_STRING(t):
     r'"([^"\\]|\\.)*"'
     t.value = str(t.value[1:-1])
     return t
-
 
 t_ignore = " \t"
 

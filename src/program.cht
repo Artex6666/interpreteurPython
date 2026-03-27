@@ -1,12 +1,55 @@
+def swap_copy(x,y){
+    temp = x;
+    x = y;
+    y = temp;
+};
+
 def swap(*x, *y) {
     temp = *x;
     *x = *y;
     *y = temp;
 };
 
-x = 10;
-z = 12;
-swap(&x, &z);
+def is_even(x){
+    mod = x % 2;
+    return mod == 0;
+};
 
-print(x);
-print(z);
+def fibo(x){
+    if(x == 0 || x == 1){
+        return x;
+    };
+    return fibo(x-1) + fibo(x-2);
+};
+
+def fibo_ter(n, som, som2){
+ if (n != 1){
+    return fibo_ter(n-1, som+som2, som);
+ };
+ return som;
+};
+x = 10;
+z = 13;
+
+print("swap avec copie des valeurs");
+swap_copy(x,z);
+print("valeur de x : " + x);
+print("valeur de z : " + z);
+
+print("x est pair ? " + is_even(x));
+print("z est pair ? " + is_even(z));
+
+print("swap avec reference");
+swap(&x, &z);
+print("valeur de x : " + x);
+print("valeur de z : " + z);
+
+print("x est pair ? " + is_even(x));
+print("z est pair ? " + is_even(z));
+
+
+print("test de recursion non terminale");
+print(fibo(15));
+print("test de recursion terminale");
+print(fibo_ter(15,1,0));
+

@@ -1,3 +1,4 @@
+from ast_lang.node.bool_node import BoolNode
 from ast_lang.node.pointer_node import PointerNode
 from ast_lang.node.pointer_param_node import PointerParamNode
 from ast_lang.node.string_node import StringNode
@@ -262,6 +263,13 @@ def p_expression_binop_not_equal(p):
                       right=p[3]
                       )
 
+def p_expression_binop_modulo(p):
+    'expression : expression MODULO expression'
+    p[0] = BinaryNode(op='%',
+                      left=p[1],
+                      right=p[3]
+                      )
+
 def p_expression_call(p):
     'expression : NAME LPAREN args RPAREN'
     p[0] = CallNode(
@@ -298,6 +306,14 @@ def p_expression_number(p):
 def p_expression_string(p):
     'expression : STRING'
     p[0] = StringNode(p[1])
+
+def p_expression_true(p):
+    'expression : TRUE'
+    p[0] = BoolNode(True)
+
+def p_expression_false(p):
+    'expression : FALSE'
+    p[0] = BoolNode(False)
 
 
 def p_expression_name(p):
