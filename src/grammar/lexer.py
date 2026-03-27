@@ -64,7 +64,7 @@ def t_newline(t):
 
 
 def t_error(t):
-    print("Illegal character '%s'" % t.value[0])
+    print(f"LexerError: Illegal character '{t.value[0]}' at line {t.lineno}")
     t.lexer.skip(1)
 
 

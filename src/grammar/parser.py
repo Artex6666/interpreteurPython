@@ -325,7 +325,8 @@ def p_expression_pointer(p):
     p[0] = PointerNode(p[2])
 
 
-def p_error(p):    print("Syntax error in input!")
+def p_error(p):
+    print(f"SyntaxError: unexpected token '{p.value}' at  line {p.lineno}!")
 
 
 import ply.yacc as yacc
