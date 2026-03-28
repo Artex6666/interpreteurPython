@@ -52,4 +52,4 @@ print("test de recursion non terminale");
 print(fibo(15));
 print("test de recursion terminale");
 print(fibo_ter(15,1,0));
-g;
+

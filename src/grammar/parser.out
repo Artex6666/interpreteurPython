@@ -1,0 +1,3884 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> bloc
+Rule 2     empty -> <empty>
+Rule 3     bloc -> bloc statement SEMI
+Rule 4     bloc -> statement SEMI
+Rule 5     param -> NAME
+Rule 6     param -> TIMES NAME
+Rule 7     params -> <empty>
+Rule 8     params -> param
+Rule 9     params -> param COMMA params
+Rule 10    elif_list -> empty
+Rule 11    elif_list -> ELIF LPAREN expression RPAREN LACC bloc RACC elif_list
+Rule 12    else_opt -> empty
+Rule 13    else_opt -> ELSE LACC bloc RACC
+Rule 14    statement -> IF LPAREN expression RPAREN LACC bloc RACC elif_list else_opt
+Rule 15    statement -> WHILE LPAREN expression RPAREN LACC bloc RACC
+Rule 16    statement -> FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC
+Rule 17    statement -> PRINT LPAREN expression RPAREN
+Rule 18    statement -> NAME EGAL expression
+Rule 19    statement -> TIMES NAME EGAL expression
+Rule 20    statement -> DEF NAME LPAREN params RPAREN LACC bloc RACC
+Rule 21    statement -> RETURN expression
+Rule 22    statement -> expression
+Rule 23    expression -> REF NAME
+Rule 24    expression -> expression INF expression
+Rule 25    expression -> expression INFEG expression
+Rule 26    expression -> expression SUPEG expression
+Rule 27    expression -> expression SUP expression
+Rule 28    expression -> expression EGALEGAL expression
+Rule 29    expression -> expression AND expression
+Rule 30    expression -> expression OR expression
+Rule 31    expression -> expression PLUS expression
+Rule 32    expression -> expression TIMES expression
+Rule 33    expression -> expression MINUS expression
+Rule 34    expression -> expression DIVIDE expression
+Rule 35    expression -> expression NOTEG expression
+Rule 36    expression -> expression MODULO expression
+Rule 37    expression -> NAME LPAREN args RPAREN
+Rule 38    args -> <empty>
+Rule 39    args -> expression
+Rule 40    args -> expression COMMA args
+Rule 41    expression -> LPAREN expression RPAREN
+Rule 42    expression -> NUMBER
+Rule 43    expression -> STRING
+Rule 44    expression -> TRUE
+Rule 45    expression -> FALSE
+Rule 46    expression -> NAME
+Rule 47    expression -> TIMES NAME
+
+Terminals, with rules where they appear
+
+AND                  : 29
+COMMA                : 9 40
+DEF                  : 20
+DIVIDE               : 34
+EGAL                 : 18 19
+EGALEGAL             : 28
+ELIF                 : 11
+ELSE                 : 13
+FALSE                : 45
+FOR                  : 16
+IF                   : 14
+INF                  : 24
+INFEG                : 25
+LACC                 : 11 13 14 15 16 20
+LPAREN               : 11 14 15 16 17 20 37 41
+MINUS                : 33
+MODULO               : 36
+NAME                 : 5 6 18 19 20 23 37 46 47
+NOTEG                : 35
+NUMBER               : 42
+OR                   : 30
+PLUS                 : 31
+PRINT                : 17
+RACC                 : 11 13 14 15 16 20
+REF                  : 23
+RETURN               : 21
+RPAREN               : 11 14 15 16 17 20 37 41
+SEMI                 : 3 4 16 16
+STRING               : 43
+SUP                  : 27
+SUPEG                : 26
+TIMES                : 6 19 32 47
+TRUE                 : 44
+WHILE                : 15
+error                : 
+
+Nonterminals, with rules where they appear
+
+args                 : 37 40
+bloc                 : 1 3 11 13 14 15 16 20
+elif_list            : 11 14
+else_opt             : 14
+empty                : 10 12
+expression           : 11 14 15 16 17 18 19 21 22 24 24 25 25 26 26 27 27 28 28 29 29 30 30 31 31 32 32 33 33 34 34 35 35 36 36 39 40 41
+param                : 8 9
+params               : 9 20
+start                : 0
+statement            : 3 4 16 16
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . bloc
+    (3) bloc -> . bloc statement SEMI
+    (4) bloc -> . statement SEMI
+    (14) statement -> . IF LPAREN expression RPAREN LACC bloc RACC elif_list else_opt
+    (15) statement -> . WHILE LPAREN expression RPAREN LACC bloc RACC
+    (16) statement -> . FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC
+    (17) statement -> . PRINT LPAREN expression RPAREN
+    (18) statement -> . NAME EGAL expression
+    (19) statement -> . TIMES NAME EGAL expression
+    (20) statement -> . DEF NAME LPAREN params RPAREN LACC bloc RACC
+    (21) statement -> . RETURN expression
+    (22) statement -> . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    IF              shift and go to state 4
+    WHILE           shift and go to state 7
+    FOR             shift and go to state 8
+    PRINT           shift and go to state 9
+    NAME            shift and go to state 10
+    TIMES           shift and go to state 11
+    DEF             shift and go to state 12
+    RETURN          shift and go to state 13
+    REF             shift and go to state 14
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+
+    start                          shift and go to state 1
+    bloc                           shift and go to state 2
+    statement                      shift and go to state 3
+    expression                     shift and go to state 6
+
+state 1
+
+    (0) S' -> start .
+
+
+
+state 2
+
+    (1) start -> bloc .
+    (3) bloc -> bloc . statement SEMI
+    (14) statement -> . IF LPAREN expression RPAREN LACC bloc RACC elif_list else_opt
+    (15) statement -> . WHILE LPAREN expression RPAREN LACC bloc RACC
+    (16) statement -> . FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC
+    (17) statement -> . PRINT LPAREN expression RPAREN
+    (18) statement -> . NAME EGAL expression
+    (19) statement -> . TIMES NAME EGAL expression
+    (20) statement -> . DEF NAME LPAREN params RPAREN LACC bloc RACC
+    (21) statement -> . RETURN expression
+    (22) statement -> . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    $end            reduce using rule 1 (start -> bloc .)
+    IF              shift and go to state 4
+    WHILE           shift and go to state 7
+    FOR             shift and go to state 8
+    PRINT           shift and go to state 9
+    NAME            shift and go to state 10
+    TIMES           shift and go to state 11
+    DEF             shift and go to state 12
+    RETURN          shift and go to state 13
+    REF             shift and go to state 14
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+
+    statement                      shift and go to state 19
+    expression                     shift and go to state 6
+
+state 3
+
+    (4) bloc -> statement . SEMI
+
+    SEMI            shift and go to state 20
+
+
+state 4
+
+    (14) statement -> IF . LPAREN expression RPAREN LACC bloc RACC elif_list else_opt
+
+    LPAREN          shift and go to state 21
+
+
+state 5
+
+    (41) expression -> LPAREN . expression RPAREN
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 22
+
+state 6
+
+    (22) statement -> expression .
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+    SEMI            reduce using rule 22 (statement -> expression .)
+    RPAREN          reduce using rule 22 (statement -> expression .)
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+
+state 7
+
+    (15) statement -> WHILE . LPAREN expression RPAREN LACC bloc RACC
+
+    LPAREN          shift and go to state 38
+
+
+state 8
+
+    (16) statement -> FOR . LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC
+
+    LPAREN          shift and go to state 39
+
+
+state 9
+
+    (17) statement -> PRINT . LPAREN expression RPAREN
+
+    LPAREN          shift and go to state 40
+
+
+state 10
+
+    (18) statement -> NAME . EGAL expression
+    (37) expression -> NAME . LPAREN args RPAREN
+    (46) expression -> NAME .
+
+    EGAL            shift and go to state 41
+    LPAREN          shift and go to state 42
+    INF             reduce using rule 46 (expression -> NAME .)
+    INFEG           reduce using rule 46 (expression -> NAME .)
+    SUPEG           reduce using rule 46 (expression -> NAME .)
+    SUP             reduce using rule 46 (expression -> NAME .)
+    EGALEGAL        reduce using rule 46 (expression -> NAME .)
+    AND             reduce using rule 46 (expression -> NAME .)
+    OR              reduce using rule 46 (expression -> NAME .)
+    PLUS            reduce using rule 46 (expression -> NAME .)
+    TIMES           reduce using rule 46 (expression -> NAME .)
+    MINUS           reduce using rule 46 (expression -> NAME .)
+    DIVIDE          reduce using rule 46 (expression -> NAME .)
+    NOTEG           reduce using rule 46 (expression -> NAME .)
+    MODULO          reduce using rule 46 (expression -> NAME .)
+    SEMI            reduce using rule 46 (expression -> NAME .)
+    RPAREN          reduce using rule 46 (expression -> NAME .)
+
+
+state 11
+
+    (19) statement -> TIMES . NAME EGAL expression
+    (47) expression -> TIMES . NAME
+
+    NAME            shift and go to state 43
+
+
+state 12
+
+    (20) statement -> DEF . NAME LPAREN params RPAREN LACC bloc RACC
+
+    NAME            shift and go to state 44
+
+
+state 13
+
+    (21) statement -> RETURN . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 45
+
+state 14
+
+    (23) expression -> REF . NAME
+
+    NAME            shift and go to state 46
+
+
+state 15
+
+    (42) expression -> NUMBER .
+
+    INF             reduce using rule 42 (expression -> NUMBER .)
+    INFEG           reduce using rule 42 (expression -> NUMBER .)
+    SUPEG           reduce using rule 42 (expression -> NUMBER .)
+    SUP             reduce using rule 42 (expression -> NUMBER .)
+    EGALEGAL        reduce using rule 42 (expression -> NUMBER .)
+    AND             reduce using rule 42 (expression -> NUMBER .)
+    OR              reduce using rule 42 (expression -> NUMBER .)
+    PLUS            reduce using rule 42 (expression -> NUMBER .)
+    TIMES           reduce using rule 42 (expression -> NUMBER .)
+    MINUS           reduce using rule 42 (expression -> NUMBER .)
+    DIVIDE          reduce using rule 42 (expression -> NUMBER .)
+    NOTEG           reduce using rule 42 (expression -> NUMBER .)
+    MODULO          reduce using rule 42 (expression -> NUMBER .)
+    SEMI            reduce using rule 42 (expression -> NUMBER .)
+    RPAREN          reduce using rule 42 (expression -> NUMBER .)
+    COMMA           reduce using rule 42 (expression -> NUMBER .)
+
+
+state 16
+
+    (43) expression -> STRING .
+
+    INF             reduce using rule 43 (expression -> STRING .)
+    INFEG           reduce using rule 43 (expression -> STRING .)
+    SUPEG           reduce using rule 43 (expression -> STRING .)
+    SUP             reduce using rule 43 (expression -> STRING .)
+    EGALEGAL        reduce using rule 43 (expression -> STRING .)
+    AND             reduce using rule 43 (expression -> STRING .)
+    OR              reduce using rule 43 (expression -> STRING .)
+    PLUS            reduce using rule 43 (expression -> STRING .)
+    TIMES           reduce using rule 43 (expression -> STRING .)
+    MINUS           reduce using rule 43 (expression -> STRING .)
+    DIVIDE          reduce using rule 43 (expression -> STRING .)
+    NOTEG           reduce using rule 43 (expression -> STRING .)
+    MODULO          reduce using rule 43 (expression -> STRING .)
+    SEMI            reduce using rule 43 (expression -> STRING .)
+    RPAREN          reduce using rule 43 (expression -> STRING .)
+    COMMA           reduce using rule 43 (expression -> STRING .)
+
+
+state 17
+
+    (44) expression -> TRUE .
+
+    INF             reduce using rule 44 (expression -> TRUE .)
+    INFEG           reduce using rule 44 (expression -> TRUE .)
+    SUPEG           reduce using rule 44 (expression -> TRUE .)
+    SUP             reduce using rule 44 (expression -> TRUE .)
+    EGALEGAL        reduce using rule 44 (expression -> TRUE .)
+    AND             reduce using rule 44 (expression -> TRUE .)
+    OR              reduce using rule 44 (expression -> TRUE .)
+    PLUS            reduce using rule 44 (expression -> TRUE .)
+    TIMES           reduce using rule 44 (expression -> TRUE .)
+    MINUS           reduce using rule 44 (expression -> TRUE .)
+    DIVIDE          reduce using rule 44 (expression -> TRUE .)
+    NOTEG           reduce using rule 44 (expression -> TRUE .)
+    MODULO          reduce using rule 44 (expression -> TRUE .)
+    SEMI            reduce using rule 44 (expression -> TRUE .)
+    RPAREN          reduce using rule 44 (expression -> TRUE .)
+    COMMA           reduce using rule 44 (expression -> TRUE .)
+
+
+state 18
+
+    (45) expression -> FALSE .
+
+    INF             reduce using rule 45 (expression -> FALSE .)
+    INFEG           reduce using rule 45 (expression -> FALSE .)
+    SUPEG           reduce using rule 45 (expression -> FALSE .)
+    SUP             reduce using rule 45 (expression -> FALSE .)
+    EGALEGAL        reduce using rule 45 (expression -> FALSE .)
+    AND             reduce using rule 45 (expression -> FALSE .)
+    OR              reduce using rule 45 (expression -> FALSE .)
+    PLUS            reduce using rule 45 (expression -> FALSE .)
+    TIMES           reduce using rule 45 (expression -> FALSE .)
+    MINUS           reduce using rule 45 (expression -> FALSE .)
+    DIVIDE          reduce using rule 45 (expression -> FALSE .)
+    NOTEG           reduce using rule 45 (expression -> FALSE .)
+    MODULO          reduce using rule 45 (expression -> FALSE .)
+    SEMI            reduce using rule 45 (expression -> FALSE .)
+    RPAREN          reduce using rule 45 (expression -> FALSE .)
+    COMMA           reduce using rule 45 (expression -> FALSE .)
+
+
+state 19
+
+    (3) bloc -> bloc statement . SEMI
+
+    SEMI            shift and go to state 47
+
+
+state 20
+
+    (4) bloc -> statement SEMI .
+
+    IF              reduce using rule 4 (bloc -> statement SEMI .)
+    WHILE           reduce using rule 4 (bloc -> statement SEMI .)
+    FOR             reduce using rule 4 (bloc -> statement SEMI .)
+    PRINT           reduce using rule 4 (bloc -> statement SEMI .)
+    NAME            reduce using rule 4 (bloc -> statement SEMI .)
+    TIMES           reduce using rule 4 (bloc -> statement SEMI .)
+    DEF             reduce using rule 4 (bloc -> statement SEMI .)
+    RETURN          reduce using rule 4 (bloc -> statement SEMI .)
+    REF             reduce using rule 4 (bloc -> statement SEMI .)
+    LPAREN          reduce using rule 4 (bloc -> statement SEMI .)
+    NUMBER          reduce using rule 4 (bloc -> statement SEMI .)
+    STRING          reduce using rule 4 (bloc -> statement SEMI .)
+    TRUE            reduce using rule 4 (bloc -> statement SEMI .)
+    FALSE           reduce using rule 4 (bloc -> statement SEMI .)
+    $end            reduce using rule 4 (bloc -> statement SEMI .)
+    RACC            reduce using rule 4 (bloc -> statement SEMI .)
+
+
+state 21
+
+    (14) statement -> IF LPAREN . expression RPAREN LACC bloc RACC elif_list else_opt
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 48
+
+state 22
+
+    (41) expression -> LPAREN expression . RPAREN
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+    RPAREN          shift and go to state 49
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+
+state 23
+
+    (37) expression -> NAME . LPAREN args RPAREN
+    (46) expression -> NAME .
+
+    LPAREN          shift and go to state 42
+    RPAREN          reduce using rule 46 (expression -> NAME .)
+    INF             reduce using rule 46 (expression -> NAME .)
+    INFEG           reduce using rule 46 (expression -> NAME .)
+    SUPEG           reduce using rule 46 (expression -> NAME .)
+    SUP             reduce using rule 46 (expression -> NAME .)
+    EGALEGAL        reduce using rule 46 (expression -> NAME .)
+    AND             reduce using rule 46 (expression -> NAME .)
+    OR              reduce using rule 46 (expression -> NAME .)
+    PLUS            reduce using rule 46 (expression -> NAME .)
+    TIMES           reduce using rule 46 (expression -> NAME .)
+    MINUS           reduce using rule 46 (expression -> NAME .)
+    DIVIDE          reduce using rule 46 (expression -> NAME .)
+    NOTEG           reduce using rule 46 (expression -> NAME .)
+    MODULO          reduce using rule 46 (expression -> NAME .)
+    SEMI            reduce using rule 46 (expression -> NAME .)
+    COMMA           reduce using rule 46 (expression -> NAME .)
+
+
+state 24
+
+    (47) expression -> TIMES . NAME
+
+    NAME            shift and go to state 50
+
+
+state 25
+
+    (24) expression -> expression INF . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 51
+
+state 26
+
+    (25) expression -> expression INFEG . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 52
+
+state 27
+
+    (26) expression -> expression SUPEG . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 53
+
+state 28
+
+    (27) expression -> expression SUP . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 54
+
+state 29
+
+    (28) expression -> expression EGALEGAL . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 55
+
+state 30
+
+    (29) expression -> expression AND . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 56
+
+state 31
+
+    (30) expression -> expression OR . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 57
+
+state 32
+
+    (31) expression -> expression PLUS . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 58
+
+state 33
+
+    (32) expression -> expression TIMES . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 59
+
+state 34
+
+    (33) expression -> expression MINUS . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 60
+
+state 35
+
+    (34) expression -> expression DIVIDE . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 61
+
+state 36
+
+    (35) expression -> expression NOTEG . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 62
+
+state 37
+
+    (36) expression -> expression MODULO . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 63
+
+state 38
+
+    (15) statement -> WHILE LPAREN . expression RPAREN LACC bloc RACC
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 64
+
+state 39
+
+    (16) statement -> FOR LPAREN . statement SEMI expression SEMI statement RPAREN LACC bloc RACC
+    (14) statement -> . IF LPAREN expression RPAREN LACC bloc RACC elif_list else_opt
+    (15) statement -> . WHILE LPAREN expression RPAREN LACC bloc RACC
+    (16) statement -> . FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC
+    (17) statement -> . PRINT LPAREN expression RPAREN
+    (18) statement -> . NAME EGAL expression
+    (19) statement -> . TIMES NAME EGAL expression
+    (20) statement -> . DEF NAME LPAREN params RPAREN LACC bloc RACC
+    (21) statement -> . RETURN expression
+    (22) statement -> . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    IF              shift and go to state 4
+    WHILE           shift and go to state 7
+    FOR             shift and go to state 8
+    PRINT           shift and go to state 9
+    NAME            shift and go to state 10
+    TIMES           shift and go to state 11
+    DEF             shift and go to state 12
+    RETURN          shift and go to state 13
+    REF             shift and go to state 14
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+
+    statement                      shift and go to state 65
+    expression                     shift and go to state 6
+
+state 40
+
+    (17) statement -> PRINT LPAREN . expression RPAREN
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 66
+
+state 41
+
+    (18) statement -> NAME EGAL . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 67
+
+state 42
+
+    (37) expression -> NAME LPAREN . args RPAREN
+    (38) args -> .
+    (39) args -> . expression
+    (40) args -> . expression COMMA args
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    RPAREN          reduce using rule 38 (args -> .)
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    args                           shift and go to state 68
+    expression                     shift and go to state 69
+
+state 43
+
+    (19) statement -> TIMES NAME . EGAL expression
+    (47) expression -> TIMES NAME .
+
+    EGAL            shift and go to state 70
+    INF             reduce using rule 47 (expression -> TIMES NAME .)
+    INFEG           reduce using rule 47 (expression -> TIMES NAME .)
+    SUPEG           reduce using rule 47 (expression -> TIMES NAME .)
+    SUP             reduce using rule 47 (expression -> TIMES NAME .)
+    EGALEGAL        reduce using rule 47 (expression -> TIMES NAME .)
+    AND             reduce using rule 47 (expression -> TIMES NAME .)
+    OR              reduce using rule 47 (expression -> TIMES NAME .)
+    PLUS            reduce using rule 47 (expression -> TIMES NAME .)
+    TIMES           reduce using rule 47 (expression -> TIMES NAME .)
+    MINUS           reduce using rule 47 (expression -> TIMES NAME .)
+    DIVIDE          reduce using rule 47 (expression -> TIMES NAME .)
+    NOTEG           reduce using rule 47 (expression -> TIMES NAME .)
+    MODULO          reduce using rule 47 (expression -> TIMES NAME .)
+    SEMI            reduce using rule 47 (expression -> TIMES NAME .)
+    RPAREN          reduce using rule 47 (expression -> TIMES NAME .)
+
+
+state 44
+
+    (20) statement -> DEF NAME . LPAREN params RPAREN LACC bloc RACC
+
+    LPAREN          shift and go to state 71
+
+
+state 45
+
+    (21) statement -> RETURN expression .
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+    SEMI            reduce using rule 21 (statement -> RETURN expression .)
+    RPAREN          reduce using rule 21 (statement -> RETURN expression .)
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+
+state 46
+
+    (23) expression -> REF NAME .
+
+    INF             reduce using rule 23 (expression -> REF NAME .)
+    INFEG           reduce using rule 23 (expression -> REF NAME .)
+    SUPEG           reduce using rule 23 (expression -> REF NAME .)
+    SUP             reduce using rule 23 (expression -> REF NAME .)
+    EGALEGAL        reduce using rule 23 (expression -> REF NAME .)
+    AND             reduce using rule 23 (expression -> REF NAME .)
+    OR              reduce using rule 23 (expression -> REF NAME .)
+    PLUS            reduce using rule 23 (expression -> REF NAME .)
+    TIMES           reduce using rule 23 (expression -> REF NAME .)
+    MINUS           reduce using rule 23 (expression -> REF NAME .)
+    DIVIDE          reduce using rule 23 (expression -> REF NAME .)
+    NOTEG           reduce using rule 23 (expression -> REF NAME .)
+    MODULO          reduce using rule 23 (expression -> REF NAME .)
+    SEMI            reduce using rule 23 (expression -> REF NAME .)
+    RPAREN          reduce using rule 23 (expression -> REF NAME .)
+    COMMA           reduce using rule 23 (expression -> REF NAME .)
+
+
+state 47
+
+    (3) bloc -> bloc statement SEMI .
+
+    IF              reduce using rule 3 (bloc -> bloc statement SEMI .)
+    WHILE           reduce using rule 3 (bloc -> bloc statement SEMI .)
+    FOR             reduce using rule 3 (bloc -> bloc statement SEMI .)
+    PRINT           reduce using rule 3 (bloc -> bloc statement SEMI .)
+    NAME            reduce using rule 3 (bloc -> bloc statement SEMI .)
+    TIMES           reduce using rule 3 (bloc -> bloc statement SEMI .)
+    DEF             reduce using rule 3 (bloc -> bloc statement SEMI .)
+    RETURN          reduce using rule 3 (bloc -> bloc statement SEMI .)
+    REF             reduce using rule 3 (bloc -> bloc statement SEMI .)
+    LPAREN          reduce using rule 3 (bloc -> bloc statement SEMI .)
+    NUMBER          reduce using rule 3 (bloc -> bloc statement SEMI .)
+    STRING          reduce using rule 3 (bloc -> bloc statement SEMI .)
+    TRUE            reduce using rule 3 (bloc -> bloc statement SEMI .)
+    FALSE           reduce using rule 3 (bloc -> bloc statement SEMI .)
+    $end            reduce using rule 3 (bloc -> bloc statement SEMI .)
+    RACC            reduce using rule 3 (bloc -> bloc statement SEMI .)
+
+
+state 48
+
+    (14) statement -> IF LPAREN expression . RPAREN LACC bloc RACC elif_list else_opt
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+    RPAREN          shift and go to state 72
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+
+state 49
+
+    (41) expression -> LPAREN expression RPAREN .
+
+    INF             reduce using rule 41 (expression -> LPAREN expression RPAREN .)
+    INFEG           reduce using rule 41 (expression -> LPAREN expression RPAREN .)
+    SUPEG           reduce using rule 41 (expression -> LPAREN expression RPAREN .)
+    SUP             reduce using rule 41 (expression -> LPAREN expression RPAREN .)
+    EGALEGAL        reduce using rule 41 (expression -> LPAREN expression RPAREN .)
+    AND             reduce using rule 41 (expression -> LPAREN expression RPAREN .)
+    OR              reduce using rule 41 (expression -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 41 (expression -> LPAREN expression RPAREN .)
+    TIMES           reduce using rule 41 (expression -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 41 (expression -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 41 (expression -> LPAREN expression RPAREN .)
+    NOTEG           reduce using rule 41 (expression -> LPAREN expression RPAREN .)
+    MODULO          reduce using rule 41 (expression -> LPAREN expression RPAREN .)
+    SEMI            reduce using rule 41 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 41 (expression -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 41 (expression -> LPAREN expression RPAREN .)
+
+
+state 50
+
+    (47) expression -> TIMES NAME .
+
+    RPAREN          reduce using rule 47 (expression -> TIMES NAME .)
+    INF             reduce using rule 47 (expression -> TIMES NAME .)
+    INFEG           reduce using rule 47 (expression -> TIMES NAME .)
+    SUPEG           reduce using rule 47 (expression -> TIMES NAME .)
+    SUP             reduce using rule 47 (expression -> TIMES NAME .)
+    EGALEGAL        reduce using rule 47 (expression -> TIMES NAME .)
+    AND             reduce using rule 47 (expression -> TIMES NAME .)
+    OR              reduce using rule 47 (expression -> TIMES NAME .)
+    PLUS            reduce using rule 47 (expression -> TIMES NAME .)
+    TIMES           reduce using rule 47 (expression -> TIMES NAME .)
+    MINUS           reduce using rule 47 (expression -> TIMES NAME .)
+    DIVIDE          reduce using rule 47 (expression -> TIMES NAME .)
+    NOTEG           reduce using rule 47 (expression -> TIMES NAME .)
+    MODULO          reduce using rule 47 (expression -> TIMES NAME .)
+    SEMI            reduce using rule 47 (expression -> TIMES NAME .)
+    COMMA           reduce using rule 47 (expression -> TIMES NAME .)
+
+
+state 51
+
+    (24) expression -> expression INF expression .
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+  ! shift/reduce conflict for INF resolved as shift
+  ! shift/reduce conflict for INFEG resolved as shift
+  ! shift/reduce conflict for SUPEG resolved as shift
+  ! shift/reduce conflict for SUP resolved as shift
+  ! shift/reduce conflict for EGALEGAL resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for NOTEG resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+    SEMI            reduce using rule 24 (expression -> expression INF expression .)
+    RPAREN          reduce using rule 24 (expression -> expression INF expression .)
+    COMMA           reduce using rule 24 (expression -> expression INF expression .)
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+  ! INF             [ reduce using rule 24 (expression -> expression INF expression .) ]
+  ! INFEG           [ reduce using rule 24 (expression -> expression INF expression .) ]
+  ! SUPEG           [ reduce using rule 24 (expression -> expression INF expression .) ]
+  ! SUP             [ reduce using rule 24 (expression -> expression INF expression .) ]
+  ! EGALEGAL        [ reduce using rule 24 (expression -> expression INF expression .) ]
+  ! AND             [ reduce using rule 24 (expression -> expression INF expression .) ]
+  ! OR              [ reduce using rule 24 (expression -> expression INF expression .) ]
+  ! PLUS            [ reduce using rule 24 (expression -> expression INF expression .) ]
+  ! TIMES           [ reduce using rule 24 (expression -> expression INF expression .) ]
+  ! MINUS           [ reduce using rule 24 (expression -> expression INF expression .) ]
+  ! DIVIDE          [ reduce using rule 24 (expression -> expression INF expression .) ]
+  ! NOTEG           [ reduce using rule 24 (expression -> expression INF expression .) ]
+  ! MODULO          [ reduce using rule 24 (expression -> expression INF expression .) ]
+
+
+state 52
+
+    (25) expression -> expression INFEG expression .
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+  ! shift/reduce conflict for INF resolved as shift
+  ! shift/reduce conflict for INFEG resolved as shift
+  ! shift/reduce conflict for SUPEG resolved as shift
+  ! shift/reduce conflict for SUP resolved as shift
+  ! shift/reduce conflict for EGALEGAL resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for NOTEG resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+    SEMI            reduce using rule 25 (expression -> expression INFEG expression .)
+    RPAREN          reduce using rule 25 (expression -> expression INFEG expression .)
+    COMMA           reduce using rule 25 (expression -> expression INFEG expression .)
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+  ! INF             [ reduce using rule 25 (expression -> expression INFEG expression .) ]
+  ! INFEG           [ reduce using rule 25 (expression -> expression INFEG expression .) ]
+  ! SUPEG           [ reduce using rule 25 (expression -> expression INFEG expression .) ]
+  ! SUP             [ reduce using rule 25 (expression -> expression INFEG expression .) ]
+  ! EGALEGAL        [ reduce using rule 25 (expression -> expression INFEG expression .) ]
+  ! AND             [ reduce using rule 25 (expression -> expression INFEG expression .) ]
+  ! OR              [ reduce using rule 25 (expression -> expression INFEG expression .) ]
+  ! PLUS            [ reduce using rule 25 (expression -> expression INFEG expression .) ]
+  ! TIMES           [ reduce using rule 25 (expression -> expression INFEG expression .) ]
+  ! MINUS           [ reduce using rule 25 (expression -> expression INFEG expression .) ]
+  ! DIVIDE          [ reduce using rule 25 (expression -> expression INFEG expression .) ]
+  ! NOTEG           [ reduce using rule 25 (expression -> expression INFEG expression .) ]
+  ! MODULO          [ reduce using rule 25 (expression -> expression INFEG expression .) ]
+
+
+state 53
+
+    (26) expression -> expression SUPEG expression .
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+  ! shift/reduce conflict for INF resolved as shift
+  ! shift/reduce conflict for INFEG resolved as shift
+  ! shift/reduce conflict for SUPEG resolved as shift
+  ! shift/reduce conflict for SUP resolved as shift
+  ! shift/reduce conflict for EGALEGAL resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for NOTEG resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+    SEMI            reduce using rule 26 (expression -> expression SUPEG expression .)
+    RPAREN          reduce using rule 26 (expression -> expression SUPEG expression .)
+    COMMA           reduce using rule 26 (expression -> expression SUPEG expression .)
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+  ! INF             [ reduce using rule 26 (expression -> expression SUPEG expression .) ]
+  ! INFEG           [ reduce using rule 26 (expression -> expression SUPEG expression .) ]
+  ! SUPEG           [ reduce using rule 26 (expression -> expression SUPEG expression .) ]
+  ! SUP             [ reduce using rule 26 (expression -> expression SUPEG expression .) ]
+  ! EGALEGAL        [ reduce using rule 26 (expression -> expression SUPEG expression .) ]
+  ! AND             [ reduce using rule 26 (expression -> expression SUPEG expression .) ]
+  ! OR              [ reduce using rule 26 (expression -> expression SUPEG expression .) ]
+  ! PLUS            [ reduce using rule 26 (expression -> expression SUPEG expression .) ]
+  ! TIMES           [ reduce using rule 26 (expression -> expression SUPEG expression .) ]
+  ! MINUS           [ reduce using rule 26 (expression -> expression SUPEG expression .) ]
+  ! DIVIDE          [ reduce using rule 26 (expression -> expression SUPEG expression .) ]
+  ! NOTEG           [ reduce using rule 26 (expression -> expression SUPEG expression .) ]
+  ! MODULO          [ reduce using rule 26 (expression -> expression SUPEG expression .) ]
+
+
+state 54
+
+    (27) expression -> expression SUP expression .
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+  ! shift/reduce conflict for INF resolved as shift
+  ! shift/reduce conflict for INFEG resolved as shift
+  ! shift/reduce conflict for SUPEG resolved as shift
+  ! shift/reduce conflict for SUP resolved as shift
+  ! shift/reduce conflict for EGALEGAL resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for NOTEG resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+    SEMI            reduce using rule 27 (expression -> expression SUP expression .)
+    RPAREN          reduce using rule 27 (expression -> expression SUP expression .)
+    COMMA           reduce using rule 27 (expression -> expression SUP expression .)
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+  ! INF             [ reduce using rule 27 (expression -> expression SUP expression .) ]
+  ! INFEG           [ reduce using rule 27 (expression -> expression SUP expression .) ]
+  ! SUPEG           [ reduce using rule 27 (expression -> expression SUP expression .) ]
+  ! SUP             [ reduce using rule 27 (expression -> expression SUP expression .) ]
+  ! EGALEGAL        [ reduce using rule 27 (expression -> expression SUP expression .) ]
+  ! AND             [ reduce using rule 27 (expression -> expression SUP expression .) ]
+  ! OR              [ reduce using rule 27 (expression -> expression SUP expression .) ]
+  ! PLUS            [ reduce using rule 27 (expression -> expression SUP expression .) ]
+  ! TIMES           [ reduce using rule 27 (expression -> expression SUP expression .) ]
+  ! MINUS           [ reduce using rule 27 (expression -> expression SUP expression .) ]
+  ! DIVIDE          [ reduce using rule 27 (expression -> expression SUP expression .) ]
+  ! NOTEG           [ reduce using rule 27 (expression -> expression SUP expression .) ]
+  ! MODULO          [ reduce using rule 27 (expression -> expression SUP expression .) ]
+
+
+state 55
+
+    (28) expression -> expression EGALEGAL expression .
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+  ! shift/reduce conflict for INF resolved as shift
+  ! shift/reduce conflict for INFEG resolved as shift
+  ! shift/reduce conflict for SUPEG resolved as shift
+  ! shift/reduce conflict for SUP resolved as shift
+  ! shift/reduce conflict for EGALEGAL resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for NOTEG resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+    SEMI            reduce using rule 28 (expression -> expression EGALEGAL expression .)
+    RPAREN          reduce using rule 28 (expression -> expression EGALEGAL expression .)
+    COMMA           reduce using rule 28 (expression -> expression EGALEGAL expression .)
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+  ! INF             [ reduce using rule 28 (expression -> expression EGALEGAL expression .) ]
+  ! INFEG           [ reduce using rule 28 (expression -> expression EGALEGAL expression .) ]
+  ! SUPEG           [ reduce using rule 28 (expression -> expression EGALEGAL expression .) ]
+  ! SUP             [ reduce using rule 28 (expression -> expression EGALEGAL expression .) ]
+  ! EGALEGAL        [ reduce using rule 28 (expression -> expression EGALEGAL expression .) ]
+  ! AND             [ reduce using rule 28 (expression -> expression EGALEGAL expression .) ]
+  ! OR              [ reduce using rule 28 (expression -> expression EGALEGAL expression .) ]
+  ! PLUS            [ reduce using rule 28 (expression -> expression EGALEGAL expression .) ]
+  ! TIMES           [ reduce using rule 28 (expression -> expression EGALEGAL expression .) ]
+  ! MINUS           [ reduce using rule 28 (expression -> expression EGALEGAL expression .) ]
+  ! DIVIDE          [ reduce using rule 28 (expression -> expression EGALEGAL expression .) ]
+  ! NOTEG           [ reduce using rule 28 (expression -> expression EGALEGAL expression .) ]
+  ! MODULO          [ reduce using rule 28 (expression -> expression EGALEGAL expression .) ]
+
+
+state 56
+
+    (29) expression -> expression AND expression .
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+  ! shift/reduce conflict for INF resolved as shift
+  ! shift/reduce conflict for INFEG resolved as shift
+  ! shift/reduce conflict for SUPEG resolved as shift
+  ! shift/reduce conflict for SUP resolved as shift
+  ! shift/reduce conflict for EGALEGAL resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for NOTEG resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+    SEMI            reduce using rule 29 (expression -> expression AND expression .)
+    RPAREN          reduce using rule 29 (expression -> expression AND expression .)
+    COMMA           reduce using rule 29 (expression -> expression AND expression .)
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+  ! INF             [ reduce using rule 29 (expression -> expression AND expression .) ]
+  ! INFEG           [ reduce using rule 29 (expression -> expression AND expression .) ]
+  ! SUPEG           [ reduce using rule 29 (expression -> expression AND expression .) ]
+  ! SUP             [ reduce using rule 29 (expression -> expression AND expression .) ]
+  ! EGALEGAL        [ reduce using rule 29 (expression -> expression AND expression .) ]
+  ! AND             [ reduce using rule 29 (expression -> expression AND expression .) ]
+  ! OR              [ reduce using rule 29 (expression -> expression AND expression .) ]
+  ! PLUS            [ reduce using rule 29 (expression -> expression AND expression .) ]
+  ! TIMES           [ reduce using rule 29 (expression -> expression AND expression .) ]
+  ! MINUS           [ reduce using rule 29 (expression -> expression AND expression .) ]
+  ! DIVIDE          [ reduce using rule 29 (expression -> expression AND expression .) ]
+  ! NOTEG           [ reduce using rule 29 (expression -> expression AND expression .) ]
+  ! MODULO          [ reduce using rule 29 (expression -> expression AND expression .) ]
+
+
+state 57
+
+    (30) expression -> expression OR expression .
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+  ! shift/reduce conflict for INF resolved as shift
+  ! shift/reduce conflict for INFEG resolved as shift
+  ! shift/reduce conflict for SUPEG resolved as shift
+  ! shift/reduce conflict for SUP resolved as shift
+  ! shift/reduce conflict for EGALEGAL resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for NOTEG resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+    SEMI            reduce using rule 30 (expression -> expression OR expression .)
+    RPAREN          reduce using rule 30 (expression -> expression OR expression .)
+    COMMA           reduce using rule 30 (expression -> expression OR expression .)
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+  ! INF             [ reduce using rule 30 (expression -> expression OR expression .) ]
+  ! INFEG           [ reduce using rule 30 (expression -> expression OR expression .) ]
+  ! SUPEG           [ reduce using rule 30 (expression -> expression OR expression .) ]
+  ! SUP             [ reduce using rule 30 (expression -> expression OR expression .) ]
+  ! EGALEGAL        [ reduce using rule 30 (expression -> expression OR expression .) ]
+  ! AND             [ reduce using rule 30 (expression -> expression OR expression .) ]
+  ! OR              [ reduce using rule 30 (expression -> expression OR expression .) ]
+  ! PLUS            [ reduce using rule 30 (expression -> expression OR expression .) ]
+  ! TIMES           [ reduce using rule 30 (expression -> expression OR expression .) ]
+  ! MINUS           [ reduce using rule 30 (expression -> expression OR expression .) ]
+  ! DIVIDE          [ reduce using rule 30 (expression -> expression OR expression .) ]
+  ! NOTEG           [ reduce using rule 30 (expression -> expression OR expression .) ]
+  ! MODULO          [ reduce using rule 30 (expression -> expression OR expression .) ]
+
+
+state 58
+
+    (31) expression -> expression PLUS expression .
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+  ! shift/reduce conflict for INF resolved as shift
+  ! shift/reduce conflict for INFEG resolved as shift
+  ! shift/reduce conflict for SUPEG resolved as shift
+  ! shift/reduce conflict for SUP resolved as shift
+  ! shift/reduce conflict for EGALEGAL resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for NOTEG resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+    SEMI            reduce using rule 31 (expression -> expression PLUS expression .)
+    RPAREN          reduce using rule 31 (expression -> expression PLUS expression .)
+    COMMA           reduce using rule 31 (expression -> expression PLUS expression .)
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+  ! INF             [ reduce using rule 31 (expression -> expression PLUS expression .) ]
+  ! INFEG           [ reduce using rule 31 (expression -> expression PLUS expression .) ]
+  ! SUPEG           [ reduce using rule 31 (expression -> expression PLUS expression .) ]
+  ! SUP             [ reduce using rule 31 (expression -> expression PLUS expression .) ]
+  ! EGALEGAL        [ reduce using rule 31 (expression -> expression PLUS expression .) ]
+  ! AND             [ reduce using rule 31 (expression -> expression PLUS expression .) ]
+  ! OR              [ reduce using rule 31 (expression -> expression PLUS expression .) ]
+  ! PLUS            [ reduce using rule 31 (expression -> expression PLUS expression .) ]
+  ! TIMES           [ reduce using rule 31 (expression -> expression PLUS expression .) ]
+  ! MINUS           [ reduce using rule 31 (expression -> expression PLUS expression .) ]
+  ! DIVIDE          [ reduce using rule 31 (expression -> expression PLUS expression .) ]
+  ! NOTEG           [ reduce using rule 31 (expression -> expression PLUS expression .) ]
+  ! MODULO          [ reduce using rule 31 (expression -> expression PLUS expression .) ]
+
+
+state 59
+
+    (32) expression -> expression TIMES expression .
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+  ! shift/reduce conflict for INF resolved as shift
+  ! shift/reduce conflict for INFEG resolved as shift
+  ! shift/reduce conflict for SUPEG resolved as shift
+  ! shift/reduce conflict for SUP resolved as shift
+  ! shift/reduce conflict for EGALEGAL resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for NOTEG resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+    SEMI            reduce using rule 32 (expression -> expression TIMES expression .)
+    RPAREN          reduce using rule 32 (expression -> expression TIMES expression .)
+    COMMA           reduce using rule 32 (expression -> expression TIMES expression .)
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+  ! INF             [ reduce using rule 32 (expression -> expression TIMES expression .) ]
+  ! INFEG           [ reduce using rule 32 (expression -> expression TIMES expression .) ]
+  ! SUPEG           [ reduce using rule 32 (expression -> expression TIMES expression .) ]
+  ! SUP             [ reduce using rule 32 (expression -> expression TIMES expression .) ]
+  ! EGALEGAL        [ reduce using rule 32 (expression -> expression TIMES expression .) ]
+  ! AND             [ reduce using rule 32 (expression -> expression TIMES expression .) ]
+  ! OR              [ reduce using rule 32 (expression -> expression TIMES expression .) ]
+  ! PLUS            [ reduce using rule 32 (expression -> expression TIMES expression .) ]
+  ! TIMES           [ reduce using rule 32 (expression -> expression TIMES expression .) ]
+  ! MINUS           [ reduce using rule 32 (expression -> expression TIMES expression .) ]
+  ! DIVIDE          [ reduce using rule 32 (expression -> expression TIMES expression .) ]
+  ! NOTEG           [ reduce using rule 32 (expression -> expression TIMES expression .) ]
+  ! MODULO          [ reduce using rule 32 (expression -> expression TIMES expression .) ]
+
+
+state 60
+
+    (33) expression -> expression MINUS expression .
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+  ! shift/reduce conflict for INF resolved as shift
+  ! shift/reduce conflict for INFEG resolved as shift
+  ! shift/reduce conflict for SUPEG resolved as shift
+  ! shift/reduce conflict for SUP resolved as shift
+  ! shift/reduce conflict for EGALEGAL resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for NOTEG resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+    SEMI            reduce using rule 33 (expression -> expression MINUS expression .)
+    RPAREN          reduce using rule 33 (expression -> expression MINUS expression .)
+    COMMA           reduce using rule 33 (expression -> expression MINUS expression .)
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+  ! INF             [ reduce using rule 33 (expression -> expression MINUS expression .) ]
+  ! INFEG           [ reduce using rule 33 (expression -> expression MINUS expression .) ]
+  ! SUPEG           [ reduce using rule 33 (expression -> expression MINUS expression .) ]
+  ! SUP             [ reduce using rule 33 (expression -> expression MINUS expression .) ]
+  ! EGALEGAL        [ reduce using rule 33 (expression -> expression MINUS expression .) ]
+  ! AND             [ reduce using rule 33 (expression -> expression MINUS expression .) ]
+  ! OR              [ reduce using rule 33 (expression -> expression MINUS expression .) ]
+  ! PLUS            [ reduce using rule 33 (expression -> expression MINUS expression .) ]
+  ! TIMES           [ reduce using rule 33 (expression -> expression MINUS expression .) ]
+  ! MINUS           [ reduce using rule 33 (expression -> expression MINUS expression .) ]
+  ! DIVIDE          [ reduce using rule 33 (expression -> expression MINUS expression .) ]
+  ! NOTEG           [ reduce using rule 33 (expression -> expression MINUS expression .) ]
+  ! MODULO          [ reduce using rule 33 (expression -> expression MINUS expression .) ]
+
+
+state 61
+
+    (34) expression -> expression DIVIDE expression .
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+  ! shift/reduce conflict for INF resolved as shift
+  ! shift/reduce conflict for INFEG resolved as shift
+  ! shift/reduce conflict for SUPEG resolved as shift
+  ! shift/reduce conflict for SUP resolved as shift
+  ! shift/reduce conflict for EGALEGAL resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for NOTEG resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+    SEMI            reduce using rule 34 (expression -> expression DIVIDE expression .)
+    RPAREN          reduce using rule 34 (expression -> expression DIVIDE expression .)
+    COMMA           reduce using rule 34 (expression -> expression DIVIDE expression .)
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+  ! INF             [ reduce using rule 34 (expression -> expression DIVIDE expression .) ]
+  ! INFEG           [ reduce using rule 34 (expression -> expression DIVIDE expression .) ]
+  ! SUPEG           [ reduce using rule 34 (expression -> expression DIVIDE expression .) ]
+  ! SUP             [ reduce using rule 34 (expression -> expression DIVIDE expression .) ]
+  ! EGALEGAL        [ reduce using rule 34 (expression -> expression DIVIDE expression .) ]
+  ! AND             [ reduce using rule 34 (expression -> expression DIVIDE expression .) ]
+  ! OR              [ reduce using rule 34 (expression -> expression DIVIDE expression .) ]
+  ! PLUS            [ reduce using rule 34 (expression -> expression DIVIDE expression .) ]
+  ! TIMES           [ reduce using rule 34 (expression -> expression DIVIDE expression .) ]
+  ! MINUS           [ reduce using rule 34 (expression -> expression DIVIDE expression .) ]
+  ! DIVIDE          [ reduce using rule 34 (expression -> expression DIVIDE expression .) ]
+  ! NOTEG           [ reduce using rule 34 (expression -> expression DIVIDE expression .) ]
+  ! MODULO          [ reduce using rule 34 (expression -> expression DIVIDE expression .) ]
+
+
+state 62
+
+    (35) expression -> expression NOTEG expression .
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+  ! shift/reduce conflict for INF resolved as shift
+  ! shift/reduce conflict for INFEG resolved as shift
+  ! shift/reduce conflict for SUPEG resolved as shift
+  ! shift/reduce conflict for SUP resolved as shift
+  ! shift/reduce conflict for EGALEGAL resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for NOTEG resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+    SEMI            reduce using rule 35 (expression -> expression NOTEG expression .)
+    RPAREN          reduce using rule 35 (expression -> expression NOTEG expression .)
+    COMMA           reduce using rule 35 (expression -> expression NOTEG expression .)
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+  ! INF             [ reduce using rule 35 (expression -> expression NOTEG expression .) ]
+  ! INFEG           [ reduce using rule 35 (expression -> expression NOTEG expression .) ]
+  ! SUPEG           [ reduce using rule 35 (expression -> expression NOTEG expression .) ]
+  ! SUP             [ reduce using rule 35 (expression -> expression NOTEG expression .) ]
+  ! EGALEGAL        [ reduce using rule 35 (expression -> expression NOTEG expression .) ]
+  ! AND             [ reduce using rule 35 (expression -> expression NOTEG expression .) ]
+  ! OR              [ reduce using rule 35 (expression -> expression NOTEG expression .) ]
+  ! PLUS            [ reduce using rule 35 (expression -> expression NOTEG expression .) ]
+  ! TIMES           [ reduce using rule 35 (expression -> expression NOTEG expression .) ]
+  ! MINUS           [ reduce using rule 35 (expression -> expression NOTEG expression .) ]
+  ! DIVIDE          [ reduce using rule 35 (expression -> expression NOTEG expression .) ]
+  ! NOTEG           [ reduce using rule 35 (expression -> expression NOTEG expression .) ]
+  ! MODULO          [ reduce using rule 35 (expression -> expression NOTEG expression .) ]
+
+
+state 63
+
+    (36) expression -> expression MODULO expression .
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+  ! shift/reduce conflict for INF resolved as shift
+  ! shift/reduce conflict for INFEG resolved as shift
+  ! shift/reduce conflict for SUPEG resolved as shift
+  ! shift/reduce conflict for SUP resolved as shift
+  ! shift/reduce conflict for EGALEGAL resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for NOTEG resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+    SEMI            reduce using rule 36 (expression -> expression MODULO expression .)
+    RPAREN          reduce using rule 36 (expression -> expression MODULO expression .)
+    COMMA           reduce using rule 36 (expression -> expression MODULO expression .)
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+  ! INF             [ reduce using rule 36 (expression -> expression MODULO expression .) ]
+  ! INFEG           [ reduce using rule 36 (expression -> expression MODULO expression .) ]
+  ! SUPEG           [ reduce using rule 36 (expression -> expression MODULO expression .) ]
+  ! SUP             [ reduce using rule 36 (expression -> expression MODULO expression .) ]
+  ! EGALEGAL        [ reduce using rule 36 (expression -> expression MODULO expression .) ]
+  ! AND             [ reduce using rule 36 (expression -> expression MODULO expression .) ]
+  ! OR              [ reduce using rule 36 (expression -> expression MODULO expression .) ]
+  ! PLUS            [ reduce using rule 36 (expression -> expression MODULO expression .) ]
+  ! TIMES           [ reduce using rule 36 (expression -> expression MODULO expression .) ]
+  ! MINUS           [ reduce using rule 36 (expression -> expression MODULO expression .) ]
+  ! DIVIDE          [ reduce using rule 36 (expression -> expression MODULO expression .) ]
+  ! NOTEG           [ reduce using rule 36 (expression -> expression MODULO expression .) ]
+  ! MODULO          [ reduce using rule 36 (expression -> expression MODULO expression .) ]
+
+
+state 64
+
+    (15) statement -> WHILE LPAREN expression . RPAREN LACC bloc RACC
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+    RPAREN          shift and go to state 73
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+
+state 65
+
+    (16) statement -> FOR LPAREN statement . SEMI expression SEMI statement RPAREN LACC bloc RACC
+
+    SEMI            shift and go to state 74
+
+
+state 66
+
+    (17) statement -> PRINT LPAREN expression . RPAREN
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+    RPAREN          shift and go to state 75
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+
+state 67
+
+    (18) statement -> NAME EGAL expression .
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+    SEMI            reduce using rule 18 (statement -> NAME EGAL expression .)
+    RPAREN          reduce using rule 18 (statement -> NAME EGAL expression .)
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+
+state 68
+
+    (37) expression -> NAME LPAREN args . RPAREN
+
+    RPAREN          shift and go to state 76
+
+
+state 69
+
+    (39) args -> expression .
+    (40) args -> expression . COMMA args
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+    RPAREN          reduce using rule 39 (args -> expression .)
+    COMMA           shift and go to state 77
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+
+state 70
+
+    (19) statement -> TIMES NAME EGAL . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 78
+
+state 71
+
+    (20) statement -> DEF NAME LPAREN . params RPAREN LACC bloc RACC
+    (7) params -> .
+    (8) params -> . param
+    (9) params -> . param COMMA params
+    (5) param -> . NAME
+    (6) param -> . TIMES NAME
+
+    RPAREN          reduce using rule 7 (params -> .)
+    NAME            shift and go to state 79
+    TIMES           shift and go to state 82
+
+    params                         shift and go to state 80
+    param                          shift and go to state 81
+
+state 72
+
+    (14) statement -> IF LPAREN expression RPAREN . LACC bloc RACC elif_list else_opt
+
+    LACC            shift and go to state 83
+
+
+state 73
+
+    (15) statement -> WHILE LPAREN expression RPAREN . LACC bloc RACC
+
+    LACC            shift and go to state 84
+
+
+state 74
+
+    (16) statement -> FOR LPAREN statement SEMI . expression SEMI statement RPAREN LACC bloc RACC
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 85
+
+state 75
+
+    (17) statement -> PRINT LPAREN expression RPAREN .
+
+    SEMI            reduce using rule 17 (statement -> PRINT LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 17 (statement -> PRINT LPAREN expression RPAREN .)
+
+
+state 76
+
+    (37) expression -> NAME LPAREN args RPAREN .
+
+    INF             reduce using rule 37 (expression -> NAME LPAREN args RPAREN .)
+    INFEG           reduce using rule 37 (expression -> NAME LPAREN args RPAREN .)
+    SUPEG           reduce using rule 37 (expression -> NAME LPAREN args RPAREN .)
+    SUP             reduce using rule 37 (expression -> NAME LPAREN args RPAREN .)
+    EGALEGAL        reduce using rule 37 (expression -> NAME LPAREN args RPAREN .)
+    AND             reduce using rule 37 (expression -> NAME LPAREN args RPAREN .)
+    OR              reduce using rule 37 (expression -> NAME LPAREN args RPAREN .)
+    PLUS            reduce using rule 37 (expression -> NAME LPAREN args RPAREN .)
+    TIMES           reduce using rule 37 (expression -> NAME LPAREN args RPAREN .)
+    MINUS           reduce using rule 37 (expression -> NAME LPAREN args RPAREN .)
+    DIVIDE          reduce using rule 37 (expression -> NAME LPAREN args RPAREN .)
+    NOTEG           reduce using rule 37 (expression -> NAME LPAREN args RPAREN .)
+    MODULO          reduce using rule 37 (expression -> NAME LPAREN args RPAREN .)
+    SEMI            reduce using rule 37 (expression -> NAME LPAREN args RPAREN .)
+    RPAREN          reduce using rule 37 (expression -> NAME LPAREN args RPAREN .)
+    COMMA           reduce using rule 37 (expression -> NAME LPAREN args RPAREN .)
+
+
+state 77
+
+    (40) args -> expression COMMA . args
+    (38) args -> .
+    (39) args -> . expression
+    (40) args -> . expression COMMA args
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    RPAREN          reduce using rule 38 (args -> .)
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 69
+    args                           shift and go to state 86
+
+state 78
+
+    (19) statement -> TIMES NAME EGAL expression .
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+    SEMI            reduce using rule 19 (statement -> TIMES NAME EGAL expression .)
+    RPAREN          reduce using rule 19 (statement -> TIMES NAME EGAL expression .)
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+
+state 79
+
+    (5) param -> NAME .
+
+    COMMA           reduce using rule 5 (param -> NAME .)
+    RPAREN          reduce using rule 5 (param -> NAME .)
+
+
+state 80
+
+    (20) statement -> DEF NAME LPAREN params . RPAREN LACC bloc RACC
+
+    RPAREN          shift and go to state 87
+
+
+state 81
+
+    (8) params -> param .
+    (9) params -> param . COMMA params
+
+    RPAREN          reduce using rule 8 (params -> param .)
+    COMMA           shift and go to state 88
+
+
+state 82
+
+    (6) param -> TIMES . NAME
+
+    NAME            shift and go to state 89
+
+
+state 83
+
+    (14) statement -> IF LPAREN expression RPAREN LACC . bloc RACC elif_list else_opt
+    (3) bloc -> . bloc statement SEMI
+    (4) bloc -> . statement SEMI
+    (14) statement -> . IF LPAREN expression RPAREN LACC bloc RACC elif_list else_opt
+    (15) statement -> . WHILE LPAREN expression RPAREN LACC bloc RACC
+    (16) statement -> . FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC
+    (17) statement -> . PRINT LPAREN expression RPAREN
+    (18) statement -> . NAME EGAL expression
+    (19) statement -> . TIMES NAME EGAL expression
+    (20) statement -> . DEF NAME LPAREN params RPAREN LACC bloc RACC
+    (21) statement -> . RETURN expression
+    (22) statement -> . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    IF              shift and go to state 4
+    WHILE           shift and go to state 7
+    FOR             shift and go to state 8
+    PRINT           shift and go to state 9
+    NAME            shift and go to state 10
+    TIMES           shift and go to state 11
+    DEF             shift and go to state 12
+    RETURN          shift and go to state 13
+    REF             shift and go to state 14
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+
+    expression                     shift and go to state 6
+    bloc                           shift and go to state 90
+    statement                      shift and go to state 3
+
+state 84
+
+    (15) statement -> WHILE LPAREN expression RPAREN LACC . bloc RACC
+    (3) bloc -> . bloc statement SEMI
+    (4) bloc -> . statement SEMI
+    (14) statement -> . IF LPAREN expression RPAREN LACC bloc RACC elif_list else_opt
+    (15) statement -> . WHILE LPAREN expression RPAREN LACC bloc RACC
+    (16) statement -> . FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC
+    (17) statement -> . PRINT LPAREN expression RPAREN
+    (18) statement -> . NAME EGAL expression
+    (19) statement -> . TIMES NAME EGAL expression
+    (20) statement -> . DEF NAME LPAREN params RPAREN LACC bloc RACC
+    (21) statement -> . RETURN expression
+    (22) statement -> . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    IF              shift and go to state 4
+    WHILE           shift and go to state 7
+    FOR             shift and go to state 8
+    PRINT           shift and go to state 9
+    NAME            shift and go to state 10
+    TIMES           shift and go to state 11
+    DEF             shift and go to state 12
+    RETURN          shift and go to state 13
+    REF             shift and go to state 14
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+
+    expression                     shift and go to state 6
+    bloc                           shift and go to state 91
+    statement                      shift and go to state 3
+
+state 85
+
+    (16) statement -> FOR LPAREN statement SEMI expression . SEMI statement RPAREN LACC bloc RACC
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+    SEMI            shift and go to state 92
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+
+state 86
+
+    (40) args -> expression COMMA args .
+
+    RPAREN          reduce using rule 40 (args -> expression COMMA args .)
+
+
+state 87
+
+    (20) statement -> DEF NAME LPAREN params RPAREN . LACC bloc RACC
+
+    LACC            shift and go to state 93
+
+
+state 88
+
+    (9) params -> param COMMA . params
+    (7) params -> .
+    (8) params -> . param
+    (9) params -> . param COMMA params
+    (5) param -> . NAME
+    (6) param -> . TIMES NAME
+
+    RPAREN          reduce using rule 7 (params -> .)
+    NAME            shift and go to state 79
+    TIMES           shift and go to state 82
+
+    param                          shift and go to state 81
+    params                         shift and go to state 94
+
+state 89
+
+    (6) param -> TIMES NAME .
+
+    COMMA           reduce using rule 6 (param -> TIMES NAME .)
+    RPAREN          reduce using rule 6 (param -> TIMES NAME .)
+
+
+state 90
+
+    (14) statement -> IF LPAREN expression RPAREN LACC bloc . RACC elif_list else_opt
+    (3) bloc -> bloc . statement SEMI
+    (14) statement -> . IF LPAREN expression RPAREN LACC bloc RACC elif_list else_opt
+    (15) statement -> . WHILE LPAREN expression RPAREN LACC bloc RACC
+    (16) statement -> . FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC
+    (17) statement -> . PRINT LPAREN expression RPAREN
+    (18) statement -> . NAME EGAL expression
+    (19) statement -> . TIMES NAME EGAL expression
+    (20) statement -> . DEF NAME LPAREN params RPAREN LACC bloc RACC
+    (21) statement -> . RETURN expression
+    (22) statement -> . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    RACC            shift and go to state 95
+    IF              shift and go to state 4
+    WHILE           shift and go to state 7
+    FOR             shift and go to state 8
+    PRINT           shift and go to state 9
+    NAME            shift and go to state 10
+    TIMES           shift and go to state 11
+    DEF             shift and go to state 12
+    RETURN          shift and go to state 13
+    REF             shift and go to state 14
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+
+    expression                     shift and go to state 6
+    statement                      shift and go to state 19
+
+state 91
+
+    (15) statement -> WHILE LPAREN expression RPAREN LACC bloc . RACC
+    (3) bloc -> bloc . statement SEMI
+    (14) statement -> . IF LPAREN expression RPAREN LACC bloc RACC elif_list else_opt
+    (15) statement -> . WHILE LPAREN expression RPAREN LACC bloc RACC
+    (16) statement -> . FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC
+    (17) statement -> . PRINT LPAREN expression RPAREN
+    (18) statement -> . NAME EGAL expression
+    (19) statement -> . TIMES NAME EGAL expression
+    (20) statement -> . DEF NAME LPAREN params RPAREN LACC bloc RACC
+    (21) statement -> . RETURN expression
+    (22) statement -> . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    RACC            shift and go to state 96
+    IF              shift and go to state 4
+    WHILE           shift and go to state 7
+    FOR             shift and go to state 8
+    PRINT           shift and go to state 9
+    NAME            shift and go to state 10
+    TIMES           shift and go to state 11
+    DEF             shift and go to state 12
+    RETURN          shift and go to state 13
+    REF             shift and go to state 14
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+
+    expression                     shift and go to state 6
+    statement                      shift and go to state 19
+
+state 92
+
+    (16) statement -> FOR LPAREN statement SEMI expression SEMI . statement RPAREN LACC bloc RACC
+    (14) statement -> . IF LPAREN expression RPAREN LACC bloc RACC elif_list else_opt
+    (15) statement -> . WHILE LPAREN expression RPAREN LACC bloc RACC
+    (16) statement -> . FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC
+    (17) statement -> . PRINT LPAREN expression RPAREN
+    (18) statement -> . NAME EGAL expression
+    (19) statement -> . TIMES NAME EGAL expression
+    (20) statement -> . DEF NAME LPAREN params RPAREN LACC bloc RACC
+    (21) statement -> . RETURN expression
+    (22) statement -> . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    IF              shift and go to state 4
+    WHILE           shift and go to state 7
+    FOR             shift and go to state 8
+    PRINT           shift and go to state 9
+    NAME            shift and go to state 10
+    TIMES           shift and go to state 11
+    DEF             shift and go to state 12
+    RETURN          shift and go to state 13
+    REF             shift and go to state 14
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+
+    statement                      shift and go to state 97
+    expression                     shift and go to state 6
+
+state 93
+
+    (20) statement -> DEF NAME LPAREN params RPAREN LACC . bloc RACC
+    (3) bloc -> . bloc statement SEMI
+    (4) bloc -> . statement SEMI
+    (14) statement -> . IF LPAREN expression RPAREN LACC bloc RACC elif_list else_opt
+    (15) statement -> . WHILE LPAREN expression RPAREN LACC bloc RACC
+    (16) statement -> . FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC
+    (17) statement -> . PRINT LPAREN expression RPAREN
+    (18) statement -> . NAME EGAL expression
+    (19) statement -> . TIMES NAME EGAL expression
+    (20) statement -> . DEF NAME LPAREN params RPAREN LACC bloc RACC
+    (21) statement -> . RETURN expression
+    (22) statement -> . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    IF              shift and go to state 4
+    WHILE           shift and go to state 7
+    FOR             shift and go to state 8
+    PRINT           shift and go to state 9
+    NAME            shift and go to state 10
+    TIMES           shift and go to state 11
+    DEF             shift and go to state 12
+    RETURN          shift and go to state 13
+    REF             shift and go to state 14
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+
+    bloc                           shift and go to state 98
+    statement                      shift and go to state 3
+    expression                     shift and go to state 6
+
+state 94
+
+    (9) params -> param COMMA params .
+
+    RPAREN          reduce using rule 9 (params -> param COMMA params .)
+
+
+state 95
+
+    (14) statement -> IF LPAREN expression RPAREN LACC bloc RACC . elif_list else_opt
+    (10) elif_list -> . empty
+    (11) elif_list -> . ELIF LPAREN expression RPAREN LACC bloc RACC elif_list
+    (2) empty -> .
+
+    ELIF            shift and go to state 101
+    ELSE            reduce using rule 2 (empty -> .)
+    SEMI            reduce using rule 2 (empty -> .)
+    RPAREN          reduce using rule 2 (empty -> .)
+
+    elif_list                      shift and go to state 99
+    empty                          shift and go to state 100
+
+state 96
+
+    (15) statement -> WHILE LPAREN expression RPAREN LACC bloc RACC .
+
+    SEMI            reduce using rule 15 (statement -> WHILE LPAREN expression RPAREN LACC bloc RACC .)
+    RPAREN          reduce using rule 15 (statement -> WHILE LPAREN expression RPAREN LACC bloc RACC .)
+
+
+state 97
+
+    (16) statement -> FOR LPAREN statement SEMI expression SEMI statement . RPAREN LACC bloc RACC
+
+    RPAREN          shift and go to state 102
+
+
+state 98
+
+    (20) statement -> DEF NAME LPAREN params RPAREN LACC bloc . RACC
+    (3) bloc -> bloc . statement SEMI
+    (14) statement -> . IF LPAREN expression RPAREN LACC bloc RACC elif_list else_opt
+    (15) statement -> . WHILE LPAREN expression RPAREN LACC bloc RACC
+    (16) statement -> . FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC
+    (17) statement -> . PRINT LPAREN expression RPAREN
+    (18) statement -> . NAME EGAL expression
+    (19) statement -> . TIMES NAME EGAL expression
+    (20) statement -> . DEF NAME LPAREN params RPAREN LACC bloc RACC
+    (21) statement -> . RETURN expression
+    (22) statement -> . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    RACC            shift and go to state 103
+    IF              shift and go to state 4
+    WHILE           shift and go to state 7
+    FOR             shift and go to state 8
+    PRINT           shift and go to state 9
+    NAME            shift and go to state 10
+    TIMES           shift and go to state 11
+    DEF             shift and go to state 12
+    RETURN          shift and go to state 13
+    REF             shift and go to state 14
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+
+    statement                      shift and go to state 19
+    expression                     shift and go to state 6
+
+state 99
+
+    (14) statement -> IF LPAREN expression RPAREN LACC bloc RACC elif_list . else_opt
+    (12) else_opt -> . empty
+    (13) else_opt -> . ELSE LACC bloc RACC
+    (2) empty -> .
+
+    ELSE            shift and go to state 106
+    SEMI            reduce using rule 2 (empty -> .)
+    RPAREN          reduce using rule 2 (empty -> .)
+
+    else_opt                       shift and go to state 104
+    empty                          shift and go to state 105
+
+state 100
+
+    (10) elif_list -> empty .
+
+    ELSE            reduce using rule 10 (elif_list -> empty .)
+    SEMI            reduce using rule 10 (elif_list -> empty .)
+    RPAREN          reduce using rule 10 (elif_list -> empty .)
+
+
+state 101
+
+    (11) elif_list -> ELIF . LPAREN expression RPAREN LACC bloc RACC elif_list
+
+    LPAREN          shift and go to state 107
+
+
+state 102
+
+    (16) statement -> FOR LPAREN statement SEMI expression SEMI statement RPAREN . LACC bloc RACC
+
+    LACC            shift and go to state 108
+
+
+state 103
+
+    (20) statement -> DEF NAME LPAREN params RPAREN LACC bloc RACC .
+
+    SEMI            reduce using rule 20 (statement -> DEF NAME LPAREN params RPAREN LACC bloc RACC .)
+    RPAREN          reduce using rule 20 (statement -> DEF NAME LPAREN params RPAREN LACC bloc RACC .)
+
+
+state 104
+
+    (14) statement -> IF LPAREN expression RPAREN LACC bloc RACC elif_list else_opt .
+
+    SEMI            reduce using rule 14 (statement -> IF LPAREN expression RPAREN LACC bloc RACC elif_list else_opt .)
+    RPAREN          reduce using rule 14 (statement -> IF LPAREN expression RPAREN LACC bloc RACC elif_list else_opt .)
+
+
+state 105
+
+    (12) else_opt -> empty .
+
+    SEMI            reduce using rule 12 (else_opt -> empty .)
+    RPAREN          reduce using rule 12 (else_opt -> empty .)
+
+
+state 106
+
+    (13) else_opt -> ELSE . LACC bloc RACC
+
+    LACC            shift and go to state 109
+
+
+state 107
+
+    (11) elif_list -> ELIF LPAREN . expression RPAREN LACC bloc RACC elif_list
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    REF             shift and go to state 14
+    NAME            shift and go to state 23
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    TIMES           shift and go to state 24
+
+    expression                     shift and go to state 110
+
+state 108
+
+    (16) statement -> FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC . bloc RACC
+    (3) bloc -> . bloc statement SEMI
+    (4) bloc -> . statement SEMI
+    (14) statement -> . IF LPAREN expression RPAREN LACC bloc RACC elif_list else_opt
+    (15) statement -> . WHILE LPAREN expression RPAREN LACC bloc RACC
+    (16) statement -> . FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC
+    (17) statement -> . PRINT LPAREN expression RPAREN
+    (18) statement -> . NAME EGAL expression
+    (19) statement -> . TIMES NAME EGAL expression
+    (20) statement -> . DEF NAME LPAREN params RPAREN LACC bloc RACC
+    (21) statement -> . RETURN expression
+    (22) statement -> . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    IF              shift and go to state 4
+    WHILE           shift and go to state 7
+    FOR             shift and go to state 8
+    PRINT           shift and go to state 9
+    NAME            shift and go to state 10
+    TIMES           shift and go to state 11
+    DEF             shift and go to state 12
+    RETURN          shift and go to state 13
+    REF             shift and go to state 14
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+
+    statement                      shift and go to state 3
+    expression                     shift and go to state 6
+    bloc                           shift and go to state 111
+
+state 109
+
+    (13) else_opt -> ELSE LACC . bloc RACC
+    (3) bloc -> . bloc statement SEMI
+    (4) bloc -> . statement SEMI
+    (14) statement -> . IF LPAREN expression RPAREN LACC bloc RACC elif_list else_opt
+    (15) statement -> . WHILE LPAREN expression RPAREN LACC bloc RACC
+    (16) statement -> . FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC
+    (17) statement -> . PRINT LPAREN expression RPAREN
+    (18) statement -> . NAME EGAL expression
+    (19) statement -> . TIMES NAME EGAL expression
+    (20) statement -> . DEF NAME LPAREN params RPAREN LACC bloc RACC
+    (21) statement -> . RETURN expression
+    (22) statement -> . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    IF              shift and go to state 4
+    WHILE           shift and go to state 7
+    FOR             shift and go to state 8
+    PRINT           shift and go to state 9
+    NAME            shift and go to state 10
+    TIMES           shift and go to state 11
+    DEF             shift and go to state 12
+    RETURN          shift and go to state 13
+    REF             shift and go to state 14
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+
+    bloc                           shift and go to state 112
+    statement                      shift and go to state 3
+    expression                     shift and go to state 6
+
+state 110
+
+    (11) elif_list -> ELIF LPAREN expression . RPAREN LACC bloc RACC elif_list
+    (24) expression -> expression . INF expression
+    (25) expression -> expression . INFEG expression
+    (26) expression -> expression . SUPEG expression
+    (27) expression -> expression . SUP expression
+    (28) expression -> expression . EGALEGAL expression
+    (29) expression -> expression . AND expression
+    (30) expression -> expression . OR expression
+    (31) expression -> expression . PLUS expression
+    (32) expression -> expression . TIMES expression
+    (33) expression -> expression . MINUS expression
+    (34) expression -> expression . DIVIDE expression
+    (35) expression -> expression . NOTEG expression
+    (36) expression -> expression . MODULO expression
+
+    RPAREN          shift and go to state 113
+    INF             shift and go to state 25
+    INFEG           shift and go to state 26
+    SUPEG           shift and go to state 27
+    SUP             shift and go to state 28
+    EGALEGAL        shift and go to state 29
+    AND             shift and go to state 30
+    OR              shift and go to state 31
+    PLUS            shift and go to state 32
+    TIMES           shift and go to state 33
+    MINUS           shift and go to state 34
+    DIVIDE          shift and go to state 35
+    NOTEG           shift and go to state 36
+    MODULO          shift and go to state 37
+
+
+state 111
+
+    (16) statement -> FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc . RACC
+    (3) bloc -> bloc . statement SEMI
+    (14) statement -> . IF LPAREN expression RPAREN LACC bloc RACC elif_list else_opt
+    (15) statement -> . WHILE LPAREN expression RPAREN LACC bloc RACC
+    (16) statement -> . FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC
+    (17) statement -> . PRINT LPAREN expression RPAREN
+    (18) statement -> . NAME EGAL expression
+    (19) statement -> . TIMES NAME EGAL expression
+    (20) statement -> . DEF NAME LPAREN params RPAREN LACC bloc RACC
+    (21) statement -> . RETURN expression
+    (22) statement -> . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    RACC            shift and go to state 114
+    IF              shift and go to state 4
+    WHILE           shift and go to state 7
+    FOR             shift and go to state 8
+    PRINT           shift and go to state 9
+    NAME            shift and go to state 10
+    TIMES           shift and go to state 11
+    DEF             shift and go to state 12
+    RETURN          shift and go to state 13
+    REF             shift and go to state 14
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+
+    statement                      shift and go to state 19
+    expression                     shift and go to state 6
+
+state 112
+
+    (13) else_opt -> ELSE LACC bloc . RACC
+    (3) bloc -> bloc . statement SEMI
+    (14) statement -> . IF LPAREN expression RPAREN LACC bloc RACC elif_list else_opt
+    (15) statement -> . WHILE LPAREN expression RPAREN LACC bloc RACC
+    (16) statement -> . FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC
+    (17) statement -> . PRINT LPAREN expression RPAREN
+    (18) statement -> . NAME EGAL expression
+    (19) statement -> . TIMES NAME EGAL expression
+    (20) statement -> . DEF NAME LPAREN params RPAREN LACC bloc RACC
+    (21) statement -> . RETURN expression
+    (22) statement -> . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    RACC            shift and go to state 115
+    IF              shift and go to state 4
+    WHILE           shift and go to state 7
+    FOR             shift and go to state 8
+    PRINT           shift and go to state 9
+    NAME            shift and go to state 10
+    TIMES           shift and go to state 11
+    DEF             shift and go to state 12
+    RETURN          shift and go to state 13
+    REF             shift and go to state 14
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+
+    statement                      shift and go to state 19
+    expression                     shift and go to state 6
+
+state 113
+
+    (11) elif_list -> ELIF LPAREN expression RPAREN . LACC bloc RACC elif_list
+
+    LACC            shift and go to state 116
+
+
+state 114
+
+    (16) statement -> FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC .
+
+    SEMI            reduce using rule 16 (statement -> FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC .)
+    RPAREN          reduce using rule 16 (statement -> FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC .)
+
+
+state 115
+
+    (13) else_opt -> ELSE LACC bloc RACC .
+
+    SEMI            reduce using rule 13 (else_opt -> ELSE LACC bloc RACC .)
+    RPAREN          reduce using rule 13 (else_opt -> ELSE LACC bloc RACC .)
+
+
+state 116
+
+    (11) elif_list -> ELIF LPAREN expression RPAREN LACC . bloc RACC elif_list
+    (3) bloc -> . bloc statement SEMI
+    (4) bloc -> . statement SEMI
+    (14) statement -> . IF LPAREN expression RPAREN LACC bloc RACC elif_list else_opt
+    (15) statement -> . WHILE LPAREN expression RPAREN LACC bloc RACC
+    (16) statement -> . FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC
+    (17) statement -> . PRINT LPAREN expression RPAREN
+    (18) statement -> . NAME EGAL expression
+    (19) statement -> . TIMES NAME EGAL expression
+    (20) statement -> . DEF NAME LPAREN params RPAREN LACC bloc RACC
+    (21) statement -> . RETURN expression
+    (22) statement -> . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    IF              shift and go to state 4
+    WHILE           shift and go to state 7
+    FOR             shift and go to state 8
+    PRINT           shift and go to state 9
+    NAME            shift and go to state 10
+    TIMES           shift and go to state 11
+    DEF             shift and go to state 12
+    RETURN          shift and go to state 13
+    REF             shift and go to state 14
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+
+    expression                     shift and go to state 6
+    bloc                           shift and go to state 117
+    statement                      shift and go to state 3
+
+state 117
+
+    (11) elif_list -> ELIF LPAREN expression RPAREN LACC bloc . RACC elif_list
+    (3) bloc -> bloc . statement SEMI
+    (14) statement -> . IF LPAREN expression RPAREN LACC bloc RACC elif_list else_opt
+    (15) statement -> . WHILE LPAREN expression RPAREN LACC bloc RACC
+    (16) statement -> . FOR LPAREN statement SEMI expression SEMI statement RPAREN LACC bloc RACC
+    (17) statement -> . PRINT LPAREN expression RPAREN
+    (18) statement -> . NAME EGAL expression
+    (19) statement -> . TIMES NAME EGAL expression
+    (20) statement -> . DEF NAME LPAREN params RPAREN LACC bloc RACC
+    (21) statement -> . RETURN expression
+    (22) statement -> . expression
+    (23) expression -> . REF NAME
+    (24) expression -> . expression INF expression
+    (25) expression -> . expression INFEG expression
+    (26) expression -> . expression SUPEG expression
+    (27) expression -> . expression SUP expression
+    (28) expression -> . expression EGALEGAL expression
+    (29) expression -> . expression AND expression
+    (30) expression -> . expression OR expression
+    (31) expression -> . expression PLUS expression
+    (32) expression -> . expression TIMES expression
+    (33) expression -> . expression MINUS expression
+    (34) expression -> . expression DIVIDE expression
+    (35) expression -> . expression NOTEG expression
+    (36) expression -> . expression MODULO expression
+    (37) expression -> . NAME LPAREN args RPAREN
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . NUMBER
+    (43) expression -> . STRING
+    (44) expression -> . TRUE
+    (45) expression -> . FALSE
+    (46) expression -> . NAME
+    (47) expression -> . TIMES NAME
+
+    RACC            shift and go to state 118
+    IF              shift and go to state 4
+    WHILE           shift and go to state 7
+    FOR             shift and go to state 8
+    PRINT           shift and go to state 9
+    NAME            shift and go to state 10
+    TIMES           shift and go to state 11
+    DEF             shift and go to state 12
+    RETURN          shift and go to state 13
+    REF             shift and go to state 14
+    LPAREN          shift and go to state 5
+    NUMBER          shift and go to state 15
+    STRING          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+
+    expression                     shift and go to state 6
+    statement                      shift and go to state 19
+
+state 118
+
+    (11) elif_list -> ELIF LPAREN expression RPAREN LACC bloc RACC . elif_list
+    (10) elif_list -> . empty
+    (11) elif_list -> . ELIF LPAREN expression RPAREN LACC bloc RACC elif_list
+    (2) empty -> .
+
+    ELIF            shift and go to state 101
+    ELSE            reduce using rule 2 (empty -> .)
+    SEMI            reduce using rule 2 (empty -> .)
+    RPAREN          reduce using rule 2 (empty -> .)
+
+    elif_list                      shift and go to state 119
+    empty                          shift and go to state 100
+
+state 119
+
+    (11) elif_list -> ELIF LPAREN expression RPAREN LACC bloc RACC elif_list .
+
+    ELSE            reduce using rule 11 (elif_list -> ELIF LPAREN expression RPAREN LACC bloc RACC elif_list .)
+    SEMI            reduce using rule 11 (elif_list -> ELIF LPAREN expression RPAREN LACC bloc RACC elif_list .)
+    RPAREN          reduce using rule 11 (elif_list -> ELIF LPAREN expression RPAREN LACC bloc RACC elif_list .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for INF in state 51 resolved as shift
+WARNING: shift/reduce conflict for INFEG in state 51 resolved as shift
+WARNING: shift/reduce conflict for SUPEG in state 51 resolved as shift
+WARNING: shift/reduce conflict for SUP in state 51 resolved as shift
+WARNING: shift/reduce conflict for EGALEGAL in state 51 resolved as shift
+WARNING: shift/reduce conflict for AND in state 51 resolved as shift
+WARNING: shift/reduce conflict for OR in state 51 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 51 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 51 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 51 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 51 resolved as shift
+WARNING: shift/reduce conflict for NOTEG in state 51 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 51 resolved as shift
+WARNING: shift/reduce conflict for INF in state 52 resolved as shift
+WARNING: shift/reduce conflict for INFEG in state 52 resolved as shift
+WARNING: shift/reduce conflict for SUPEG in state 52 resolved as shift
+WARNING: shift/reduce conflict for SUP in state 52 resolved as shift
+WARNING: shift/reduce conflict for EGALEGAL in state 52 resolved as shift
+WARNING: shift/reduce conflict for AND in state 52 resolved as shift
+WARNING: shift/reduce conflict for OR in state 52 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 52 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 52 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 52 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 52 resolved as shift
+WARNING: shift/reduce conflict for NOTEG in state 52 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 52 resolved as shift
+WARNING: shift/reduce conflict for INF in state 53 resolved as shift
+WARNING: shift/reduce conflict for INFEG in state 53 resolved as shift
+WARNING: shift/reduce conflict for SUPEG in state 53 resolved as shift
+WARNING: shift/reduce conflict for SUP in state 53 resolved as shift
+WARNING: shift/reduce conflict for EGALEGAL in state 53 resolved as shift
+WARNING: shift/reduce conflict for AND in state 53 resolved as shift
+WARNING: shift/reduce conflict for OR in state 53 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 53 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 53 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 53 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 53 resolved as shift
+WARNING: shift/reduce conflict for NOTEG in state 53 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 53 resolved as shift
+WARNING: shift/reduce conflict for INF in state 54 resolved as shift
+WARNING: shift/reduce conflict for INFEG in state 54 resolved as shift
+WARNING: shift/reduce conflict for SUPEG in state 54 resolved as shift
+WARNING: shift/reduce conflict for SUP in state 54 resolved as shift
+WARNING: shift/reduce conflict for EGALEGAL in state 54 resolved as shift
+WARNING: shift/reduce conflict for AND in state 54 resolved as shift
+WARNING: shift/reduce conflict for OR in state 54 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 54 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 54 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 54 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 54 resolved as shift
+WARNING: shift/reduce conflict for NOTEG in state 54 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 54 resolved as shift
+WARNING: shift/reduce conflict for INF in state 55 resolved as shift
+WARNING: shift/reduce conflict for INFEG in state 55 resolved as shift
+WARNING: shift/reduce conflict for SUPEG in state 55 resolved as shift
+WARNING: shift/reduce conflict for SUP in state 55 resolved as shift
+WARNING: shift/reduce conflict for EGALEGAL in state 55 resolved as shift
+WARNING: shift/reduce conflict for AND in state 55 resolved as shift
+WARNING: shift/reduce conflict for OR in state 55 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 55 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 55 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 55 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 55 resolved as shift
+WARNING: shift/reduce conflict for NOTEG in state 55 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 55 resolved as shift
+WARNING: shift/reduce conflict for INF in state 56 resolved as shift
+WARNING: shift/reduce conflict for INFEG in state 56 resolved as shift
+WARNING: shift/reduce conflict for SUPEG in state 56 resolved as shift
+WARNING: shift/reduce conflict for SUP in state 56 resolved as shift
+WARNING: shift/reduce conflict for EGALEGAL in state 56 resolved as shift
+WARNING: shift/reduce conflict for AND in state 56 resolved as shift
+WARNING: shift/reduce conflict for OR in state 56 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 56 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 56 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 56 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 56 resolved as shift
+WARNING: shift/reduce conflict for NOTEG in state 56 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 56 resolved as shift
+WARNING: shift/reduce conflict for INF in state 57 resolved as shift
+WARNING: shift/reduce conflict for INFEG in state 57 resolved as shift
+WARNING: shift/reduce conflict for SUPEG in state 57 resolved as shift
+WARNING: shift/reduce conflict for SUP in state 57 resolved as shift
+WARNING: shift/reduce conflict for EGALEGAL in state 57 resolved as shift
+WARNING: shift/reduce conflict for AND in state 57 resolved as shift
+WARNING: shift/reduce conflict for OR in state 57 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 57 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 57 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 57 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 57 resolved as shift
+WARNING: shift/reduce conflict for NOTEG in state 57 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 57 resolved as shift
+WARNING: shift/reduce conflict for INF in state 58 resolved as shift
+WARNING: shift/reduce conflict for INFEG in state 58 resolved as shift
+WARNING: shift/reduce conflict for SUPEG in state 58 resolved as shift
+WARNING: shift/reduce conflict for SUP in state 58 resolved as shift
+WARNING: shift/reduce conflict for EGALEGAL in state 58 resolved as shift
+WARNING: shift/reduce conflict for AND in state 58 resolved as shift
+WARNING: shift/reduce conflict for OR in state 58 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 58 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 58 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 58 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 58 resolved as shift
+WARNING: shift/reduce conflict for NOTEG in state 58 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 58 resolved as shift
+WARNING: shift/reduce conflict for INF in state 59 resolved as shift
+WARNING: shift/reduce conflict for INFEG in state 59 resolved as shift
+WARNING: shift/reduce conflict for SUPEG in state 59 resolved as shift
+WARNING: shift/reduce conflict for SUP in state 59 resolved as shift
+WARNING: shift/reduce conflict for EGALEGAL in state 59 resolved as shift
+WARNING: shift/reduce conflict for AND in state 59 resolved as shift
+WARNING: shift/reduce conflict for OR in state 59 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 59 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 59 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 59 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 59 resolved as shift
+WARNING: shift/reduce conflict for NOTEG in state 59 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 59 resolved as shift
+WARNING: shift/reduce conflict for INF in state 60 resolved as shift
+WARNING: shift/reduce conflict for INFEG in state 60 resolved as shift
+WARNING: shift/reduce conflict for SUPEG in state 60 resolved as shift
+WARNING: shift/reduce conflict for SUP in state 60 resolved as shift
+WARNING: shift/reduce conflict for EGALEGAL in state 60 resolved as shift
+WARNING: shift/reduce conflict for AND in state 60 resolved as shift
+WARNING: shift/reduce conflict for OR in state 60 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 60 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 60 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 60 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 60 resolved as shift
+WARNING: shift/reduce conflict for NOTEG in state 60 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 60 resolved as shift
+WARNING: shift/reduce conflict for INF in state 61 resolved as shift
+WARNING: shift/reduce conflict for INFEG in state 61 resolved as shift
+WARNING: shift/reduce conflict for SUPEG in state 61 resolved as shift
+WARNING: shift/reduce conflict for SUP in state 61 resolved as shift
+WARNING: shift/reduce conflict for EGALEGAL in state 61 resolved as shift
+WARNING: shift/reduce conflict for AND in state 61 resolved as shift
+WARNING: shift/reduce conflict for OR in state 61 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 61 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 61 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 61 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 61 resolved as shift
+WARNING: shift/reduce conflict for NOTEG in state 61 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 61 resolved as shift
+WARNING: shift/reduce conflict for INF in state 62 resolved as shift
+WARNING: shift/reduce conflict for INFEG in state 62 resolved as shift
+WARNING: shift/reduce conflict for SUPEG in state 62 resolved as shift
+WARNING: shift/reduce conflict for SUP in state 62 resolved as shift
+WARNING: shift/reduce conflict for EGALEGAL in state 62 resolved as shift
+WARNING: shift/reduce conflict for AND in state 62 resolved as shift
+WARNING: shift/reduce conflict for OR in state 62 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 62 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 62 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 62 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 62 resolved as shift
+WARNING: shift/reduce conflict for NOTEG in state 62 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 62 resolved as shift
+WARNING: shift/reduce conflict for INF in state 63 resolved as shift
+WARNING: shift/reduce conflict for INFEG in state 63 resolved as shift
+WARNING: shift/reduce conflict for SUPEG in state 63 resolved as shift
+WARNING: shift/reduce conflict for SUP in state 63 resolved as shift
+WARNING: shift/reduce conflict for EGALEGAL in state 63 resolved as shift
+WARNING: shift/reduce conflict for AND in state 63 resolved as shift
+WARNING: shift/reduce conflict for OR in state 63 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 63 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 63 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 63 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 63 resolved as shift
+WARNING: shift/reduce conflict for NOTEG in state 63 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 63 resolved as shift
