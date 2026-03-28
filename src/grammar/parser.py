@@ -24,7 +24,6 @@ from ast_lang.node.ref_node import RefNode
 from ast_lang.statement.return_node import ReturnNode
 from ast_lang.statement.while_node import WhileNode
 from graph_ast.genereTreeGraphviz2 import print_tree_graph
-from runtime.runtime import eval_inst
 from grammar.lexer import * # noqa: F401
 
 def p_start(p):

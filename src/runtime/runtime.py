@@ -120,7 +120,7 @@ def eval_call(call_func):
     args = [eval_expr(a) for a in call_func.args.args]
 
     if len(params) != len(args):
-        raise Exception(f"Function {name} expects {len(params)} args, got {len(args)}")
+        raise TypeException(f"Function {name} expects {len(params)} args, got {len(args)}")
 
     frame = Frame(name, fun, args)
 
@@ -130,7 +130,7 @@ def eval_call(call_func):
         elif isinstance(param, NameNode):
             frame.add_local_var(param.value, arg)
         else:
-            raise Exception("Unknown parameter type")
+            raise TypeException("Unknown parameter type")
 
     stack.push(frame)
     try:
