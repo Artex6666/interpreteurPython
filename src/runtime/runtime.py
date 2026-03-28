@@ -148,7 +148,8 @@ def eval_expr(node) -> None | int | bool | Any:
         return stack.get_var_value(node.value)
 
     if isinstance(node, RefNode):
-        return Reference(node.name)
+        if stack.get_var_value(node.name):
+            return Reference(node.name)
 
     if isinstance(node, StringNode):
         return node.string
