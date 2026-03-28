@@ -21,6 +21,8 @@ from ast_lang.node.ref_node import RefNode
 from ast_lang.statement.return_node import ReturnNode
 from ast_lang.statement.while_node import WhileNode
 from runtime.exception.division_by_zero_exception import DivisionByZeroException
+from runtime.exception.name_exception import NameException
+from runtime.exception.type_exception import TypeException
 from runtime.frame import Frame
 from runtime.reference import Reference
 from runtime.return_signal import ReturnSignal
@@ -161,23 +163,48 @@ def eval_expr(node) -> None | int | bool | Any:
         if op == '+':
             if isinstance(left, str) or isinstance(right, str):
                 return str(left) + str(right)
+            if type(left) != type(right):
+                raise TypeException(f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'")
             return left + right
-        if op == '-': return left - right
-        if op == '*': return left * right
+        if op == '-':
+            if type(left) != type(right):
+                raise TypeException(f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'")
+            return left - right
+        if op == '*':
+            if type(left) != type(right):
+                raise TypeException(f"unsupported operand type(s) for {op}: '{type(left).__name__}' and '{type(right).__name__}'")
+            return left * right
         if op == '/':
             if right == 0:
                 raise DivisionByZeroException("division by zero")
+            if type(left) != type(right):
+                raise TypeException(f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'")
             return left // right
-        if op == '>': return left > right
-        if op == '<': return left < right
-        if op == '==': return left == right
-        if op == '<=': return left <= right
-        if op == '>': return left > right
-        if op == '>=': return left >= right
+        if op == '>':
+            if type(left) != type(right):
+                raise TypeException(f"{op} not supported between instances of '{type(left).__name__}' and '{type(right).__name__}'")
+            return left > right
+        if op == '<':
+            if type(left) != type(right):
+                raise TypeException(f"{op} not supported between instances of '{type(left).__name__}' and '{type(right).__name__}'")
+            return left < right
+        if op == '==':
+            return left == right
+        if op == '<=':
+            if type(left) != type(right):
+                raise TypeException(f"{op} not supported between instances of '{type(left).__name__}' and '{type(right).__name__}'")
+            return left <= right
+        if op == '>=':
+            if type(left) != type(right):
+                raise TypeException(f"{op} not supported between instances of '{type(left).__name__}' and '{type(right).__name__}'")
+            return left >= right
         if op == '||': return left or right
         if op == '&&': return left and right
         if op == '!=': return left != right
-        if op == '%': return left % right
+        if op == '%':
+            if type(left) != type(right):
+                raise TypeException(f"not all arguments converted during string formatting")
+            return left % right
 
     if isinstance(node, NumberNode):
         return node.number
@@ -187,7 +214,7 @@ def eval_expr(node) -> None | int | bool | Any:
         name = ref.value
         try:
             return stack.get_var_value_in_parents(name)
-        except NameError:
+        except NameException:
             pass
         return stack.frames[0].locals[name]
 

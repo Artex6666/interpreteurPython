@@ -1,4 +1,5 @@
 from runtime.exception.name_exception import NameException
+from runtime.runtime_exception import RuntimeException
 
 
 class Stack:
@@ -31,7 +32,7 @@ class Stack:
         for frame in reversed(self.frames[:-1]):
             if name in frame.locals:
                 return frame.locals[name]
-        raise NameError(f"Variable {name} not found in parents")
+        raise NameException(f"Variable {name} not found in parents")
 
     def set_var_value_in_parents(self, name, value):
         for frame in reversed(self.frames[:-1]):

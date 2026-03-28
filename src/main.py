@@ -2,9 +2,8 @@
 from grammar.lexer import lexer
 from grammar.parser import parser
 from runtime.runtime import eval_inst
-import sys
-
 from runtime.runtime_exception import RuntimeException
+import sys
 
 sys.tracebacklimit = 0
 
