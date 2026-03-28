@@ -1,4 +1,4 @@
-all = ["frame","func_table","stack","runtime","return_signal"]
+all = ["frame","func_table","stack","runtime","return_signal","exception"]
 
 from . import frame
 from . import func_table

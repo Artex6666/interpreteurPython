@@ -1,3 +1,4 @@
+from runtime.exception.name_exception import NameException
 from runtime.reference import Reference
 
 
@@ -17,15 +18,15 @@ class Frame:
 
     def get_local_var_cell(self,name):
         if not name in self.locals:
-            raise NameError(f"Variable {name} not found in frame {self.__func_name__}")
+            raise NameException(f"Variable {name} not found in frame {self.__func_name__}")
         return Reference(self.locals[name])
 
     def get_local_var_value(self, name):
         if not name in self.locals:
-            raise NameError(f"Variable {name} not found in frame {self.__func_name__}")
+            raise NameException(f"Variable {name} not found in frame {self.__func_name__}")
         return self.locals[name]
 
     def set_local_var_value(self, name, value):
         if name not in self.locals:
-            raise NameError(f"Variable {name} not found in frame {self.__func_name__}")
+            raise NameException(f"Variable {name} not found in frame {self.__func_name__}")
         self.locals[name] = value
