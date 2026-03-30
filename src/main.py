@@ -13,4 +13,4 @@ ast = parser.parse(source, lexer=lexer)
 try:
     eval_inst(ast)
 except RuntimeException as e:
-    print(e)
+    print("CALC> " + str(e))

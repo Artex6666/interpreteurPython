@@ -23,13 +23,13 @@ from ast_lang.statement.print_node import PrintNode
 from ast_lang.node.ref_node import RefNode
 from ast_lang.statement.return_node import ReturnNode
 from ast_lang.statement.while_node import WhileNode
-from graph_ast.genereTreeGraphviz2 import print_tree_graph
+from graph_ast.genereTreeGraphviz2 import print_tree_graph # noqa: F401
 from grammar.lexer import * # noqa: F401
 
 def p_start(p):
     'start : bloc'
     #print(p[1])
-    print_tree_graph(p[1])
+    #print_tree_graph(p[1])
     p[0] = p[1]
 
 def p_empty(p):
@@ -324,7 +324,7 @@ def p_expression_pointer(p):
 
 
 def p_error(p):
-    print(f"SyntaxError: unexpected token '{p.value}' at  line {p.lineno}!")
+    print(f"CALC> SyntaxError: unexpected token '{p.value}' at  line {p.lineno}!")
 
 
 import ply.yacc as yacc
