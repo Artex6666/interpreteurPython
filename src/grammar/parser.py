@@ -1,4 +1,5 @@
 from ast_lang.node.bool_node import BoolNode
+from ast_lang.node.float_node import FloatNode
 from ast_lang.node.pointer_node import PointerNode
 from ast_lang.node.pointer_param_node import PointerParamNode
 from ast_lang.node.string_node import StringNode
@@ -299,6 +300,10 @@ def p_expression_group(p):
 def p_expression_number(p):
     'expression : NUMBER'
     p[0] = NumberNode(p[1])
+
+def p_expression_float(p):
+    'expression : FLOAT'
+    p[0] = FloatNode(p[1])
 
 
 def p_expression_string(p):
