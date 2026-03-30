@@ -29,7 +29,7 @@ from grammar.lexer import * # noqa: F401
 def p_start(p):
     'start : bloc'
     #print(p[1])
-    #print_tree_graph(p[1])
+    print_tree_graph(p[1])
     p[0] = p[1]
 
 def p_empty(p):

@@ -16,11 +16,6 @@ class Frame:
     def add_local_var(self, name, value):
         self.locals[name] = value
 
-    def get_local_var_cell(self,name):
-        if not name in self.locals:
-            raise NameException(f"Variable {name} not found in frame {self.__func_name__}")
-        return Reference(self.locals[name])
-
     def get_local_var_value(self, name):
         if not name in self.locals:
             raise NameException(f"Variable {name} not found in frame {self.__func_name__}")
