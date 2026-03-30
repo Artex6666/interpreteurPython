@@ -3,6 +3,7 @@ from typing import Any
 from ast_lang.node.binary_node import BinaryNode
 from ast_lang.node.bool_node import BoolNode
 from ast_lang.node.call_node import CallNode
+from ast_lang.node.float_node import FloatNode
 from ast_lang.node.number_node import NumberNode
 from ast_lang.node.pointer_node import PointerNode
 from ast_lang.node.pointer_param_node import PointerParamNode
@@ -156,6 +157,9 @@ def eval_expr(node) -> None | int | bool | Any:
 
     if isinstance(node,BoolNode):
         return node.value
+
+    if isinstance(node, FloatNode):
+        return node.number
 
     if isinstance(node, BinaryNode):
         left = eval_expr(node.left)
