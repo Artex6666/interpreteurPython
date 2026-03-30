@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
 
-from grammar.lexer import lexer
-
 sys.tracebacklimit = 0
 
 
