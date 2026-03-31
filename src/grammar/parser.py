@@ -329,8 +329,10 @@ def p_expression_pointer(p):
 
 
 def p_error(p):
-    print(f"CALC> SyntaxError: unexpected token '{p.value}' at  line {p.lineno}!")
-
+    if p is None:
+        print("CALC> SyntaxError: unexpected end of input")
+    else:
+        print(f"CALC> SyntaxError: unexpected token '{p.value}'")
 
 import ply.yacc as yacc
 parser = yacc.yacc()
