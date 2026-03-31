@@ -273,9 +273,9 @@ def p_expression_call(p):
     'expression : NAME LPAREN args RPAREN'
     p[0] = CallNode(
         func_name=p[1],
-        args=p[3]
+        args=p[3],
+        line= p.lineno(1)
     )
-
 
 def p_args_empty(p):
     'args : '
@@ -332,7 +332,7 @@ def p_error(p):
     if p is None:
         print("CALC> SyntaxError: unexpected end of input")
     else:
-        print(f"CALC> SyntaxError: unexpected token '{p.value}'")
+        print(f"CALC> SyntaxError: unexpected token '{p.value} at {p.lineno}'")
 
 import ply.yacc as yacc
 parser = yacc.yacc()

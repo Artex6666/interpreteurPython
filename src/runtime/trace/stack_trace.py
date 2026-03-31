@@ -18,6 +18,7 @@ class StackTrace:
         new_stack = StackTrace()
         new_stack.stack_trace = self.stack_trace.copy()
         return new_stack
+
     def __repr__(self):
         class_name = type(self).__name__
         return f"{class_name}(stack={self.stack_trace})"

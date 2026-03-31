@@ -119,7 +119,7 @@ def eval_inst(node) -> None:
 def eval_call(call_func):
     name = call_func.func_name
     fun = functions.get(name)
-    trace_frame = TraceFrame(name,call_func.args)
+    trace_frame = TraceFrame(name,call_func.args,call_func.line)
 
     if fun is None:
         raise AttributeException(f"function '{name}' is not defined",stack_trace.copy())
