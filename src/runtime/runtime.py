@@ -4,6 +4,7 @@ from ast_lang.node.binary_node import BinaryNode
 from ast_lang.node.bool_node import BoolNode
 from ast_lang.node.call_node import CallNode
 from ast_lang.node.float_node import FloatNode
+from ast_lang.node.group_node import GroupNode
 from ast_lang.node.number_node import NumberNode
 from ast_lang.node.pointer_node import PointerNode
 from ast_lang.node.pointer_param_node import PointerParamNode
@@ -151,6 +152,9 @@ def eval_expr(node) -> None | int | bool | Any:
     if isinstance(node, RefNode):
         if stack.get_var_value(node.name):
             return Reference(node.name)
+
+    if isinstance(node,GroupNode):
+        return eval_expr(node.name)
 
     if isinstance(node, StringNode):
         return node.string

@@ -3,7 +3,7 @@ from ast_lang.ast_node import AstNode
 
 class GroupNode(AstNode):
     def __init__(self, name):
-        super().__init__("GroupNode",[])
+        super().__init__("GroupNode",[name])
         self.name = name
     
     def __repr__(self):
