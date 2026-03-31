@@ -17,3 +17,4 @@ def repl():
             eval_inst(ast)
         except RuntimeException as e:
             print("CALC> " + str(e))
+            print(e.stack_trace.format())
