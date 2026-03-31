@@ -22,6 +22,7 @@ from ast_lang.statement.print_node import PrintNode
 from ast_lang.node.ref_node import RefNode
 from ast_lang.statement.return_node import ReturnNode
 from ast_lang.statement.while_node import WhileNode
+from runtime.exception.attribute_exception import AttributeException
 from runtime.exception.division_by_zero_exception import DivisionByZeroException
 from runtime.exception.name_exception import NameException
 from runtime.exception.type_exception import TypeException
@@ -117,6 +118,8 @@ def eval_inst(node) -> None:
 def eval_call(call_func):
     name = call_func.func_name
     fun = functions.get(name)
+
+    if fun is None: raise AttributeException(f"function '{name}' is not defined")
 
     params = fun.params.args
     args = [eval_expr(a) for a in call_func.args.args]
