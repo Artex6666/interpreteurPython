@@ -12,7 +12,6 @@ from ast_lang.node.string_node import StringNode
 from ast_lang.node.name_node import NameNode
 from ast_lang.statement.assign_node import AssignNode
 from ast_lang.statement.block_node import BlocKNode
-from ast_lang.statement.empty_node import EmptyNode
 from ast_lang.statement.expression_node import ExpressionNode
 from ast_lang.statement.for_node import ForNode
 from ast_lang.statement.func_node import FuncNode
@@ -22,6 +21,7 @@ from ast_lang.statement.print_node import PrintNode
 from ast_lang.node.ref_node import RefNode
 from ast_lang.statement.return_node import ReturnNode
 from ast_lang.statement.while_node import WhileNode
+from runtime.exception.attribute_exception import AttributeException
 from runtime.exception.division_by_zero_exception import DivisionByZeroException
 from runtime.exception.name_exception import NameException
 from runtime.exception.type_exception import TypeException
@@ -29,7 +29,8 @@ from runtime.frame import Frame
 from runtime.reference import Reference
 from runtime.return_signal import ReturnSignal
 from runtime.stack import Stack
-
+from runtime.trace.stack_trace import StackTrace
+from runtime.trace.trace_frame import TraceFrame
 
 names={}
 precedence = (
@@ -40,6 +41,7 @@ precedence = (
         ('left','TIMES', 'DIVIDE'),
         )
 stack = Stack()
+stack_trace = StackTrace()
 global_frame = Frame("__global__", None, [])
 stack.push(global_frame)
 functions = {}
@@ -117,12 +119,18 @@ def eval_inst(node) -> None:
 def eval_call(call_func):
     name = call_func.func_name
     fun = functions.get(name)
+    trace_frame = TraceFrame(name,call_func.args)
+
+    if fun is None:
+        raise AttributeException(f"function '{name}' is not defined",stack_trace.copy())
+
+    stack_trace.push(trace_frame)
 
     params = fun.params.args
     args = [eval_expr(a) for a in call_func.args.args]
 
     if len(params) != len(args):
-        raise TypeException(f"Function {name} expects {len(params)} args, got {len(args)}")
+        raise TypeException(f"Function {name} expects {len(params)} args, got {len(args)}",stack_trace.copy())
 
     frame = Frame(name, fun, args)
 
@@ -132,7 +140,7 @@ def eval_call(call_func):
         elif isinstance(param, NameNode):
             frame.add_local_var(param.value, arg)
         else:
-            raise TypeException("Unknown parameter type")
+            raise TypeException("Unknown parameter type",stack_trace.copy())
 
     stack.push(frame)
     try:
@@ -141,7 +149,7 @@ def eval_call(call_func):
         return r.value
     finally:
         stack.pop()
-
+        stack_trace.pop()
 
 def eval_expr(node) -> None | int | bool | Any:
     #print('evalExpr de ',node)
@@ -173,46 +181,46 @@ def eval_expr(node) -> None | int | bool | Any:
             if isinstance(left, str) or isinstance(right, str):
                 return str(left) + str(right)
             if type(left) != type(right):
-                raise TypeException(f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'")
+                raise TypeException(f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'",stack_trace.copy())
             return left + right
         if op == '-':
             if type(left) != type(right):
-                raise TypeException(f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'")
+                raise TypeException(f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'",stack_trace.copy())
             return left - right
         if op == '*':
             if type(left) != type(right):
-                raise TypeException(f"unsupported operand type(s) for {op}: '{type(left).__name__}' and '{type(right).__name__}'")
+                raise TypeException(f"unsupported operand type(s) for {op}: '{type(left).__name__}' and '{type(right).__name__}'",stack_trace.copy())
             return left * right
         if op == '/':
             if right == 0:
-                raise DivisionByZeroException("division by zero")
+                raise DivisionByZeroException("division by zero",stack_trace.copy())
             if type(left) != type(right):
-                raise TypeException(f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'")
+                raise TypeException(f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'",stack_trace.copy())
             return left // right
         if op == '>':
             if type(left) != type(right):
-                raise TypeException(f"{op} not supported between instances of '{type(left).__name__}' and '{type(right).__name__}'")
+                raise TypeException(f"{op} not supported between instances of '{type(left).__name__}' and '{type(right).__name__}'",stack_trace.copy())
             return left > right
         if op == '<':
             if type(left) != type(right):
-                raise TypeException(f"{op} not supported between instances of '{type(left).__name__}' and '{type(right).__name__}'")
+                raise TypeException(f"{op} not supported between instances of '{type(left).__name__}' and '{type(right).__name__}'",stack_trace.copy())
             return left < right
         if op == '==':
             return left == right
         if op == '<=':
             if type(left) != type(right):
-                raise TypeException(f"{op} not supported between instances of '{type(left).__name__}' and '{type(right).__name__}'")
+                raise TypeException(f"{op} not supported between instances of '{type(left).__name__}' and '{type(right).__name__}'",stack_trace.copy())
             return left <= right
         if op == '>=':
             if type(left) != type(right):
-                raise TypeException(f"{op} not supported between instances of '{type(left).__name__}' and '{type(right).__name__}'")
+                raise TypeException(f"{op} not supported between instances of '{type(left).__name__}' and '{type(right).__name__}'",stack_trace.copy())
             return left >= right
         if op == '||': return left or right
         if op == '&&': return left and right
         if op == '!=': return left != right
         if op == '%':
             if type(left) != type(right):
-                raise TypeException(f"not all arguments converted during string formatting")
+                raise TypeException(f"not all arguments converted during string formatting",stack_trace)
             return left % right
 
     if isinstance(node, NumberNode):
