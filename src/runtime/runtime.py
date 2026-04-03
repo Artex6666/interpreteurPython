@@ -42,13 +42,12 @@ precedence = (
         )
 stack = Stack()
 stack_trace = StackTrace()
-global_frame = Frame("__global__", None, [])
+global_frame = Frame("__global__", None, [],stack_trace)
 stack.push(global_frame)
 functions = {}
 
 def eval_inst(node) -> None:
     #print('evalInst de ',node)
-
     if node == 'empty': return
 
     if isinstance(node, BlocKNode):
@@ -132,7 +131,7 @@ def eval_call(call_func):
     if len(params) != len(args):
         raise TypeException(f"Function {name} expects {len(params)} args, got {len(args)}",stack_trace.copy())
 
-    frame = Frame(name, fun, args)
+    frame = Frame(name, fun, args,stack_trace.copy())
 
     for param, arg in zip(fun.params.args, args):
         if isinstance(param, PointerParamNode):
@@ -155,10 +154,10 @@ def eval_expr(node) -> None | int | bool | Any:
     #print('evalExpr de ',node)
 
     if isinstance(node, NameNode):
-        return stack.get_var_value(node.value)
+        return stack.get_var_value(node.value,stack_trace.copy())
 
     if isinstance(node, RefNode):
-        if stack.get_var_value(node.name):
+        if stack.get_var_value(node.name,stack_trace.copy()):
             return Reference(node.name)
 
     if isinstance(node,GroupNode):
@@ -230,7 +229,7 @@ def eval_expr(node) -> None | int | bool | Any:
         ref = stack.top().get_local_var_value(node.name)
         name = ref.value
         try:
-            return stack.get_var_value_in_parents(name)
+            return stack.get_var_value_in_parents(name,stack_trace.copy())
         except NameException:
             pass
         return stack.frames[0].locals[name]

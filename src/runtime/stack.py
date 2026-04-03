@@ -15,31 +15,31 @@ class Stack:
     def top(self):
         return self.frames[-1]
 
-    def get_var_value(self, name):
+    def get_var_value(self, name,stack_trace):
         for frame in reversed(self.frames):
             if name in frame.locals:
                 return frame.locals[name]
-        raise NameException(f"Variable {name} not found")
+        raise NameException(f"Variable {name} not found",stack_trace)
 
-    def set_var_value(self, name, value):
+    def set_var_value(self, name, value,stack_trace):
         for frame in reversed(self.frames):
             if name in frame.locals:
                 frame.locals[name] = value
                 return
-        raise NameException(f"Variable {name} not found")
+        raise NameException(f"Variable {name} not found",stack_trace)
 
-    def get_var_value_in_parents(self, name):
+    def get_var_value_in_parents(self, name,stack_trace):
         for frame in reversed(self.frames[:-1]):
             if name in frame.locals:
                 return frame.locals[name]
-        raise NameException(f"Variable {name} not found in parents")
+        raise NameException(f"Variable {name} not found in parents",stack_trace)
 
-    def set_var_value_in_parents(self, name, value):
+    def set_var_value_in_parents(self, name, value,stack_trace):
         for frame in reversed(self.frames[:-1]):
             if name in frame.locals:
                 frame.locals[name] = value
                 return
-        raise NameException(f"Variable {name} not found in parents")
+        raise NameException(f"Variable {name} not found in parents",stack_trace)
 
     def __repr__(self):
         class_name = type(self).__name__

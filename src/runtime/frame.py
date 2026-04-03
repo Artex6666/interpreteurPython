@@ -3,11 +3,12 @@ from runtime.reference import Reference
 
 
 class Frame:
-    def __init__(self,func_name,func_def,args):
+    def __init__(self,func_name,func_def,args,stack_trace):
         self.__func_name__ = func_name
         self.__func_def__ = func_def
         self.args = args
         self.locals = {}
+        self.stack_trace = stack_trace
 
     def __repr__(self):
         class_name = type(self).__name__
@@ -18,10 +19,10 @@ class Frame:
 
     def get_local_var_value(self, name):
         if not name in self.locals:
-            raise NameException(f"Variable {name} not found in frame {self.__func_name__}")
+            raise NameException(f"Variable {name} not found in frame {self.__func_name__}",self.stack_trace)
         return self.locals[name]
 
     def set_local_var_value(self, name, value):
         if name not in self.locals:
-            raise NameException(f"Variable {name} not found in frame {self.__func_name__}")
+            raise NameException(f"Variable {name} not found in frame {self.__func_name__}",self.stack_trace)
         self.locals[name] = value
