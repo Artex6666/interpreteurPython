@@ -103,7 +103,17 @@ def eval_inst(node) -> None:
     if isinstance(node, PointerAssignNode):
         ref = stack.top().get_local_var_value(node.name)
         value = eval_expr(node.value)
-        stack.set_var_value_in_parents(ref.value, value)
+        if not ref:
+            stack.top().add_local_var(node.name, value)
+            return
+
+        if not isinstance(ref, Reference):
+            raise AttributeException(
+                f"Cannot assign through non-pointer '{type(ref).__name__}'",
+                stack_trace.copy()
+            )
+
+        stack.set_var_value_in_parents(ref.value, value,stack_trace)
         return
 
     if isinstance(node, FuncNode):
@@ -227,9 +237,14 @@ def eval_expr(node) -> None | int | bool | Any:
 
     if isinstance(node, PointerNode):
         ref = stack.top().get_local_var_value(node.name)
+
+        if not isinstance(ref, Reference):
+            raise AttributeException(f"Cannot dereference non-pointer '{type(ref).__name__}'", stack_trace.copy())
+
         name = ref.value
+
         try:
-            return stack.get_var_value_in_parents(name,stack_trace.copy())
+            return stack.get_var_value_in_parents(name, stack_trace.copy())
         except NameException:
             pass
         return stack.frames[0].locals[name]
