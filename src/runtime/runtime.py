@@ -26,7 +26,11 @@ from runtime.exception.division_by_zero_exception import DivisionByZeroException
 from runtime.exception.name_exception import NameException
 from runtime.exception.type_exception import TypeException
 from runtime.frame import Frame
-from runtime.reference import Reference
+from runtime.types.calc_bool import CalcBool
+from runtime.types.calc_float import CalcFloat
+from runtime.types.calc_number import CalcNumber
+from runtime.types.calc_string import CalcString
+from runtime.types.reference import Reference
 from runtime.return_signal import ReturnSignal
 from runtime.stack import Stack
 from runtime.trace.stack_trace import StackTrace
@@ -178,98 +182,108 @@ def eval_expr(node) -> None | int | bool | Any:
         return eval_expr(node.name)
 
     if isinstance(node, StringNode):
-        return node.string
+        return CalcString(node.string)
 
-    if isinstance(node,BoolNode):
-        return node
+    if isinstance(node, BoolNode):
+        return CalcBool(node.value)
 
     if isinstance(node, FloatNode):
-        return node.number
+        return CalcFloat(node.number)
 
     if isinstance(node, BinaryNode):
         left = eval_expr(node.left)
         right = eval_expr(node.right)
         op = node.op
+
         if op == '+':
-            if isinstance(left, str) or isinstance(right, str):
-                return str(left) + str(right)
-            if not isinstance(left, NumberNode) and not isinstance(right, NumberNode) or not isinstance(left,FloatNode) and not isinstance(right, FloatNode):
+            if isinstance(left, CalcString) or isinstance(right, CalcString):
+                return CalcString(str(left) + str(right))
+
+            if isinstance(left, CalcFloat) or isinstance(right, CalcFloat):
+                return CalcString(left.value + right.value)
+
+            if not isinstance(left, CalcNumber) or not isinstance(right, CalcNumber):
                 raise TypeException(
                     f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'",
                     stack_trace.copy())
-            if type(left) != type(right):
-                raise TypeException(f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'",stack_trace.copy())
-            return left + right
+            return CalcNumber(left.value + right.value)
+
         if op == '-':
-            if not isinstance(left,NumberNode) and not isinstance(right,NumberNode) or not isinstance(left,FloatNode) and not isinstance(right,FloatNode):
+            if isinstance(left, CalcFloat) or isinstance(right, CalcFloat):
+                return CalcString(left.value - right.value)
+
+            if not isinstance(left, CalcNumber) or not isinstance(right, CalcNumber):
                 raise TypeException(
                     f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'",
                     stack_trace.copy())
-            if type(left) != type(right):
-                raise TypeException(f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'",stack_trace.copy())
-            return left - right
+            return CalcNumber(left.value - right.value)
+
         if op == '*':
-            if not isinstance(left,NumberNode) and not isinstance(right,NumberNode) or not isinstance(left,FloatNode) and not isinstance(right,FloatNode):
-                raise TypeException(
-                    f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'",
-                    stack_trace.copy())
-            if type(left) != type(right):
+            if isinstance(left, CalcFloat) or isinstance(right, CalcFloat):
+                return CalcString(left.value * right.value)
+            if not isinstance(left, CalcNumber) or not isinstance(right, CalcNumber):
                 raise TypeException(f"unsupported operand type(s) for {op}: '{type(left).__name__}' and '{type(right).__name__}'",stack_trace.copy())
-            return left * right
+            return CalcNumber(left.value * right.value)
+
         if op == '/':
-            if not isinstance(left,NumberNode) and not isinstance(right,NumberNode) or not isinstance(left,FloatNode) and not isinstance(right,FloatNode):
+            if isinstance(left, CalcFloat) or isinstance(right, CalcFloat):
+                if right.value == 0.0:
+                    raise DivisionByZeroException("division by zero", stack_trace.copy())
+                return CalcString(left.value // right.value)
+
+            if not isinstance(left, CalcNumber) or not isinstance(right, CalcNumber):
                 raise TypeException(
                     f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'",
                     stack_trace.copy())
-            if right == 0:
+            if right.value == 0:
                 raise DivisionByZeroException("division by zero",stack_trace.copy())
-            if type(left) != type(right):
-                raise TypeException(f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'",stack_trace.copy())
-            return left // right
+            return CalcNumber(left.value // right.value)
+
         if op == '>':
-            if not isinstance(left,NumberNode) and not isinstance(right,NumberNode) or not isinstance(left,FloatNode) and not isinstance(right,FloatNode):
+            if type(left) != type(right):
                 raise TypeException(
                     f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'",
                     stack_trace.copy())
-            if type(left) != type(right):
-                raise TypeException(f"{op} not supported between instances of '{type(left).__name__}' and '{type(right).__name__}'",stack_trace.copy())
-            return left > right
+            return CalcBool(left.value > right.value)
+
         if op == '<':
-            if not isinstance(left,NumberNode) and not isinstance(right,NumberNode) or not isinstance(left,FloatNode) and not isinstance(right,FloatNode):
+            if type(left) != type(right):
                 raise TypeException(
                     f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'",
                     stack_trace.copy())
-            if type(left) != type(right):
-                raise TypeException(f"{op} not supported between instances of '{type(left).__name__}' and '{type(right).__name__}'",stack_trace.copy())
-            return left < right
+            return CalcBool(left.value > right.value)
+
         if op == '==':
-            return BoolNode(left == right)
+            if type(left) != type(right):
+                raise TypeException(
+                    f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'",
+                    stack_trace.copy())
+            return CalcBool(left.value == right.value)
+
         if op == '<=':
-            if not isinstance(left,NumberNode) and not isinstance(right,NumberNode) or not isinstance(left,FloatNode) and not isinstance(right,FloatNode):
+            if type(left) != type(right):
                 raise TypeException(
                     f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'",
                     stack_trace.copy())
-            if type(left) != type(right):
-                raise TypeException(f"{op} not supported between instances of '{type(left).__name__}' and '{type(right).__name__}'",stack_trace.copy())
-            return left <= right
+            return CalcBool(left.value <= right.value)
+
         if op == '>=':
-            if not isinstance(left,NumberNode) and not isinstance(right,NumberNode) or not isinstance(left,FloatNode) and not isinstance(right,FloatNode):
+            if type(left) != type(right):
                 raise TypeException(
                     f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'",
                     stack_trace.copy())
-            if type(left) != type(right):
-                raise TypeException(f"{op} not supported between instances of '{type(left).__name__}' and '{type(right).__name__}'",stack_trace.copy())
-            return left >= right
-        if op == '||': return BoolNode(left or right)
-        if op == '&&': return BoolNode(left and right)
-        if op == '!=': return BoolNode(left != right)
+            return CalcBool(left.value >= right.value)
+
+        if op == '||': return CalcBool(left.value or right.value)
+        if op == '&&': return CalcBool(left.value and right.value)
+        if op == '!=': return CalcBool(left.value != right.value)
         if op == '%':
             if type(left) != type(right):
                 raise TypeException(f"not all arguments converted during string formatting",stack_trace)
-            return left % right
+            return CalcNumber(left.value % right.value)
 
     if isinstance(node, NumberNode):
-        return node.number
+        return CalcNumber(node.number)
 
     if isinstance(node, PointerNode):
         ref = stack.top().get_local_var_value(node.name)
