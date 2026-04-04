@@ -17,9 +17,17 @@ class Frame:
     def add_local_var(self, name, value):
         self.locals[name] = value
 
+    # def get_local_var(self, name):
+    #     if not name in self.locals:
+    #         raise NameException(f"Variable {name} not found in frame {self.__func_name__}",self.stack_trace.copy())
+    #     for key in self.locals.keys():
+    #         return key if key == self.locals.keys() else None
+    #     return None
+
     def get_local_var_value(self, name):
         if not name in self.locals:
-            raise NameException(f"Variable {name} not found in frame {self.__func_name__}",self.stack_trace)
+            return None
+            #raise NameException(f"Variable {name} not found in frame {self.__func_name__}",self.stack_trace)
         return self.locals[name]
 
     def set_local_var_value(self, name, value):

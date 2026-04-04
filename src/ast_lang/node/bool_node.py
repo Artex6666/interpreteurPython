@@ -6,6 +6,11 @@ class BoolNode(AstNode):
         super().__init__("BoolNode",[])
         self.value = value
 
+
+    def __str__(self):
+        return str(self.value).lower()
+
+
     def __repr__(self):
         class_name = type(self).__name__
-        return f"{class_name}(valeu={self.name})"
+        return f"{class_name}(valeur={self.name})"
