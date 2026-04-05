@@ -178,13 +178,13 @@ def fibo_ter(n, som, som2){  if (n != 1){ return fibo_ter(n-1, som+som2, som); }
 ```
 ___
 
-### 🔄 Fonction swap sans pointeurs
+### 🔄 Fonction `swap` sans pointeurs
 ```
 def swap_copy(x,y){ temp = x; x = y; y = temp; };
 ```
 ___
 
-### 🔄 Fonction swap avec pointeurs
+### 🔄 Fonction `swap` avec pointeurs
 ```
 def swap(*x, *y) { temp = *x; *x = *y;  *y = temp; };
 ```
