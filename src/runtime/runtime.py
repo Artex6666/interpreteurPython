@@ -36,14 +36,7 @@ from runtime.stack import Stack
 from runtime.trace.stack_trace import StackTrace
 from runtime.trace.trace_frame import TraceFrame
 
-names={}
-precedence = (
-        ('left','OR' ),
-        ('left','AND'),
-        ('nonassoc', 'INF', 'INFEG', 'EGALEGAL', 'SUP'),
-        ('left','PLUS', 'MINUS' ),
-        ('left','TIMES', 'DIVIDE'),
-        )
+
 stack = Stack()
 stack_trace = StackTrace()
 global_frame = Frame("__global__", None, [],stack_trace)
@@ -63,8 +56,6 @@ def eval_inst(node) -> None:
 
         if isinstance(value, Reference):
             print("CALC>", value)
-        elif isinstance(value, BoolNode):
-            print("CALC>",value)
         else:
             print("CALC>", value)
 
@@ -75,26 +66,35 @@ def eval_inst(node) -> None:
         return
 
     if isinstance(node, IfNode):
-        if eval_expr(node.condition):
+        cond = eval_expr(node.condition)
+        if cond.value:
             eval_inst(node.block)
             return
 
         for elif_node in node.elif_list:
-            if eval_expr(elif_node.condition):
+            cond = eval_expr(elif_node.condition)
+            if cond.value:
                 eval_inst(elif_node.block)
                 return
 
         if node.else_block:
             eval_inst(node.else_block.block)
+            return
 
     if isinstance(node, ForNode):
         eval_inst(node.init)
-        while eval_expr(node.cond):
+        while True:
+            cond = eval_expr(node.cond)
+            if not cond.value:
+                break
             eval_inst(node.body)
             eval_inst(node.incr)
 
     if isinstance(node, WhileNode):
-        while eval_expr(node.condition):
+        while True :
+            cond = eval_expr(node.condition)
+            if not cond.value:
+                break
             eval_inst(node.block)
 
     if isinstance(node, AssignNode):
@@ -251,7 +251,7 @@ def eval_expr(node) -> None | int | bool | Any:
                 raise TypeException(
                     f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'",
                     stack_trace.copy())
-            return CalcBool(left.value > right.value)
+            return CalcBool(left.value < right.value)
 
         if op == '==':
             if type(left) != type(right):

@@ -27,6 +27,15 @@ from ast_lang.statement.while_node import WhileNode
 from graph_ast.genereTreeGraphviz2 import print_tree_graph # noqa: F401
 from grammar.lexer import * # noqa: F401
 
+names={}
+precedence = (
+        ('left','OR' ),
+        ('left','AND'),
+        ('nonassoc', 'INF', 'INFEG', 'EGALEGAL', 'SUP'),
+        ('left','PLUS', 'MINUS' ),
+        ('left','TIMES', 'DIVIDE'),
+        )
+
 def p_start(p):
     'start : bloc'
     print(p[1])
@@ -75,26 +84,22 @@ def p_params_list(p):
 def p_elif_list(p):
     '''
     elif_list : empty
-          | ELIF LPAREN expression RPAREN LACC bloc RACC elif_list
+              | elif_list ELIF LPAREN expression RPAREN LACC bloc RACC
     '''
-
     if len(p) == 2:
         p[0] = []
     else:
-        p[0] = [ElifNode(p[3], p[6])] + p[8]
-
+        p[0] = p[1] + [ElifNode(p[4], p[7])]
 
 def p_else_opt(p):
     '''
     else_opt : empty
-         | ELSE LACC bloc RACC
+             | ELSE LACC bloc RACC
     '''
-
     if len(p) == 2:
         p[0] = None
     else:
         p[0] = ElseNode(p[3])
-
 
 def p_statement_if(p):
     '''
@@ -327,6 +332,12 @@ def p_expression_pointer(p):
     'expression : TIMES NAME'
     p[0] = PointerNode(p[2])
 
+def p_statement_error_else(p):
+    '''
+    statement : ELSE
+    '''
+    print("SyntaxError: 'else' without matching 'if'")
+    p[0] = EmptyNode()
 
 def p_error(p):
     if p is None:

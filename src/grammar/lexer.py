@@ -74,3 +74,9 @@ def t_error(t):
 
 import ply.lex as lex
 lexer = lex.lex()
+
+if __name__ == "__main__":
+    data = "true false"
+    lexer.input(data)
+    for tok in lexer:
+        print(tok)
