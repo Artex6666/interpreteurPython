@@ -1,5 +1,4 @@
 from runtime.exception.name_exception import NameException
-from runtime.reference import Reference
 
 
 class Frame:

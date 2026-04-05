@@ -7,6 +7,9 @@ class BlocKNode(AstNode):
         self.first = first
         self.second = second
 
+    def clone(self):
+        return BlocKNode(self.first, self.second)
+
     def __repr__(self):
         class_name = type(self).__name__
         return f"{class_name}(first={self.first},second={self.second})"

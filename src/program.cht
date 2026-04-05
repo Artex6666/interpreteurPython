@@ -10,10 +10,7 @@ def swap(*x, *y) {
     *y = temp;
 };
 
-def is_even(x){
-    mod = x % 2;
-    return mod == 0;
-};
+def is_even(x){ return (x%2) == 0;};
 
 def fibo(x){
     if(x == 0 || x == 1){
