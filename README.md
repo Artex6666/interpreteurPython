@@ -151,7 +151,7 @@ for (i = 0; i < 5; i = i + 1) { print(i); };
 ```
 ___
 
-### 🧮 Fonction `hello` qui retourne aucun type
+### 🧮 Fonction `hello` qui ne retourne aucun type
 ```
 def hello(name){print("Hello " + name);};
 ```
