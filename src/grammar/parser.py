@@ -336,14 +336,14 @@ def p_statement_error_else(p):
     '''
     statement : ELSE
     '''
-    print("SyntaxError: 'else' without matching 'if'")
+    print("SyntaxException: 'else' without matching 'if'")
     p[0] = EmptyNode()
 
 def p_error(p):
     if p is None:
-        print("CALC> SyntaxError: unexpected end of input")
+        print("CALC> SyntaxException: unexpected end of input")
     else:
-        print(f"CALC> SyntaxError: unexpected token '{p.value} at {p.lineno}'")
+        print(f"CALC> SyntaxException: unexpected token '{p.value} at {p.lineno}'")
 
 import ply.yacc as yacc
 parser = yacc.yacc()
