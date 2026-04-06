@@ -189,3 +189,8 @@ ___
 def swap(*x, *y) { temp = *x; *x = *y;  *y = temp; };
 ```
 ___
+
+### 🔍 Exemple : différence entre variable globale et locale 
+```
+x = 10;  def f() {     x = 99;     print(x); };  f(); print(x); 
+```
