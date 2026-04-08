@@ -194,3 +194,18 @@ ___
 ```
 x = 10;  def f() {     x = 99;     print(x); };  f(); print(x); 
 ```
+
+___
+
+### Tableaux (littéral, indexation, affectation)
+```
+t = [1, 2, 3];
+print(t);
+print(t[0]);
+t[1] = 42;
+print(t);
+
+u = [[1,2],[3,4]];
+print(u[1]);
+print(u[1][0]);
+```

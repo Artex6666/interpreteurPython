@@ -4,9 +4,11 @@ from ast_lang.node.pointer_node import PointerNode
 from ast_lang.node.pointer_param_node import PointerParamNode
 from ast_lang.node.string_node import StringNode
 from ast_lang.node.args_node import ArgsNode
+from ast_lang.node.array_node import ArrayNode
 from ast_lang.node.binary_node import BinaryNode
 from ast_lang.node.call_node import CallNode
 from ast_lang.node.group_node import GroupNode
+from ast_lang.node.index_node import IndexNode
 from ast_lang.node.name_node import NameNode
 from ast_lang.node.number_node import NumberNode
 from ast_lang.node.params_node import ParamsNode
@@ -19,13 +21,18 @@ from ast_lang.statement.expression_node import ExpressionNode
 from ast_lang.statement.for_node import ForNode
 from ast_lang.statement.func_node import FuncNode
 from ast_lang.statement.if_node import IfNode
+from ast_lang.statement.index_assign_node import IndexAssignNode
 from ast_lang.statement.pointer_assign_node import PointerAssignNode
 from ast_lang.statement.print_node import PrintNode
 from ast_lang.node.ref_node import RefNode
 from ast_lang.statement.return_node import ReturnNode
 from ast_lang.statement.while_node import WhileNode
-from graph_ast.genereTreeGraphviz2 import print_tree_graph # noqa: F401
 from grammar.lexer import * # noqa: F401
+
+try:
+    from graph_ast.genereTreeGraphviz2 import print_tree_graph  # noqa: F401
+except ModuleNotFoundError:
+    print_tree_graph = None
 
 names={}
 precedence = (
@@ -141,6 +148,14 @@ def p_statement_assign(p):
     p[0] = AssignNode(
         name=p[1],
         expr=p[3]
+    )
+
+def p_statement_index_assign(p):
+    'statement : NAME LBRACKET expression RBRACKET EGAL expression'
+    p[0] = IndexAssignNode(
+        name=p[1],
+        index=p[3],
+        value=p[6]
     )
 
 def p_statement_pointer_assign(p):
@@ -280,6 +295,33 @@ def p_expression_call(p):
         func_name=p[1],
         args=p[3],
         line= p.lineno(1)
+    )
+
+def p_array_elems_empty(p):
+    'array_elems : '
+    p[0] = []
+
+
+def p_array_elems_single(p):
+    'array_elems : expression'
+    p[0] = [p[1]]
+
+
+def p_array_elems_list(p):
+    'array_elems : expression COMMA array_elems'
+    p[0] = [p[1]] + p[3]
+
+
+def p_expression_array_literal(p):
+    'expression : LBRACKET array_elems RBRACKET'
+    p[0] = ArrayNode(p[2])
+
+
+def p_expression_index(p):
+    'expression : expression LBRACKET expression RBRACKET'
+    p[0] = IndexNode(
+        container=p[1],
+        index=p[3]
     )
 
 def p_args_empty(p):

@@ -5,6 +5,8 @@ from ast_lang.node.bool_node import BoolNode
 from ast_lang.node.call_node import CallNode
 from ast_lang.node.float_node import FloatNode
 from ast_lang.node.group_node import GroupNode
+from ast_lang.node.array_node import ArrayNode
+from ast_lang.node.index_node import IndexNode
 from ast_lang.node.number_node import NumberNode
 from ast_lang.node.pointer_node import PointerNode
 from ast_lang.node.pointer_param_node import PointerParamNode
@@ -16,6 +18,7 @@ from ast_lang.statement.expression_node import ExpressionNode
 from ast_lang.statement.for_node import ForNode
 from ast_lang.statement.func_node import FuncNode
 from ast_lang.statement.if_node import IfNode
+from ast_lang.statement.index_assign_node import IndexAssignNode
 from ast_lang.statement.pointer_assign_node import PointerAssignNode
 from ast_lang.statement.print_node import PrintNode
 from ast_lang.node.ref_node import RefNode
@@ -26,6 +29,7 @@ from runtime.exception.division_by_zero_exception import DivisionByZeroException
 from runtime.exception.name_exception import NameException
 from runtime.exception.type_exception import TypeException
 from runtime.frame import Frame
+from runtime.types.calc_array import CalcArray
 from runtime.types.calc_bool import CalcBool
 from runtime.types.calc_float import CalcFloat
 from runtime.types.calc_number import CalcNumber
@@ -106,6 +110,25 @@ def eval_inst(node) -> None:
             frame.set_local_var_value(name, value)
         else:
             frame.add_local_var(name, value)
+        return
+
+    if isinstance(node, IndexAssignNode):
+        arr = stack.get_var_value(node.name, stack_trace.copy())
+        if not isinstance(arr, CalcArray):
+            raise TypeException(
+                f"unsupported operand type(s) for []=: '{type(arr).__name__}'",
+                stack_trace.copy()
+            )
+
+        index_val = eval_expr(node.index)
+        if not isinstance(index_val, CalcNumber):
+            raise TypeException(
+                f"array indices must be integers, not '{type(index_val).__name__}'",
+                stack_trace.copy()
+            )
+
+        value = eval_expr(node.value)
+        arr.set(index_val.value, value, stack_trace)
         return
 
     if isinstance(node, PointerAssignNode):
@@ -189,6 +212,27 @@ def eval_expr(node) -> None | int | bool | Any:
 
     if isinstance(node, FloatNode):
         return CalcFloat(node.number)
+
+    if isinstance(node, ArrayNode):
+        items = [eval_expr(elem) for elem in node.elements]
+        return CalcArray(items)
+
+    if isinstance(node, IndexNode):
+        container = eval_expr(node.container)
+        if not isinstance(container, CalcArray):
+            raise TypeException(
+                f"unsupported operand type(s) for []: '{type(container).__name__}'",
+                stack_trace.copy()
+            )
+
+        index_val = eval_expr(node.index)
+        if not isinstance(index_val, CalcNumber):
+            raise TypeException(
+                f"array indices must be integers, not '{type(index_val).__name__}'",
+                stack_trace.copy()
+            )
+
+        return container.get(index_val.value, stack_trace)
 
     if isinstance(node, BinaryNode):
         left = eval_expr(node.left)
