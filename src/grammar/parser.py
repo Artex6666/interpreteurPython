@@ -41,7 +41,8 @@ precedence = (
         ('nonassoc', 'INF', 'INFEG', 'EGALEGAL', 'SUP'),
         ('left','PLUS', 'MINUS' ),
         ('left','TIMES', 'DIVIDE'),
-        )
+        ('left', 'LBRACKET', 'RBRACKET'),
+    )
 
 def p_start(p):
     'start : bloc'
