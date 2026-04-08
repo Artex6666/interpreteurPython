@@ -273,7 +273,11 @@ def eval_expr(node) -> None | int | bool | Any:
             if isinstance(left, CalcFloat) or isinstance(right, CalcFloat):
                 if right.value == 0.0:
                     raise DivisionByZeroException("division by zero", stack_trace.copy())
-                return CalcString(left.value // right.value)
+                if type(left) != type(right):
+                    raise TypeException(
+                        f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'",
+                        stack_trace.copy())
+                return CalcFloat(left.value // right.value)
 
             if not isinstance(left, CalcNumber) or not isinstance(right, CalcNumber):
                 raise TypeException(
@@ -281,6 +285,11 @@ def eval_expr(node) -> None | int | bool | Any:
                     stack_trace.copy())
             if right.value == 0:
                 raise DivisionByZeroException("division by zero",stack_trace.copy())
+
+            if type(left) != type(right):
+                raise TypeException(
+                    f"unsupported operand type(s) for {op} : '{type(left).__name__}' and '{type(right).__name__}'",
+                    stack_trace.copy())
             return CalcNumber(left.value // right.value)
 
         if op == '>':
@@ -322,6 +331,8 @@ def eval_expr(node) -> None | int | bool | Any:
         if op == '&&': return CalcBool(left.value and right.value)
         if op == '!=': return CalcBool(left.value != right.value)
         if op == '%':
+            if right.value == 0.0:
+                raise DivisionByZeroException("division by zero", stack_trace.copy())
             if type(left) != type(right):
                 raise TypeException(f"not all arguments converted during string formatting",stack_trace)
             return CalcNumber(left.value % right.value)

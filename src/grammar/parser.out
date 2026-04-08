@@ -2126,10 +2126,7 @@ state 62
     (37) expression -> expression . MODULO expression
     (43) expression -> expression . LBRACKET expression RBRACKET
 
-    INF             reduce using rule 29 (expression -> expression EGALEGAL expression .)
-    INFEG           reduce using rule 29 (expression -> expression EGALEGAL expression .)
     SUPEG           reduce using rule 29 (expression -> expression EGALEGAL expression .)
-    SUP             reduce using rule 29 (expression -> expression EGALEGAL expression .)
     EGALEGAL        reduce using rule 29 (expression -> expression EGALEGAL expression .)
     AND             reduce using rule 29 (expression -> expression EGALEGAL expression .)
     OR              reduce using rule 29 (expression -> expression EGALEGAL expression .)
@@ -2139,21 +2136,24 @@ state 62
     RPAREN          reduce using rule 29 (expression -> expression EGALEGAL expression .)
     COMMA           reduce using rule 29 (expression -> expression EGALEGAL expression .)
     RBRACKET        reduce using rule 29 (expression -> expression EGALEGAL expression .)
+    INF             shift and go to state 28
+    INFEG           shift and go to state 29
+    SUP             shift and go to state 31
     PLUS            shift and go to state 35
     TIMES           shift and go to state 36
     MINUS           shift and go to state 37
     DIVIDE          shift and go to state 38
     LBRACKET        shift and go to state 41
 
+  ! INF             [ reduce using rule 29 (expression -> expression EGALEGAL expression .) ]
+  ! INFEG           [ reduce using rule 29 (expression -> expression EGALEGAL expression .) ]
+  ! SUP             [ reduce using rule 29 (expression -> expression EGALEGAL expression .) ]
   ! PLUS            [ reduce using rule 29 (expression -> expression EGALEGAL expression .) ]
   ! TIMES           [ reduce using rule 29 (expression -> expression EGALEGAL expression .) ]
   ! MINUS           [ reduce using rule 29 (expression -> expression EGALEGAL expression .) ]
   ! DIVIDE          [ reduce using rule 29 (expression -> expression EGALEGAL expression .) ]
   ! LBRACKET        [ reduce using rule 29 (expression -> expression EGALEGAL expression .) ]
-  ! INF             [ shift and go to state 28 ]
-  ! INFEG           [ shift and go to state 29 ]
   ! SUPEG           [ shift and go to state 30 ]
-  ! SUP             [ shift and go to state 31 ]
   ! EGALEGAL        [ shift and go to state 32 ]
   ! AND             [ shift and go to state 33 ]
   ! OR              [ shift and go to state 34 ]
