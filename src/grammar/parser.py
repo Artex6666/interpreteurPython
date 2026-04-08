@@ -38,10 +38,9 @@ names={}
 precedence = (
         ('left','OR' ),
         ('left','AND'),
-        ('left','EGALEGAL'),
         ('nonassoc', 'INF', 'INFEG', 'EGALEGAL', 'SUP'),
         ('left','PLUS', 'MINUS' ),
-        ('left','TIMES', 'DIVIDE'),
+        ('left','TIMES', 'DIVIDE','MODULO'),
         ('left', 'LBRACKET', 'RBRACKET'),
     )
 
