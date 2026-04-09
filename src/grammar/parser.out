@@ -1908,11 +1908,6 @@ state 58
     AND             reduce using rule 25 (expression -> expression INF expression .)
     OR              reduce using rule 25 (expression -> expression INF expression .)
     NOTEG           reduce using rule 25 (expression -> expression INF expression .)
-<<<<<<< HEAD
-=======
-    MODULO          reduce using rule 25 (expression -> expression INF expression .)
-    LBRACKET        reduce using rule 25 (expression -> expression INF expression .)
->>>>>>> f1e2a59 (no comment)
     SEMI            reduce using rule 25 (expression -> expression INF expression .)
     RPAREN          reduce using rule 25 (expression -> expression INF expression .)
     COMMA           reduce using rule 25 (expression -> expression INF expression .)
@@ -1921,21 +1916,15 @@ state 58
     TIMES           shift and go to state 36
     MINUS           shift and go to state 37
     DIVIDE          shift and go to state 38
-<<<<<<< HEAD
     MODULO          shift and go to state 40
     LBRACKET        shift and go to state 41
-=======
->>>>>>> f1e2a59 (no comment)
 
   ! PLUS            [ reduce using rule 25 (expression -> expression INF expression .) ]
   ! TIMES           [ reduce using rule 25 (expression -> expression INF expression .) ]
   ! MINUS           [ reduce using rule 25 (expression -> expression INF expression .) ]
   ! DIVIDE          [ reduce using rule 25 (expression -> expression INF expression .) ]
-<<<<<<< HEAD
   ! MODULO          [ reduce using rule 25 (expression -> expression INF expression .) ]
   ! LBRACKET        [ reduce using rule 25 (expression -> expression INF expression .) ]
-=======
->>>>>>> f1e2a59 (no comment)
   ! INF             [ shift and go to state 28 ]
   ! INFEG           [ shift and go to state 29 ]
   ! SUPEG           [ shift and go to state 30 ]
@@ -1944,11 +1933,6 @@ state 58
   ! AND             [ shift and go to state 33 ]
   ! OR              [ shift and go to state 34 ]
   ! NOTEG           [ shift and go to state 39 ]
-<<<<<<< HEAD
-=======
-  ! MODULO          [ shift and go to state 40 ]
-  ! LBRACKET        [ shift and go to state 41 ]
->>>>>>> f1e2a59 (no comment)
 
 
 state 59
@@ -1977,11 +1961,6 @@ state 59
     AND             reduce using rule 26 (expression -> expression INFEG expression .)
     OR              reduce using rule 26 (expression -> expression INFEG expression .)
     NOTEG           reduce using rule 26 (expression -> expression INFEG expression .)
-<<<<<<< HEAD
-=======
-    MODULO          reduce using rule 26 (expression -> expression INFEG expression .)
-    LBRACKET        reduce using rule 26 (expression -> expression INFEG expression .)
->>>>>>> f1e2a59 (no comment)
     SEMI            reduce using rule 26 (expression -> expression INFEG expression .)
     RPAREN          reduce using rule 26 (expression -> expression INFEG expression .)
     COMMA           reduce using rule 26 (expression -> expression INFEG expression .)
@@ -1990,21 +1969,15 @@ state 59
     TIMES           shift and go to state 36
     MINUS           shift and go to state 37
     DIVIDE          shift and go to state 38
-<<<<<<< HEAD
     MODULO          shift and go to state 40
     LBRACKET        shift and go to state 41
-=======
->>>>>>> f1e2a59 (no comment)
 
   ! PLUS            [ reduce using rule 26 (expression -> expression INFEG expression .) ]
   ! TIMES           [ reduce using rule 26 (expression -> expression INFEG expression .) ]
   ! MINUS           [ reduce using rule 26 (expression -> expression INFEG expression .) ]
   ! DIVIDE          [ reduce using rule 26 (expression -> expression INFEG expression .) ]
-<<<<<<< HEAD
   ! MODULO          [ reduce using rule 26 (expression -> expression INFEG expression .) ]
   ! LBRACKET        [ reduce using rule 26 (expression -> expression INFEG expression .) ]
-=======
->>>>>>> f1e2a59 (no comment)
   ! INF             [ shift and go to state 28 ]
   ! INFEG           [ shift and go to state 29 ]
   ! SUPEG           [ shift and go to state 30 ]
@@ -2013,11 +1986,6 @@ state 59
   ! AND             [ shift and go to state 33 ]
   ! OR              [ shift and go to state 34 ]
   ! NOTEG           [ shift and go to state 39 ]
-<<<<<<< HEAD
-=======
-  ! MODULO          [ shift and go to state 40 ]
-  ! LBRACKET        [ shift and go to state 41 ]
->>>>>>> f1e2a59 (no comment)
 
 
 state 60
@@ -2113,11 +2081,6 @@ state 61
     AND             reduce using rule 28 (expression -> expression SUP expression .)
     OR              reduce using rule 28 (expression -> expression SUP expression .)
     NOTEG           reduce using rule 28 (expression -> expression SUP expression .)
-<<<<<<< HEAD
-=======
-    MODULO          reduce using rule 28 (expression -> expression SUP expression .)
-    LBRACKET        reduce using rule 28 (expression -> expression SUP expression .)
->>>>>>> f1e2a59 (no comment)
     SEMI            reduce using rule 28 (expression -> expression SUP expression .)
     RPAREN          reduce using rule 28 (expression -> expression SUP expression .)
     COMMA           reduce using rule 28 (expression -> expression SUP expression .)
@@ -2126,21 +2089,15 @@ state 61
     TIMES           shift and go to state 36
     MINUS           shift and go to state 37
     DIVIDE          shift and go to state 38
-<<<<<<< HEAD
     MODULO          shift and go to state 40
     LBRACKET        shift and go to state 41
-=======
->>>>>>> f1e2a59 (no comment)
 
   ! PLUS            [ reduce using rule 28 (expression -> expression SUP expression .) ]
   ! TIMES           [ reduce using rule 28 (expression -> expression SUP expression .) ]
   ! MINUS           [ reduce using rule 28 (expression -> expression SUP expression .) ]
   ! DIVIDE          [ reduce using rule 28 (expression -> expression SUP expression .) ]
-<<<<<<< HEAD
   ! MODULO          [ reduce using rule 28 (expression -> expression SUP expression .) ]
   ! LBRACKET        [ reduce using rule 28 (expression -> expression SUP expression .) ]
-=======
->>>>>>> f1e2a59 (no comment)
   ! INF             [ shift and go to state 28 ]
   ! INFEG           [ shift and go to state 29 ]
   ! SUPEG           [ shift and go to state 30 ]
@@ -2149,11 +2106,6 @@ state 61
   ! AND             [ shift and go to state 33 ]
   ! OR              [ shift and go to state 34 ]
   ! NOTEG           [ shift and go to state 39 ]
-<<<<<<< HEAD
-=======
-  ! MODULO          [ shift and go to state 40 ]
-  ! LBRACKET        [ shift and go to state 41 ]
->>>>>>> f1e2a59 (no comment)
 
 
 state 62
@@ -2182,11 +2134,6 @@ state 62
     AND             reduce using rule 29 (expression -> expression EGALEGAL expression .)
     OR              reduce using rule 29 (expression -> expression EGALEGAL expression .)
     NOTEG           reduce using rule 29 (expression -> expression EGALEGAL expression .)
-<<<<<<< HEAD
-=======
-    MODULO          reduce using rule 29 (expression -> expression EGALEGAL expression .)
-    LBRACKET        reduce using rule 29 (expression -> expression EGALEGAL expression .)
->>>>>>> f1e2a59 (no comment)
     SEMI            reduce using rule 29 (expression -> expression EGALEGAL expression .)
     RPAREN          reduce using rule 29 (expression -> expression EGALEGAL expression .)
     COMMA           reduce using rule 29 (expression -> expression EGALEGAL expression .)
@@ -2195,21 +2142,15 @@ state 62
     TIMES           shift and go to state 36
     MINUS           shift and go to state 37
     DIVIDE          shift and go to state 38
-<<<<<<< HEAD
     MODULO          shift and go to state 40
     LBRACKET        shift and go to state 41
-=======
->>>>>>> f1e2a59 (no comment)
 
   ! PLUS            [ reduce using rule 29 (expression -> expression EGALEGAL expression .) ]
   ! TIMES           [ reduce using rule 29 (expression -> expression EGALEGAL expression .) ]
   ! MINUS           [ reduce using rule 29 (expression -> expression EGALEGAL expression .) ]
   ! DIVIDE          [ reduce using rule 29 (expression -> expression EGALEGAL expression .) ]
-<<<<<<< HEAD
   ! MODULO          [ reduce using rule 29 (expression -> expression EGALEGAL expression .) ]
   ! LBRACKET        [ reduce using rule 29 (expression -> expression EGALEGAL expression .) ]
-=======
->>>>>>> f1e2a59 (no comment)
   ! INF             [ shift and go to state 28 ]
   ! INFEG           [ shift and go to state 29 ]
   ! SUPEG           [ shift and go to state 30 ]
@@ -2218,11 +2159,6 @@ state 62
   ! AND             [ shift and go to state 33 ]
   ! OR              [ shift and go to state 34 ]
   ! NOTEG           [ shift and go to state 39 ]
-<<<<<<< HEAD
-=======
-  ! MODULO          [ shift and go to state 40 ]
-  ! LBRACKET        [ shift and go to state 41 ]
->>>>>>> f1e2a59 (no comment)
 
 
 state 63
@@ -2247,11 +2183,6 @@ state 63
     AND             reduce using rule 30 (expression -> expression AND expression .)
     OR              reduce using rule 30 (expression -> expression AND expression .)
     NOTEG           reduce using rule 30 (expression -> expression AND expression .)
-<<<<<<< HEAD
-=======
-    MODULO          reduce using rule 30 (expression -> expression AND expression .)
-    LBRACKET        reduce using rule 30 (expression -> expression AND expression .)
->>>>>>> f1e2a59 (no comment)
     SEMI            reduce using rule 30 (expression -> expression AND expression .)
     RPAREN          reduce using rule 30 (expression -> expression AND expression .)
     COMMA           reduce using rule 30 (expression -> expression AND expression .)
@@ -2264,11 +2195,8 @@ state 63
     TIMES           shift and go to state 36
     MINUS           shift and go to state 37
     DIVIDE          shift and go to state 38
-<<<<<<< HEAD
     MODULO          shift and go to state 40
     LBRACKET        shift and go to state 41
-=======
->>>>>>> f1e2a59 (no comment)
 
   ! INF             [ reduce using rule 30 (expression -> expression AND expression .) ]
   ! INFEG           [ reduce using rule 30 (expression -> expression AND expression .) ]
@@ -2278,20 +2206,12 @@ state 63
   ! TIMES           [ reduce using rule 30 (expression -> expression AND expression .) ]
   ! MINUS           [ reduce using rule 30 (expression -> expression AND expression .) ]
   ! DIVIDE          [ reduce using rule 30 (expression -> expression AND expression .) ]
-<<<<<<< HEAD
   ! MODULO          [ reduce using rule 30 (expression -> expression AND expression .) ]
   ! LBRACKET        [ reduce using rule 30 (expression -> expression AND expression .) ]
-=======
->>>>>>> f1e2a59 (no comment)
   ! SUPEG           [ shift and go to state 30 ]
   ! AND             [ shift and go to state 33 ]
   ! OR              [ shift and go to state 34 ]
   ! NOTEG           [ shift and go to state 39 ]
-<<<<<<< HEAD
-=======
-  ! MODULO          [ shift and go to state 40 ]
-  ! LBRACKET        [ shift and go to state 41 ]
->>>>>>> f1e2a59 (no comment)
 
 
 state 64
@@ -2315,11 +2235,6 @@ state 64
     SUPEG           reduce using rule 31 (expression -> expression OR expression .)
     OR              reduce using rule 31 (expression -> expression OR expression .)
     NOTEG           reduce using rule 31 (expression -> expression OR expression .)
-<<<<<<< HEAD
-=======
-    MODULO          reduce using rule 31 (expression -> expression OR expression .)
-    LBRACKET        reduce using rule 31 (expression -> expression OR expression .)
->>>>>>> f1e2a59 (no comment)
     SEMI            reduce using rule 31 (expression -> expression OR expression .)
     RPAREN          reduce using rule 31 (expression -> expression OR expression .)
     COMMA           reduce using rule 31 (expression -> expression OR expression .)
@@ -2333,11 +2248,8 @@ state 64
     TIMES           shift and go to state 36
     MINUS           shift and go to state 37
     DIVIDE          shift and go to state 38
-<<<<<<< HEAD
     MODULO          shift and go to state 40
     LBRACKET        shift and go to state 41
-=======
->>>>>>> f1e2a59 (no comment)
 
   ! INF             [ reduce using rule 31 (expression -> expression OR expression .) ]
   ! INFEG           [ reduce using rule 31 (expression -> expression OR expression .) ]
@@ -2348,19 +2260,11 @@ state 64
   ! TIMES           [ reduce using rule 31 (expression -> expression OR expression .) ]
   ! MINUS           [ reduce using rule 31 (expression -> expression OR expression .) ]
   ! DIVIDE          [ reduce using rule 31 (expression -> expression OR expression .) ]
-<<<<<<< HEAD
   ! MODULO          [ reduce using rule 31 (expression -> expression OR expression .) ]
   ! LBRACKET        [ reduce using rule 31 (expression -> expression OR expression .) ]
   ! SUPEG           [ shift and go to state 30 ]
   ! OR              [ shift and go to state 34 ]
   ! NOTEG           [ shift and go to state 39 ]
-=======
-  ! SUPEG           [ shift and go to state 30 ]
-  ! OR              [ shift and go to state 34 ]
-  ! NOTEG           [ shift and go to state 39 ]
-  ! MODULO          [ shift and go to state 40 ]
-  ! LBRACKET        [ shift and go to state 41 ]
->>>>>>> f1e2a59 (no comment)
 
 
 state 65
@@ -2391,18 +2295,12 @@ state 65
     PLUS            reduce using rule 32 (expression -> expression PLUS expression .)
     MINUS           reduce using rule 32 (expression -> expression PLUS expression .)
     NOTEG           reduce using rule 32 (expression -> expression PLUS expression .)
-<<<<<<< HEAD
-=======
-    MODULO          reduce using rule 32 (expression -> expression PLUS expression .)
-    LBRACKET        reduce using rule 32 (expression -> expression PLUS expression .)
->>>>>>> f1e2a59 (no comment)
     SEMI            reduce using rule 32 (expression -> expression PLUS expression .)
     RPAREN          reduce using rule 32 (expression -> expression PLUS expression .)
     COMMA           reduce using rule 32 (expression -> expression PLUS expression .)
     RBRACKET        reduce using rule 32 (expression -> expression PLUS expression .)
     TIMES           shift and go to state 36
     DIVIDE          shift and go to state 38
-<<<<<<< HEAD
     MODULO          shift and go to state 40
     LBRACKET        shift and go to state 41
 
@@ -2410,11 +2308,6 @@ state 65
   ! DIVIDE          [ reduce using rule 32 (expression -> expression PLUS expression .) ]
   ! MODULO          [ reduce using rule 32 (expression -> expression PLUS expression .) ]
   ! LBRACKET        [ reduce using rule 32 (expression -> expression PLUS expression .) ]
-=======
-
-  ! TIMES           [ reduce using rule 32 (expression -> expression PLUS expression .) ]
-  ! DIVIDE          [ reduce using rule 32 (expression -> expression PLUS expression .) ]
->>>>>>> f1e2a59 (no comment)
   ! INF             [ shift and go to state 28 ]
   ! INFEG           [ shift and go to state 29 ]
   ! SUPEG           [ shift and go to state 30 ]
@@ -2425,11 +2318,6 @@ state 65
   ! PLUS            [ shift and go to state 35 ]
   ! MINUS           [ shift and go to state 37 ]
   ! NOTEG           [ shift and go to state 39 ]
-<<<<<<< HEAD
-=======
-  ! MODULO          [ shift and go to state 40 ]
-  ! LBRACKET        [ shift and go to state 41 ]
->>>>>>> f1e2a59 (no comment)
 
 
 state 66
@@ -2463,21 +2351,13 @@ state 66
     DIVIDE          reduce using rule 33 (expression -> expression TIMES expression .)
     NOTEG           reduce using rule 33 (expression -> expression TIMES expression .)
     MODULO          reduce using rule 33 (expression -> expression TIMES expression .)
-<<<<<<< HEAD
-=======
-    LBRACKET        reduce using rule 33 (expression -> expression TIMES expression .)
->>>>>>> f1e2a59 (no comment)
     SEMI            reduce using rule 33 (expression -> expression TIMES expression .)
     RPAREN          reduce using rule 33 (expression -> expression TIMES expression .)
     COMMA           reduce using rule 33 (expression -> expression TIMES expression .)
     RBRACKET        reduce using rule 33 (expression -> expression TIMES expression .)
-<<<<<<< HEAD
     LBRACKET        shift and go to state 41
 
   ! LBRACKET        [ reduce using rule 33 (expression -> expression TIMES expression .) ]
-=======
-
->>>>>>> f1e2a59 (no comment)
   ! INF             [ shift and go to state 28 ]
   ! INFEG           [ shift and go to state 29 ]
   ! SUPEG           [ shift and go to state 30 ]
@@ -2491,10 +2371,6 @@ state 66
   ! DIVIDE          [ shift and go to state 38 ]
   ! NOTEG           [ shift and go to state 39 ]
   ! MODULO          [ shift and go to state 40 ]
-<<<<<<< HEAD
-=======
-  ! LBRACKET        [ shift and go to state 41 ]
->>>>>>> f1e2a59 (no comment)
 
 
 state 67
@@ -2525,18 +2401,12 @@ state 67
     PLUS            reduce using rule 34 (expression -> expression MINUS expression .)
     MINUS           reduce using rule 34 (expression -> expression MINUS expression .)
     NOTEG           reduce using rule 34 (expression -> expression MINUS expression .)
-<<<<<<< HEAD
-=======
-    MODULO          reduce using rule 34 (expression -> expression MINUS expression .)
-    LBRACKET        reduce using rule 34 (expression -> expression MINUS expression .)
->>>>>>> f1e2a59 (no comment)
     SEMI            reduce using rule 34 (expression -> expression MINUS expression .)
     RPAREN          reduce using rule 34 (expression -> expression MINUS expression .)
     COMMA           reduce using rule 34 (expression -> expression MINUS expression .)
     RBRACKET        reduce using rule 34 (expression -> expression MINUS expression .)
     TIMES           shift and go to state 36
     DIVIDE          shift and go to state 38
-<<<<<<< HEAD
     MODULO          shift and go to state 40
     LBRACKET        shift and go to state 41
 
@@ -2544,11 +2414,6 @@ state 67
   ! DIVIDE          [ reduce using rule 34 (expression -> expression MINUS expression .) ]
   ! MODULO          [ reduce using rule 34 (expression -> expression MINUS expression .) ]
   ! LBRACKET        [ reduce using rule 34 (expression -> expression MINUS expression .) ]
-=======
-
-  ! TIMES           [ reduce using rule 34 (expression -> expression MINUS expression .) ]
-  ! DIVIDE          [ reduce using rule 34 (expression -> expression MINUS expression .) ]
->>>>>>> f1e2a59 (no comment)
   ! INF             [ shift and go to state 28 ]
   ! INFEG           [ shift and go to state 29 ]
   ! SUPEG           [ shift and go to state 30 ]
@@ -2559,11 +2424,6 @@ state 67
   ! PLUS            [ shift and go to state 35 ]
   ! MINUS           [ shift and go to state 37 ]
   ! NOTEG           [ shift and go to state 39 ]
-<<<<<<< HEAD
-=======
-  ! MODULO          [ shift and go to state 40 ]
-  ! LBRACKET        [ shift and go to state 41 ]
->>>>>>> f1e2a59 (no comment)
 
 
 state 68
@@ -2597,21 +2457,13 @@ state 68
     DIVIDE          reduce using rule 35 (expression -> expression DIVIDE expression .)
     NOTEG           reduce using rule 35 (expression -> expression DIVIDE expression .)
     MODULO          reduce using rule 35 (expression -> expression DIVIDE expression .)
-<<<<<<< HEAD
-=======
-    LBRACKET        reduce using rule 35 (expression -> expression DIVIDE expression .)
->>>>>>> f1e2a59 (no comment)
     SEMI            reduce using rule 35 (expression -> expression DIVIDE expression .)
     RPAREN          reduce using rule 35 (expression -> expression DIVIDE expression .)
     COMMA           reduce using rule 35 (expression -> expression DIVIDE expression .)
     RBRACKET        reduce using rule 35 (expression -> expression DIVIDE expression .)
-<<<<<<< HEAD
     LBRACKET        shift and go to state 41
 
   ! LBRACKET        [ reduce using rule 35 (expression -> expression DIVIDE expression .) ]
-=======
-
->>>>>>> f1e2a59 (no comment)
   ! INF             [ shift and go to state 28 ]
   ! INFEG           [ shift and go to state 29 ]
   ! SUPEG           [ shift and go to state 30 ]
@@ -2625,10 +2477,6 @@ state 68
   ! DIVIDE          [ shift and go to state 38 ]
   ! NOTEG           [ shift and go to state 39 ]
   ! MODULO          [ shift and go to state 40 ]
-<<<<<<< HEAD
-=======
-  ! LBRACKET        [ shift and go to state 41 ]
->>>>>>> f1e2a59 (no comment)
 
 
 state 69
@@ -2716,7 +2564,6 @@ state 70
     (37) expression -> expression . MODULO expression
     (43) expression -> expression . LBRACKET expression RBRACKET
 
-<<<<<<< HEAD
     INF             reduce using rule 37 (expression -> expression MODULO expression .)
     INFEG           reduce using rule 37 (expression -> expression MODULO expression .)
     SUPEG           reduce using rule 37 (expression -> expression MODULO expression .)
@@ -2730,27 +2577,10 @@ state 70
     DIVIDE          reduce using rule 37 (expression -> expression MODULO expression .)
     NOTEG           reduce using rule 37 (expression -> expression MODULO expression .)
     MODULO          reduce using rule 37 (expression -> expression MODULO expression .)
-=======
-  ! shift/reduce conflict for INF resolved as shift
-  ! shift/reduce conflict for INFEG resolved as shift
-  ! shift/reduce conflict for SUPEG resolved as shift
-  ! shift/reduce conflict for SUP resolved as shift
-  ! shift/reduce conflict for EGALEGAL resolved as shift
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for PLUS resolved as shift
-  ! shift/reduce conflict for TIMES resolved as shift
-  ! shift/reduce conflict for MINUS resolved as shift
-  ! shift/reduce conflict for DIVIDE resolved as shift
-  ! shift/reduce conflict for NOTEG resolved as shift
-  ! shift/reduce conflict for MODULO resolved as shift
-  ! shift/reduce conflict for LBRACKET resolved as shift
->>>>>>> f1e2a59 (no comment)
     SEMI            reduce using rule 37 (expression -> expression MODULO expression .)
     RPAREN          reduce using rule 37 (expression -> expression MODULO expression .)
     COMMA           reduce using rule 37 (expression -> expression MODULO expression .)
     RBRACKET        reduce using rule 37 (expression -> expression MODULO expression .)
-<<<<<<< HEAD
     LBRACKET        shift and go to state 41
 
   ! LBRACKET        [ reduce using rule 37 (expression -> expression MODULO expression .) ]
@@ -2767,37 +2597,6 @@ state 70
   ! DIVIDE          [ shift and go to state 38 ]
   ! NOTEG           [ shift and go to state 39 ]
   ! MODULO          [ shift and go to state 40 ]
-=======
-    INF             shift and go to state 28
-    INFEG           shift and go to state 29
-    SUPEG           shift and go to state 30
-    SUP             shift and go to state 31
-    EGALEGAL        shift and go to state 32
-    AND             shift and go to state 33
-    OR              shift and go to state 34
-    PLUS            shift and go to state 35
-    TIMES           shift and go to state 36
-    MINUS           shift and go to state 37
-    DIVIDE          shift and go to state 38
-    NOTEG           shift and go to state 39
-    MODULO          shift and go to state 40
-    LBRACKET        shift and go to state 41
-
-  ! INF             [ reduce using rule 37 (expression -> expression MODULO expression .) ]
-  ! INFEG           [ reduce using rule 37 (expression -> expression MODULO expression .) ]
-  ! SUPEG           [ reduce using rule 37 (expression -> expression MODULO expression .) ]
-  ! SUP             [ reduce using rule 37 (expression -> expression MODULO expression .) ]
-  ! EGALEGAL        [ reduce using rule 37 (expression -> expression MODULO expression .) ]
-  ! AND             [ reduce using rule 37 (expression -> expression MODULO expression .) ]
-  ! OR              [ reduce using rule 37 (expression -> expression MODULO expression .) ]
-  ! PLUS            [ reduce using rule 37 (expression -> expression MODULO expression .) ]
-  ! TIMES           [ reduce using rule 37 (expression -> expression MODULO expression .) ]
-  ! MINUS           [ reduce using rule 37 (expression -> expression MODULO expression .) ]
-  ! DIVIDE          [ reduce using rule 37 (expression -> expression MODULO expression .) ]
-  ! NOTEG           [ reduce using rule 37 (expression -> expression MODULO expression .) ]
-  ! MODULO          [ reduce using rule 37 (expression -> expression MODULO expression .) ]
-  ! LBRACKET        [ reduce using rule 37 (expression -> expression MODULO expression .) ]
->>>>>>> f1e2a59 (no comment)
 
 
 state 71
@@ -4619,20 +4418,3 @@ WARNING: shift/reduce conflict for DIVIDE in state 69 resolved as shift
 WARNING: shift/reduce conflict for NOTEG in state 69 resolved as shift
 WARNING: shift/reduce conflict for MODULO in state 69 resolved as shift
 WARNING: shift/reduce conflict for LBRACKET in state 69 resolved as shift
-<<<<<<< HEAD
-=======
-WARNING: shift/reduce conflict for INF in state 70 resolved as shift
-WARNING: shift/reduce conflict for INFEG in state 70 resolved as shift
-WARNING: shift/reduce conflict for SUPEG in state 70 resolved as shift
-WARNING: shift/reduce conflict for SUP in state 70 resolved as shift
-WARNING: shift/reduce conflict for EGALEGAL in state 70 resolved as shift
-WARNING: shift/reduce conflict for AND in state 70 resolved as shift
-WARNING: shift/reduce conflict for OR in state 70 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 70 resolved as shift
-WARNING: shift/reduce conflict for TIMES in state 70 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 70 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 70 resolved as shift
-WARNING: shift/reduce conflict for NOTEG in state 70 resolved as shift
-WARNING: shift/reduce conflict for MODULO in state 70 resolved as shift
-WARNING: shift/reduce conflict for LBRACKET in state 70 resolved as shift
->>>>>>> f1e2a59 (no comment)
