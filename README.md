@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Interpréteur mini-langage (ESGI 3A)
 ___
 Baptise COQUET - Loris RAMEAU
@@ -405,5 +404,4 @@ ___
 ### 🔍 Exemple : différence entre variable globale et locale 
 ```
 x = 10;  def f() {     x = 99;     print(x); };  f(); print(x); 
->>>>>>> f1e2a59 (no comment)
 ```
