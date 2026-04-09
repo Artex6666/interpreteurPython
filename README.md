@@ -208,30 +208,6 @@ print(t);
 u = [[1,2],[3,4]];
 print(u[1]);
 print(u[1][0]);
-=======
-# Interpréteur mini-langage (ESGI 3A)
-___
-Baptise COQUET - Loris RAMEAU
-
-## 🗂️ Arborescence du projet
-
-___
-
-```txt
-src/
-│
-├── ast_lang/
-│   ├── node/
-│   └── statement/
-│
-├── grammar/
-│
-├── runtime/
-│   ├── values/
-│   ├── exception/
-│   └── trace/
-│
-└── graph_ast/
 ```
 ___
 
